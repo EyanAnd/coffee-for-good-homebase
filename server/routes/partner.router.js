@@ -19,11 +19,30 @@ router.get('/', (req, res) => {
     })
 })
 
-// GET TO RETURN AN OBJECT THAT WE CAN SHOW ^^
+// GET TO RETURN AN OBJECT THAT WE CAN SHOW ^^ ASK MASON
 // Get to partner table to show mission, goals, statistics
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    const queryText = `SELECT "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "partner_id"=$1`
 
+    pool.query(queryText, [id]).then(result => {
+        res.send(result.rows)
+    }).catch(err => {
+        console.log('got an error GETTING the values from the partner table', err)
+        res.sendStatus(500)
+    }).catch(err => {
+        console.log('there was an error GETTING the reports', err)
+    })
+})
 // GET to reports to grab any reports to put in a table
+router.get('/reports/:id', (req, res) => {
+    const id = req.params.id;
+    const queryText = `SELECT * FROM "reports" WHERE "partner_id"=$1;`;
 
+    pool.query(queryText, [id]).then(result => {
+        res.send(result.rows);
+    })
+})
 // router PUT for reports to indicate if they were read or not
 
 
