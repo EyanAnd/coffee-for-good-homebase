@@ -1,18 +1,23 @@
 import React from 'react';
 import { useState } from 'react';
-// This is one of our simplest components
-// It doesn't have local state
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function ContactUs() {
+
+  // init useHistory
+  const history = useHistory();
+  // init use Selector
+  const userId = useSelector(store => store.user.id)
   // use state to make the submission form
-  const [submission, setSubmission] = useState({user_id: '', name: '', email: '', subject: '', description: ''});
+  const [submission, setSubmission] = useState({user_id: userId, name: '', email: '', subject: '', description: ''});
   // import dispatch to send it to a saga
+  const dispatch = useDispatch();
   // click handler to send dispatch to saga in order to send the submission to the backend
   const addSubmission = (e) => {
-    e.prevent.defualt();
     console.log(submission)
+    // dispatch here
   }
   return (
     <div className="container">
@@ -21,6 +26,7 @@ function ContactUs() {
       <label htmlFor="email">Email :<input type="text" value={submission.email} onChange={(e) => setSubmission({...submission, email: e.target.value})}/></label>
       <label htmlFor="subject">Subject :<input type="text" value={submission.subject} onChange={(e) => setSubmission({...submission, subject: e.target.value})}/></label>
       <label htmlFor="description">Description :<input type="text" value={submission.description} onChange={(e) => setSubmission({...submission, description: e.target.value})}/></label>
+      <button onClick={() => history.push('/user')}>Back</button>
       <button onClick={addSubmission}>Submit</button>
     </div>
   );

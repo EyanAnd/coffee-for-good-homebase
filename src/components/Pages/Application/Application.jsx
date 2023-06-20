@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { Dispatch } from "react"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function Application() {
+
+    const history = useHistory();
 
     const userId = useSelector(store => store.user.id)
     // set state for the form
@@ -31,7 +34,7 @@ export default function Application() {
             <label htmlFor="reporting">Reporting :<input type="text" value={application.reporting} onChange={(e) => setApplication({...application, reporting: e.target.value})}/></label>
             <label htmlFor="sharing">Sharing :<input type="text" value={application.sharing} onChange={(e) => setApplication({...application, sharing: e.target.value})}/></label>
             <label htmlFor="notes">Addiitonal Notes :<input type="text" value={application.notes} onChange={(e) => setApplication({...application, notes: e.target.value})}/></label>
-            <button>Back</button>
+            <button onClick={() => history.push('/user')}>Back</button>
             <button onClick={applicationSubmit}>Submit</button>
         </div>
     )
