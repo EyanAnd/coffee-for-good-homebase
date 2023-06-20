@@ -27,11 +27,11 @@ router.post('/:id', (req, res) => {
     console.log(req.params)
     const id = req.params.id
 
-    const queryText = `INSERT INTO "application" ("user_id", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
+    const queryText = `INSERT INTO "application" ("user_id", "name", "email", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
 
-    pool.query(queryText, [id, req.body.mission, req.body.impact, req.body.values,
-        req.body.previous_partners, req.body.success_stories, req.body.colab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved]).then(result => {
+    pool.query(queryText, [id, req.body.name, req.body.email, req.body.mission, req.body.impact, req.body.values,
+        req.body.previous_partners, req.body.success_stories, req.body.collab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved]).then(result => {
             res.sendStatus(201);
         }).catch(err => {
             console.log('there was an error POSTING an application', err)
@@ -43,18 +43,23 @@ router.put('/:id', (req, res) => {
     const id = req.params.id;
 
     const queryText = `UPDATE "application"
-    SET "mission" = $1,
-        "impact" = $2,
-        "values" = $3,
-        "previous_partners" = $4,
-        "success_stories" = $5,
-        "collab" = $6,
-        "reporting" = $7,
-        "sharing" = $8,
-        "notes" = $9
-    WHERE "user_id" = $10;`;
+    SET "name" = $1
+        "email" = $2,
+        "mission" = $3,
+        "impact" = $4,
+        "values" = $5,
+        "previous_partners" = $6,
+        "success_stories" = $7,
+        "collab" = $8,
+        "reporting" = $9,
+        "sharing" = $10,
+        "notes" = $11,
+        "approved" = $12,
+    WHERE "user_id" = $13;`;
 
     pool.query(queryText, [
+        req.body.name,
+        req.body.email,
         req.body.mission,
         req.body.impact,
         req.body.values,
@@ -64,6 +69,7 @@ router.put('/:id', (req, res) => {
         req.body.reporting,
         req.body.sharing,
         req.body.notes,
+        req.body.approved,
         id
         
     ])

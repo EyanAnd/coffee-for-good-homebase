@@ -19,16 +19,49 @@ router.get('/applications', (req, res) => {
     })
 })
 // PUT to update application approval
-router.put('/:user_id', async (req, res) => {
+router.put('/applications/:user_id', async (req, res) => {
     try {
-        const id = req.params.user_id
-        const queryText = `UPDATE "application" SET "approved"=true WHERE "user_id"=$1;`;
-        await pool.query(queryText, [id])
-        res.sendStatus(200);
+      const userId = req.params.user_id;
+  
+      const queryText1 = 'UPDATE "application" SET "approved" = true WHERE "user_id" = $1';
+      await pool.query(queryText1, [userId]);
+  
+      // Check if the application was approved
+      const queryText2 = 'SELECT * FROM "application" WHERE "user_id" = $1';
+      const { rows } = await pool.query(queryText2, [userId]);
+      const application = rows[0];
+  
+      if (application && application.approved) {
+        // Create a new partner record
+        const queryText3 = `
+          INSERT INTO "partners" ("user_id", "name", "email", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes")
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        `;
+        const insertValues = [
+          userId,
+          application.name,
+          application.email,
+          application.mission,
+          application.impact,
+          application.values,
+          application.previous_partners,
+          application.success_stories,
+          application.collab,
+          application.reporting,
+          application.sharing,
+          application.notes
+        ];
+        await pool.query(queryText3, insertValues);
+      }
+  
+      res.sendStatus(200);
     } catch (error) {
-        console.log('there was an error UPDATING approval', error)
+      console.log('There was an error updating the approval and creating a new partner:', error);
+      res.sendStatus(500);
     }
-})
+  });
+  
+  
 // GET to grab reports
 router.get('/reports', async (req, res) => {
     try {
@@ -61,6 +94,64 @@ router.delete('/applications/:user_id', async (req, res) => {
         res.sendStatus(204);
     } catch (error) {
         console.log('there was an error DELETING an applications', error)
+    }
+})
+
+// get to grab the transactional data
+router.get('/', async (req, res) => {
+    try {
+        // get total shipping_items per state
+        const queryText1 = `SELECT shipping_state, COUNT(*) AS shipment_count
+        FROM cfg_data
+        WHERE shipping_method = 'Shipping'
+        GROUP BY shipping_state;`;
+        // get number of orders per channel type
+        const queryText2 = `SELECT channel_type, COUNT(*) AS order_count
+        FROM cfg_data
+        GROUP BY channel_type;`;
+        // grabbing the in-store, local delivery and shipping orders per state
+        const queryText3 = `SELECT
+        CASE
+            WHEN shipping_method = 'Local Delivery' THEN 'Local Delivery'
+            WHEN shipping_method = 'Shipping' THEN 'Shipping'
+            WHEN shipping_method = 'IN_PERSON' THEN 'In-Store Pickup'
+        END AS shipping_method,
+        COUNT(*) AS order_count
+    FROM
+        cfg_data
+    WHERE
+        shipping_method IN ('Local Delivery', 'Shipping', 'IN_PERSON')
+    GROUP BY
+        shipping_method
+    ORDER BY
+        shipping_method;`;
+    // grabbing the cash total of all the donations
+    const queryText4 = `SELECT SUM(total) FROM "cfg_data";`;
+    // grabbing the amount of orders total
+    const queryText5 = `SELECT COUNT(order_id) FROM "cfg_data";`;
+    // grabbing number of orders per channel type.
+    const queryText6 = `SELECT channel_type, COUNT(*) AS order_count
+    FROM cfg_data
+    GROUP BY channel_type;`;
+
+    // responses
+    const response1 = await pool.query(queryText1).then()
+    const resposne2 = await pool.query(queryText2)
+    const response3 = await pool.query(queryText3)
+    const resposne4 = await pool.query(queryText4)
+    const response5 = await pool.query(queryText5)
+    const resposne6 = await pool.query(queryText6)
+    
+    res.send({
+        response1: response1.rows,
+        response2: resposne2.rows,
+        response3: response3.rows,
+        resposne4: resposne4.rows,
+        response5: response5.rows,
+        resposne6: resposne6.rows
+    })
+    } catch (error) {
+        console.log('there was an error GETTING ALL THIS', error)
     }
 })
 

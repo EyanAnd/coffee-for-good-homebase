@@ -65,10 +65,10 @@ router.get('/', async (req, res) => {
         console.log('there was an error GETTING ALL THIS', error)
     }
 })
-// Get to partner table to show mission, goals, statistics
+// GET to partner table to show mission, goals, statistics
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    const queryText = `SELECT "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "partner_id"=$1`
+    const queryText = `SELECT "name", "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "partner_id"=$1`
 
     pool.query(queryText, [id]).then(result => {
         res.send(result.rows)
