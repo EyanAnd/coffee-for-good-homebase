@@ -15,10 +15,11 @@ import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 
 import AboutPage from './Pages/AboutPage/AboutPage';
 import UserPage from './Pages/UserPage/UserPage';
-import InfoPage from './Pages/InfoPage/InfoPage';
+import ContactUs from './Pages/ContactUs/ContactUs';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
+import Application from './Pages/Application/Application';
 
 import './App.css';
 
@@ -61,11 +62,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows UserPage else shows LoginPage
             exact
-            path="/info"
+            path="/application"
           >
-            <InfoPage />
+            <Application />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Contact Us else shows LoginPage
+            exact
+            path="/contact"
+          >
+            <ContactUs />
           </ProtectedRoute>
 
           <Route

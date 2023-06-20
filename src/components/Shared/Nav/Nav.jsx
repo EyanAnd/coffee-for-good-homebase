@@ -21,6 +21,9 @@ function Nav() {
           </Link>
         )}
 
+        <Link className="navLink" to="/about">
+          About
+        </Link>
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
@@ -28,17 +31,18 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
+            <Link className="navLink" to="/contact">
+              Contact Us
+            </Link>
+
+            <Link className="navLink" to="/application">
+              Application
             </Link>
 
             <LogOutButton className="navLink" />
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );

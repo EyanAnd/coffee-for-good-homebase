@@ -5,12 +5,13 @@ import { useState } from 'react';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is
 
-function InfoPage() {
+function ContactUs() {
   // use state to make the submission form
   const [submission, setSubmission] = useState({user_id: '', name: '', email: '', subject: '', description: ''});
   // import dispatch to send it to a saga
   // click handler to send dispatch to saga in order to send the submission to the backend
-  const addSubmission = () => {
+  const addSubmission = (e) => {
+    e.prevent.defualt();
     console.log(submission)
   }
   return (
@@ -25,4 +26,4 @@ function InfoPage() {
   );
 }
 
-export default InfoPage;
+export default ContactUs;
