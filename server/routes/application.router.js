@@ -8,17 +8,6 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// GET FOR ADMIN TO GET ALL OF THE APPLICATIONS
-router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "application";`;
-
-    pool.query(queryText).then(result => {
-        res.send(result.rows)
-    }).catch(err => {
-        console.log('error GETTING ALL the applications', err)
-    })
-})
-
 // GET to grab application if started
 router.get('/:id', (req, res) => {
     console.log(req.params)
@@ -34,15 +23,15 @@ router.get('/:id', (req, res) => {
     })
 })
 // router.post to submit an application
-router.post('/application/:id', (req, res) => {
+router.post('/:id', (req, res) => {
     console.log(req.params)
     const id = req.params.id
 
-    const queryText = `INSERT INTO "application ("user_id", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
+    const queryText = `INSERT INTO "application" ("user_id", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
 
     pool.query(queryText, [id, req.body.mission, req.body.impact, req.body.values,
-        req.body.previous_partners, req.body.success_stories, req.body.colab, req.body.reporting, req.body.sharing, req.body.notes]).then(result => {
+        req.body.previous_partners, req.body.success_stories, req.body.colab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved]).then(result => {
             res.sendStatus(201);
         }).catch(err => {
             console.log('there was an error POSTING an application', err)
