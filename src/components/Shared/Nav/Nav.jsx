@@ -42,6 +42,13 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
+        {user.id && user.is_admin && (
+          <>
+             <Link className="navLink" to="/admin/applications">
+              Applications
+            </Link>
+          </>
+        )}
 
       </div>
     </div>

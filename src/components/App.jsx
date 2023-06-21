@@ -20,6 +20,7 @@ import LandingPage from './Pages/LandingPage/LandingPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import Application from './Pages/Application/Application';
+import AdminApplicationsTable from './Pages/AdminApplicationsTable.jsx/AdminApplicationsTable';
 
 import './App.css';
 
@@ -60,7 +61,6 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -88,6 +88,15 @@ function App() {
               :
               // Otherwise, show the login page
               <LoginPage />
+            }
+            { user.id && user.is_admin &&
+              <ProtectedRoute
+                // logged in shows UserPage else shows LoginPage
+                exact
+                path="/admin/applications"
+              >
+                <AdminApplicationsTable />
+              </ProtectedRoute> 
             }
           </Route>
 
