@@ -18,4 +18,9 @@ function* fetchAdminAppsSaga() {
     }
 }
 
+// saga to approve an application
+
+// saga to delete an application
+
+
 export default adminappSaga;

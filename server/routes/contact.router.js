@@ -8,7 +8,7 @@ const userStrategy = require('../strategies/user.strategy');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/',rejectUnauthenticated, async (req, res) => {
     try {
         const {user_id, name, email, subject, description } = req.body;
 
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/',rejectUnauthenticated, async (req, res) => {
     try {
         const queryText = `SELECT * FROM contact_form;`;
         const response = await pool.query(queryText)

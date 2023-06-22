@@ -47,6 +47,9 @@ function Nav() {
              <Link className="navLink" to="/admin/applications">
               Applications
             </Link>
+            <Link className="navLink" to="/admin/">
+              Home
+            </Link>
           </>
         )}
 

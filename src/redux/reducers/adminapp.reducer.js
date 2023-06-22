@@ -1,7 +1,7 @@
 const adminApplicationReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_APPS':
-        return [...state, action.payload]
+        return action.payload
       default:
         return state;
     }

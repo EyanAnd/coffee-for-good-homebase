@@ -21,6 +21,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import Application from './Pages/Application/Application';
 import AdminApplicationsTable from './Pages/AdminApplicationsTable.jsx/AdminApplicationsTable';
+import AdminHome from './Pages/AdminHome/AdminHome';
 import './App.css';
 
 function App() {
@@ -78,7 +79,13 @@ function App() {
           >
             <AdminApplicationsTable />
           </ProtectedRoute>
-
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/admin/"
+          >
+            <AdminHome />
+          </ProtectedRoute>
           <ProtectedRoute
             // logged in shows Contact Us else shows LoginPage
             exact

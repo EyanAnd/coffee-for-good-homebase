@@ -9,7 +9,7 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // GET to grab transaction data
-router.get('/', async (req, res) => {
+router.get('/',rejectUnauthenticated, async (req, res) => {
     try {
         // get total shipping_items per state
         const queryText1 = `SELECT shipping_state, COUNT(*) AS shipment_count
@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
     }
 })
 // GET to partner table to show mission, goals, statistics
-router.get('/:id', (req, res) => {
+router.get('/:id',rejectUnauthenticated, (req, res) => {
     const id = req.params.id
     const queryText = `SELECT "name", "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "partner_id"=$1`
 
@@ -80,7 +80,7 @@ router.get('/:id', (req, res) => {
     })
 })
 // GET to reports to grab any reports to put in a table
-router.get('/reports/:id', (req, res) => {
+router.get('/reports/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id;
     const queryText = `SELECT * FROM "reports" WHERE "partner_id"=$1;`;
 

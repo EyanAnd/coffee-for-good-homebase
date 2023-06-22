@@ -31,7 +31,7 @@ router.get('/', rejectUnauthenticated, async (req, res) => { // TODO replace wit
 })
 
 // router.post to submit an application
-router.post('/', (req, res) => {
+router.post('/',rejectUnauthenticated, (req, res) => {
     console.log(req.params)
     const id = req.user.id
     const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
         })
 })
 // router put to update application
-router.put('/', (req, res) => {
+router.put('/',rejectUnauthenticated, (req, res) => {
     const id = req.user.id;
 
     const queryText = `UPDATE "application"
