@@ -6,10 +6,12 @@ export default function AdminApplicationsTable() {
     return (
         <>
             <table>
-                <thead>
-                    <td>Name</td>
-                    <td>Status</td>
-                </thead>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
                 <tbody>
                     <tr>
                         <AdminApplicationsItem />

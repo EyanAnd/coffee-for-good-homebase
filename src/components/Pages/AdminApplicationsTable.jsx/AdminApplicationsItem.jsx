@@ -1,4 +1,4 @@
-export default function AdminApplicationsItem({id, app}) {
+export default function AdminApplicationsItem({ id, app }) {
 
     // grab from the store the status of the application
 
@@ -8,9 +8,9 @@ export default function AdminApplicationsItem({id, app}) {
 
     return (
         <>
-            <p>applications go here</p>
-            <button onClick={() => console.log('approve the application')}>Approve</button>
-            <button onClick={() => console.log('delete the application')}>Delete</button>
+            <td><p>applications go here</p></td>
+            <td><button onClick={() => console.log('approve the application')}>Approve</button></td>
+            <td><button onClick={() => console.log('delete the application')}>Delete</button></td>
         </>
     )
 }

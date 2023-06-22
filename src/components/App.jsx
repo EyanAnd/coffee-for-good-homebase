@@ -21,7 +21,6 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import Application from './Pages/Application/Application';
 import AdminApplicationsTable from './Pages/AdminApplicationsTable.jsx/AdminApplicationsTable';
-
 import './App.css';
 
 function App() {
@@ -29,9 +28,13 @@ function App() {
 
   const user = useSelector(store => store.user);
 
+
+
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
+
+
 
   return (
     <Router>
@@ -68,6 +71,13 @@ function App() {
           >
             <Application />
           </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/admin/applications"
+          >
+            <AdminApplicationsTable />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows Contact Us else shows LoginPage
@@ -88,15 +98,6 @@ function App() {
               :
               // Otherwise, show the login page
               <LoginPage />
-            }
-            { user.id && user.is_admin &&
-              <ProtectedRoute
-                // logged in shows UserPage else shows LoginPage
-                exact
-                path="/admin/applications"
-              >
-                <AdminApplicationsTable />
-              </ProtectedRoute> 
             }
           </Route>
 
@@ -127,7 +128,6 @@ function App() {
               <LandingPage />
             }
           </Route>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
