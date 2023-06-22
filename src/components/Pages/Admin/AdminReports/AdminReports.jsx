@@ -20,6 +20,9 @@ export default function AdminReports() {
     console.log(reports)
     return (
         <>
+        <div className="button">
+            <button>Add A new report</button>
+        </div>
             <table>
                 <thead>
                     <tr>

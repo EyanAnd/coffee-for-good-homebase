@@ -21,9 +21,10 @@ function* fetchAdminAppsSaga() {
 }
 
 // saga to approve an application
-function* approveSaga() {
+function* approveSaga(action) {
     try {
-        const response = yield axios.put('/api/applications')
+        console.log(action.payload)
+        const response = yield axios.put('/api/admin/applications', {user_id: action.payload})
         console.log(response)
         yield put({ type: 'FETCH_ADMIN_APPS' })
     } catch (error) {
@@ -31,13 +32,13 @@ function* approveSaga() {
     }
 }
 // saga to delete an application
-function* deleteAppSaga() {
+function* deleteAppSaga(action) { // to do put action in here and put payload in const response line below
     try {
-        const response = yield axios.delete('/api/admin/applications')
+        const response = yield axios.delete('/api/admin/applications', {data: {user_id: action.payload}})
         console.log(response)
         yield put({ type: 'FETCH_ADMIN_APPS' })
     } catch (error) {
-        console.log('there was an error deleting the application')
+        console.log('there was an error deleting the application', error)
     }
 }
 

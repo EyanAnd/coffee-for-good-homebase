@@ -21,40 +21,41 @@ function Nav() {
           </Link>
         )}
 
-        <Link className="navLink" to="/about">
+        {!user.id && <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link>}
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
+            {/* TODO you will have to do this with the partner home route to */}
+            {user.is_admin ? <Link className="navLink" to="/admin/">
               Home
-            </Link>
+            </Link> : <Link className="navLink" to="/user">
+              Home
+            </Link>}
 
-            <Link className="navLink" to="/contact">
+            {!user.is_admin && <Link className="navLink" to="/contact">
               Contact Us
-            </Link>
+            </Link>}
 
-            <Link className="navLink" to="/application">
+            {!user.is_admin && <Link className="navLink" to="/application">
               Application
-            </Link>
+            </Link>}
+            {user.is_admin && (
+              <>
+                <Link className="navLink" to="/admin/applications">
+                  Applications
+                </Link>
 
+                <Link className="navLink" to="/admin/reports">
+                  Reports
+                </Link>
+              </>
+            )}
             <LogOutButton className="navLink" />
           </>
         )}
-        {user.id && user.is_admin && (
-          <>
-             <Link className="navLink" to="/admin/applications">
-              Applications
-            </Link>
-            <Link className="navLink" to="/admin/">
-              Home
-            </Link>
-            <Link className="navLink" to="/admin/reports">
-              Reports
-            </Link>
-          </>
-        )}
+
 
       </div>
     </div>

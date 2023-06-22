@@ -12,7 +12,7 @@ export default function AdminApplicationsTable() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_ADMIN_APPS' })
-    }, [])
+    }, [dispatch])
     // grab applications table from the store. 
     const applications = useSelector(store=> store.adminApplicationReducer)
     console.log(applications);
@@ -28,10 +28,9 @@ export default function AdminApplicationsTable() {
                         </tr>
                     </thead>
                 <tbody>
-                    <tr>
-                        {/* TODO map over the store of the applications */}
-                        <AdminApplicationsItem />
-                    </tr>
+                        {applications.map((app, key) => (
+                            <AdminApplicationsItem app={app} key={key}/>
+                        ))}
                 </tbody>
             </table>
         </>
