@@ -86,7 +86,7 @@ router.post('/reports', async (req, res) => {
 })
 
 // DELETE to delete an application
-router.delete('/applications/', async (req, res) => {
+router.delete('/applications', async (req, res) => {
     try {
         const id = req.user.user_id
         const queryText = `DELETE FROM "application" WHERE "user_id"=$1;`;
