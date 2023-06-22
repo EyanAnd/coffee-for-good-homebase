@@ -5,13 +5,13 @@ import { useEffect } from "react";
 export default function PartnerHome() {
     // initalize cfg to map over for the data
     const cfg = useSelector(store => store.transactionDataReducer);
-
     const dispatch = useDispatch();
     
     // render the data on load
     useEffect(() => {
         dispatch({ type: 'FETCH_DATA' })
     }, [dispatch])
+
 
     // TODO implement chart js
 
