@@ -1,9 +1,14 @@
-export default function AdminReportsItem() {
+import React from "react"
 
-    // bring in props here 
+export default function AdminReportsItem({ report }) {
+
     return (
         <>
-            <p>return singular report</p>
+            <tr key={report.user_id}>
+                <td>{report.name}</td>
+                <td>{report.description}</td>
+                <td>{report.date_sent}</td>
+            </tr>
         </>
     )
 }

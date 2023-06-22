@@ -16,20 +16,23 @@ export default function AdminReports() {
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
     }, [])
+
+    console.log(reports)
     return (
         <>
             <table>
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Status</td>
-                        </tr>
-                    </thead>
-                <tbody>
+                <thead>
                     <tr>
-                        {/* TODO map over the store of the reports */}
-                        <AdminReportsItem />
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Date Sent</td>
                     </tr>
+                </thead>
+                <tbody>
+                    {reports.map(report => (
+                       <AdminReportsItem report={report} />
+                    ))}
+
                 </tbody>
             </table>
         </>
