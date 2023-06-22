@@ -19,11 +19,11 @@ router.get('/applications', (req, res) => {
     })
 })
 // PUT to update application approval
-router.put('/applications/:user_id', async (req, res) => {
+router.put('/applications', async (req, res) => {
     try {
-      const userId = req.params.user_id;
+      const userId = req.user.user_id;
   
-      const queryText1 = 'UPDATE "application" SET "approved" = true WHERE "user_id" = $1';
+      const queryText1 = 'UPDATE "application" SET "approved" = true WHERE "user_id" = $1;';
       await pool.query(queryText1, [userId]);
   
       // Check if the application was approved
@@ -86,9 +86,9 @@ router.post('/reports', async (req, res) => {
 })
 
 // DELETE to delete an application
-router.delete('/applications/:user_id', async (req, res) => {
+router.delete('/applications/', async (req, res) => {
     try {
-        const id = req.params.user_id
+        const id = req.user.user_id
         const queryText = `DELETE FROM "application" WHERE "user_id"=$1;`;
         await pool.query(queryText, [id])
         res.sendStatus(204);

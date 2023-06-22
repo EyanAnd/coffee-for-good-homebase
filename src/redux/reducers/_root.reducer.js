@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import contactReducer from './contact.reducer';
 import applicationReducer from './application.reducer';
-import existanceReducer from './existance.reducer';
+import adminApplicationReducer from './adminapp.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -13,9 +13,9 @@ import existanceReducer from './existance.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  contactReducer,
-  applicationReducer,
-  existanceReducer
+  contactReducer, // holds state for contact us form
+  applicationReducer, // holds state for the application that the user fills out
+  adminApplicationReducer // holds state for admin application table
 });
 
 export default rootReducer;
