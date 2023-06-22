@@ -27,6 +27,12 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
+          <Link className="navLink" to="/partner/">
+            Home
+          </Link>
+          <Link className="navLink" to="/partner/reports">
+            Reports
+          </Link>
             {/* TODO you will have to do this with the partner home route to */}
             {user.is_admin ? <Link className="navLink" to="/admin/">
               Home

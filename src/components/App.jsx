@@ -23,12 +23,16 @@ import Application from './Pages/Application/Application';
 import AdminApplicationsTable from './Pages/Admin/AdminApplicationsTable.jsx/AdminApplicationsTable';
 import AdminHome from './Pages/Admin/AdminHome/AdminHome';
 import AdminReports from './Pages/Admin/AdminReports/AdminReports';
+import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
+import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+
+  // TODO import partner store to make sure that we can compare if the user has an admin application
 
 
 
@@ -59,6 +63,49 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+          {/* Protected route to render admin home or  user home page*/}
+          <ProtectedRoute
+          // logged in admin should only see one their home screen else shows LoginPage
+          exact
+          path="/partner/"
+        >
+          <PartnerHome />
+        </ProtectedRoute>
+        <ProtectedRoute
+          // logged in admin should only see one their home screen else shows LoginPage
+          exact
+          path="/partner/reports"
+        >
+          <PartnerReports />
+        </ProtectedRoute>
+          {/* {user.id === partner.user_id ? 
+          <ProtectedRoute
+          // logged in admin should only see one their home screen else shows LoginPage
+          exact
+          path="/partner/"
+        >
+          <PartnerHome />
+        </ProtectedRoute> :<ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user"
+          >
+            <UserPage />
+          </ProtectedRoute>} */}
+          {/* {user.id === partner.user_id ? 
+          <ProtectedRoute
+          // logged in admin should only see one their home screen else shows LoginPage
+          exact
+          path="/partner/reports"
+        >
+          <PartnerReports />
+        </ProtectedRoute> :<ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user"
+          >
+            <UserPage />
+          </ProtectedRoute>} */}
           {user.id && user.is_admin ? 
           <ProtectedRoute
           // logged in admin should only see one their home screen else shows LoginPage
