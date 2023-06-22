@@ -50,6 +50,9 @@ function Nav() {
             <Link className="navLink" to="/admin/">
               Home
             </Link>
+            <Link className="navLink" to="/admin/reports">
+              Reports
+            </Link>
           </>
         )}
 

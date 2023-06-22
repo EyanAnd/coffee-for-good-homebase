@@ -22,6 +22,7 @@ import RegisterPage from './Pages/RegisterPage/RegisterPage';
 import Application from './Pages/Application/Application';
 import AdminApplicationsTable from './Pages/AdminApplicationsTable.jsx/AdminApplicationsTable';
 import AdminHome from './Pages/AdminHome/AdminHome';
+import AdminReports from './Pages/AdminReports/AdminReports';
 import './App.css';
 
 function App() {
@@ -64,6 +65,13 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows Contact Us else shows LoginPage
+            exact
+            path="/admin/reports"
+          >
+            <AdminReports />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
