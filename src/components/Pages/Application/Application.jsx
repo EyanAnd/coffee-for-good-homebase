@@ -6,7 +6,9 @@ import { useEffect } from "react"
 
 export default function Application() {
 
-    const doesFormExist = useSelector(store => store.existanceReducer)
+    // TODO conditionally render application if they have submitted one or not.
+
+    // grab current application from the store
     const currentApplication = useSelector( store => store.applicationReducer)
     // initalize history
     const history = useHistory();
@@ -14,12 +16,11 @@ export default function Application() {
     // initalize dispatch
     const dispatch = useDispatch();
 
+    // TODO find out if you really need this here
     const userId = useSelector(store => store.user.id)
     // initalize useEffect
     useEffect(() => {
-        console.log('in useEffect');
         dispatch({ type: 'FETCH_APP' })
-        console.log(doesFormExist)
     }, [])
 
     // new useEffect 
@@ -35,13 +36,10 @@ export default function Application() {
     // dispatch here to POST in the saga 
     const saveHandler = () => {
         // this will update the application when the user hits the save button
-        console.log(application);
         dispatch({ type: 'UPDATE_APP', payload: application })
     }
-    console.log(doesFormExist)
     // click handler for dispatch to update the status maybe take the user_id in?
     const applicationSubmit = () => {
-        console.log(application);
         dispatch({ type: 'SUBMIT_APP', payload: application });
         history.push('/user') // push user to new page. 
     }

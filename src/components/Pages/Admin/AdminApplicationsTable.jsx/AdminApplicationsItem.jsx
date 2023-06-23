@@ -1,14 +1,10 @@
 import { useDispatch } from "react-redux"
 
 export default function AdminApplicationsItem({ app }) {
-
-    // grab info from props
-    
     // initalize use disaptch
     const dispatch = useDispatch();
 
     // on click function to do a PUT request to update the application to approved
-
     // on click delete an application
     return (
         <>

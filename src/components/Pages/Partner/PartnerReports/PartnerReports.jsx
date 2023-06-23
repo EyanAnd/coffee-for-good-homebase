@@ -4,15 +4,13 @@ import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import PartnerReportsItem from "./PartnerReportsItem"
 export default function PartnerReports() {
-    // initalize the store
+    // initalize the store for reports
     const reports = useSelector(store => store.partnerReportsReducer)
+    // initalize store for partner
     const partner = useSelector(store => store.partnerReducer)
-    console.log(partner)
-    console.log(reports)
     // initalize use dispatch
     const dispatch = useDispatch();
-
-    // initalize useEffect
+    // initalize useEffect to grab current partner reports
     useEffect(() => {
         dispatch({ type: 'FETCH_PARTNER_REPORTS'  })
     }, [])
@@ -31,6 +29,7 @@ export default function PartnerReports() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* map over the reports array and pass in the report to the reports item */}
                     {reports.map(report => (
                         <PartnerReportsItem report={report} />
                     ))}

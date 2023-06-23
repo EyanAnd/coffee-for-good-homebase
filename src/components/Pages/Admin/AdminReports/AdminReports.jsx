@@ -8,7 +8,6 @@ export default function AdminReports() {
 
     // initalize the store
     const reports = useSelector(store => store.reportsReducer)
-    console.log(reports)
     // initalize use dispatch
     const dispatch = useDispatch();
 
@@ -16,8 +15,6 @@ export default function AdminReports() {
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
     }, [])
-
-    console.log(reports)
     return (
         <>
         <div className="button">
@@ -32,6 +29,7 @@ export default function AdminReports() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Map ove the reports and send a report as a prop ot the item component */}
                     {reports.map(report => (
                        <AdminReportsItem report={report} />
                     ))}

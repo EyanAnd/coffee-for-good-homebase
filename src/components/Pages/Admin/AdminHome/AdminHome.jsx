@@ -8,19 +8,16 @@ export default function AdminHome() {
 
     // init dispatch
     const dispatch = useDispatch();
-    // init use selector to get the store data to change it around and conditionally render based on the sort by...
-
-    // init use effect to show the information for the transaciton data
+    
+    // use effect to show the information for the transaciton data
     useEffect(() => {
         dispatch({ type: 'FETCH_DATA' })
     }, [dispatch])
-
+    
+    // init use selector to get the store data to change it around 
     const cfg = useSelector(store => store.transactionDataReducer);
-    console.log(cfg)
 
-
-
-
+    // TODO conditionally render based on a sort by
     return (
         <div className="container">
             {Object.keys(cfg).map(key => {

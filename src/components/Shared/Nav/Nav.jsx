@@ -5,15 +5,20 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 function Nav() {
-  const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
-  const partner = useSelector(store => store.partnerReducer)
-  const isPartner = partner.some((partner) => partner.user_id === user.id)
-  console.log(isPartner)
+  // initalize use history
+  const history = useHistory(); // initalize dispatch for grabbing the partner
+  const dispatch = useDispatch(); // initalize use dispatch
+  const user = useSelector((store) => store.user); //  // create store for users to check if the user is logged in and what they get to see.
+  const partner = useSelector(store => store.partnerReducer) // create store for partner
+  const isPartner = partner.some((partner) => partner.user_id === user.id) // check if the user also has a partner id
 
-  // removed useEffect for the nav. 
+  // dispatch a call to grab the partner 
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PARTNER' })
+  }, [])
 
   return (
     <div className="nav">
@@ -77,8 +82,8 @@ function Nav() {
             <Link className="navLink" to="/admin/">
               Home
             </Link>
-
-            <LogOutButton className="navLink" />
+            {/* TODO fix logout. Lots of weird redirects going on right now. */}
+            <LogOutButton className="navLink" onClick={() => history.push('/login')}/>
           </>
         )
         }

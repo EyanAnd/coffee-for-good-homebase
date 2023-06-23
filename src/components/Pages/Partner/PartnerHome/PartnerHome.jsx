@@ -23,6 +23,7 @@ export default function PartnerHome() {
                     <div key={key}>
                         <h2>{key}</h2>
                         <ul>
+                            {/* Mapp over response and set individual name to each chart */}
                             {response.map((chart, index) => (
                                 <li key={index}>
                                     {chart.shipping_state || chart.channel_type || chart.shipping_method}: {chart.shipment_count || chart.order_count || chart.sum || chart.count}

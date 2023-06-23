@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
 import Nav from './Shared/Nav/Nav';
 import Footer from './Shared/Footer/Footer';
 
@@ -26,16 +25,16 @@ import AdminReports from './Pages/Admin/AdminReports/AdminReports';
 import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
-import partnerReducer from '../redux/reducers/partner.reducer';
 
 function App() {
+  // initalize dispatch
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
-  const partner = useSelector(store => store.partnerReducer);
-  console.log(partner)
-  const isPartner = partner.some((partner) => partner.user_id === user.id)
+  const user = useSelector(store => store.user); // grab user store
+  const partner = useSelector(store => store.partnerReducer); // grab partner store
+  const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
 
+  // call to grab the user on load of the app.
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
@@ -75,14 +74,14 @@ function App() {
               </ProtectedRoute>
 
               <ProtectedRoute
-                // logged in admin should only see one their home screen else shows LoginPage
+                // logged in partner should only see their reports table
                 exact
                 path="/partner/reports"
               >
                 <PartnerReports />
               </ProtectedRoute>
               <ProtectedRoute
-                // logged in shows Contact Us else shows LoginPage
+                // logged in shows Contact Us 
                 exact
                 path="/contact"
               >
@@ -94,21 +93,21 @@ function App() {
             <>
               <Redirect to="/admin/" />
               <ProtectedRoute
-                // logged in admin should only see one their home screen else shows LoginPage
+                // logged in admin should only see one their home screen 
                 exact
                 path="/admin/"
               >
                 <AdminHome />
               </ProtectedRoute>
               <ProtectedRoute
-                // logged in shows Contact Us else shows LoginPage
+                // logged in admin reports page 
                 exact
                 path="/admin/reports"
               >
                 <AdminReports />
               </ProtectedRoute>
               <ProtectedRoute
-                // logged in shows UserPage else shows LoginPage
+                // logged in admin can see the applications table
                 exact
                 path="/admin/applications"
               >
@@ -119,14 +118,21 @@ function App() {
           {user.id && (
             <>
               <ProtectedRoute
-                // logged in shows UserPage else shows LoginPage
+                // logged in shows Contact Us else shows User Page
+                exact
+                path="/user"
+              >
+                <UserPage />
+              </ProtectedRoute>
+              <ProtectedRoute
+                // logged in shows UserPage else shows application page
                 exact
                 path="/application"
               >
                 <Application />
               </ProtectedRoute>
               <ProtectedRoute
-                // logged in shows Contact Us else shows LoginPage
+                // logged in shows Contact Us else shows Contact Us page
                 exact
                 path="/contact"
               >
@@ -166,6 +172,7 @@ function App() {
             exact
             path="/home"
           >
+
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page

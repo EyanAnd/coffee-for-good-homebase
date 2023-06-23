@@ -10,6 +10,7 @@ export default function AdminApplicationsTable() {
     // initalize dispatch
     const dispatch = useDispatch();
 
+    // use effect to ask for the admin applications
     useEffect(() => {
         dispatch({ type: 'FETCH_ADMIN_APPS' })
     }, [dispatch])

@@ -17,7 +17,6 @@ function ContactUs() {
   // click handler to send dispatch to saga in order to send the submission to the backend
   const addSubmission = (e) => {
     dispatch({ type: 'CONTACT_ADMIN', payload: submission})
-    console.log(submission)
     // dispatch here
   }
   return (
