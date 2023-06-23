@@ -9,7 +9,7 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // GET to grab application if started
-router.get('/', rejectUnauthenticated, async (req, res) => { // TODO replace with req.user
+router.get('/', rejectUnauthenticated, async (req, res) => { 
     const id = req.user.id
     const queryText = `SELECT * FROM "application" WHERE "user_id"=$1;`;
     try {

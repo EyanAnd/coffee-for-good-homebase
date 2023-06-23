@@ -63,77 +63,77 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           {/* Protected route to render admin home or  user home page*/}
-          {isPartner ?
-            <ProtectedRoute
-              // logged in admin should only see one their home screen else shows LoginPage
-              exact
-              path="/partner/"
-            >
-              <PartnerHome />
-            </ProtectedRoute> : <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-            >
-              <UserPage />
-            </ProtectedRoute>}
+          {isPartner && (
+            <>
+              <Redirect to="/partner/" />
+              <ProtectedRoute
+                // logged in partner should be redirected to their home page
+                exact
+                path="/partner/"
+              >
+                <PartnerHome />
+              </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in admin should only see one their home screen else shows LoginPage
-            exact
-            path="/partner/reports"
-          >
-            <PartnerReports />
-          </ProtectedRoute> :<ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute>
-          {user.id && user.is_admin ?
-            <ProtectedRoute
-              // logged in admin should only see one their home screen else shows LoginPage
-              exact
-              path="/admin/"
-            >
-              <AdminHome />
-            </ProtectedRoute> : <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-            >
-              <UserPage />
-            </ProtectedRoute>}
-          <ProtectedRoute
-            // logged in shows Contact Us else shows LoginPage
-            exact
-            path="/admin/reports"
-          >
-            <AdminReports />
-          </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/application"
-          >
-            <Application />
-          </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/admin/applications"
-          >
-            <AdminApplicationsTable />
-          </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows Contact Us else shows LoginPage
-            exact
-            path="/contact"
-          >
-            <ContactUs />
-          </ProtectedRoute>
-
+              <ProtectedRoute
+                // logged in admin should only see one their home screen else shows LoginPage
+                exact
+                path="/partner/reports"
+              >
+                <PartnerReports />
+              </ProtectedRoute>
+              <ProtectedRoute
+                // logged in shows Contact Us else shows LoginPage
+                exact
+                path="/contact"
+              >
+                <ContactUs />
+              </ProtectedRoute>
+            </>
+          )}
+          {user.is_admin && (
+            <>
+              <Redirect to="/admin/" />
+              <ProtectedRoute
+                // logged in admin should only see one their home screen else shows LoginPage
+                exact
+                path="/admin/"
+              >
+                <AdminHome />
+              </ProtectedRoute>
+              <ProtectedRoute
+                // logged in shows Contact Us else shows LoginPage
+                exact
+                path="/admin/reports"
+              >
+                <AdminReports />
+              </ProtectedRoute>
+              <ProtectedRoute
+                // logged in shows UserPage else shows LoginPage
+                exact
+                path="/admin/applications"
+              >
+                <AdminApplicationsTable />
+              </ProtectedRoute>
+            </>
+          )}
+          {user.id && (
+            <>
+              <ProtectedRoute
+                // logged in shows UserPage else shows LoginPage
+                exact
+                path="/application"
+              >
+                <Application />
+              </ProtectedRoute>
+              <ProtectedRoute
+                // logged in shows Contact Us else shows LoginPage
+                exact
+                path="/contact"
+              >
+                <ContactUs />
+              </ProtectedRoute>
+            </>
+          )}
           <Route
             exact
             path="/login"

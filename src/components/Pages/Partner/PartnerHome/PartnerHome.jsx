@@ -14,7 +14,7 @@ export default function PartnerHome() {
 
 
     // TODO implement chart js
-
+    
     return (
         <div className="container">
             {Object.keys(cfg).map(key => {

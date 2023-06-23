@@ -13,9 +13,7 @@ function Nav() {
   const isPartner = partner.some((partner) => partner.user_id === user.id)
   console.log(isPartner)
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PARTNER' })
-  }, [])
+  // removed useEffect for the nav. 
 
   return (
     <div className="nav">
@@ -51,7 +49,7 @@ function Nav() {
           </>
         )}
         {/* If a user is logged in, show these links */}
-        {user.id && !isPartner && !user.is_admin &&(
+        {user.id && !isPartner && !user.is_admin && (
           <>
             <Link className="navLink" to="/user">
               Home

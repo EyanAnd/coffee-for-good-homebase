@@ -3,7 +3,7 @@ import { takeLatest, put, takeEvery} from 'redux-saga/effects'
 import errorsReducer from "../reducers/errors.reducer";
 
 function* adminappSaga() {
-    // TODO add yields in here
+    
     yield takeLatest('FETCH_ADMIN_APPS', fetchAdminAppsSaga)
     yield takeLatest('APPROVE_APP', approveSaga)
     yield takeLatest('DELETE_APP', deleteAppSaga)

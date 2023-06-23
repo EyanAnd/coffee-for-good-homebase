@@ -35,7 +35,6 @@ export default function AdminReports() {
                     {reports.map(report => (
                        <AdminReportsItem report={report} />
                     ))}
-
                 </tbody>
             </table>
         </>

@@ -34,7 +34,7 @@ function* fetchAppSaga(action) {
 
 function* updateAppSaga(action) {
     try {
-        const response = yield axios.put(`/api/application/`, action.payload ) // TODO remove user_id
+        const response = yield axios.put(`/api/application/`, action.payload ) // 
         console.log(response)
         yield put({ type: 'FETCH_APP'})
     } catch (error) {
