@@ -9,7 +9,8 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // GET to grab application if started
-router.get('/', rejectUnauthenticated, async (req, res) => { 
+router.get('/', rejectUnauthenticated, async (req, res) => {
+    console.log("in get")
     const id = req.user.id
     const queryText = `SELECT * FROM "application" WHERE "user_id"=$1;`;
     try {
@@ -20,7 +21,7 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
             res.send(result2.rows[0]);
 
         } else {
-            console.log(result)
+            // console.log(result)
             res.send(result.rows[0])
         }
     } catch (error) {
@@ -30,27 +31,28 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 })
 
 // router.post to submit an application
-router.post('/',rejectUnauthenticated, (req, res) => {
-    const id = req.user.id
-    const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
-    pool.query(checkExistingQuery, [id]).then(result => {
-        if (result.rows.length > 0) {
-            return res.sendStatus(400).send('Application already submitted')
+router.post('/', rejectUnauthenticated, async (req, res) => {
+    try {
+        const id = req.user.id
+        const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
+        const result1 = await pool.query(checkExistingQuery, [id])
+        if (result1.rows.length > 0) {
+            res.status(400).send('Application already submitted')
+            return;
         }
-    })
-    const queryText = `INSERT INTO "application" ("user_id", "name", "email", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
+        const queryText = `INSERT INTO "application" ("user_id", "name", "email", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
 
-    pool.query(queryText, [id, req.body.name, req.body.email, req.body.mission, req.body.impact, req.body.values,
-        req.body.previous_partners, req.body.success_stories, req.body.collab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved]).then(result => {
-            res.send(result.rows)
-        }).catch(err => {
-            console.log('there was an error POSTING an application', err)
-            res.sendStatus(500);
-        })
+        const result2 = await pool.query(queryText, [id, req.body.name, req.body.email, req.body.mission, req.body.impact, req.body.values,
+            req.body.previous_partners, req.body.success_stories, req.body.collab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved])
+        res.send(result2.rows)
+    } catch (err) {
+        console.log('there was an error POSTING an application', err)
+        res.sendStatus(500);
+    }
 })
 // router put to update application
-router.put('/',rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     const id = req.user.id;
 
     const queryText = `UPDATE "application"

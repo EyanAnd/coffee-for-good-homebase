@@ -17,10 +17,11 @@ function* addAppSaga(action) {
         yield put({ type: 'FETCH_APP'})
     } catch (error) {
         console.log('there was an error in the appSaga', error)
+        console.log(error)
     }
 }
 
-function* fetchAppSaga(action) {
+function* fetchAppSaga() {
     try {
    
         const response = yield axios.get(`/api/application/`); 

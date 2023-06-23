@@ -50,7 +50,7 @@ function Nav() {
               Contact Us
             </Link>
 
-            <LogOutButton className="navLink" />
+            <LogOutButton className="navLink" onClick={() => history.push('/login')} />
           </>
         )}
         {/* If a user is logged in, show these links */}
@@ -67,7 +67,7 @@ function Nav() {
               Application
             </Link>
 
-            <LogOutButton className="navLink" />
+            <LogOutButton className="navLink" onClick={() => history.push('/login')}/>
           </>
         )}
         {/* If the user is an admin show these routes */}
@@ -83,7 +83,7 @@ function Nav() {
               Home
             </Link>
             {/* TODO fix logout. Lots of weird redirects going on right now. */}
-            <LogOutButton className="navLink" onClick={() => history.push('/login')}/>
+            <LogOutButton className="navLink" />
           </>
         )
         }

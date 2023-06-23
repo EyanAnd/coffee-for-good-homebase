@@ -21,6 +21,7 @@ export default function Application() {
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_APP' })
+        console.log("IN USE effect")
     }, [])
 
     // new useEffect 

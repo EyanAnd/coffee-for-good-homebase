@@ -18,6 +18,7 @@ export default function AdminHome() {
     const cfg = useSelector(store => store.transactionDataReducer);
 
     // TODO conditionally render based on a sort by
+    // this will look like chart.js or whichever chard libarary you need.
     return (
         <div className="container">
             {Object.keys(cfg).map(key => {
