@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* transactiondataSaga() {
+function* transactionDataSaga() {
     // yield here
     yield takeLatest('FETCH_DATA', fetchDataSaga)
 }
@@ -16,4 +16,4 @@ function* fetchDataSaga() {
         console.log('there was an error FETCHing the data', error)
     }
 }
-export default transactiondataSaga;
+export default transactionDataSaga;

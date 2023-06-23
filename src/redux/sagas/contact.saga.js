@@ -2,7 +2,7 @@ import axios from "axios";
 import { takeLatest, put} from 'redux-saga/effects'
 
 
-function* userWatcherSaga() {
+function* contactUsSaga() {
     yield takeLatest('CONTACT_ADMIN', addContactSaga);
 }
 
@@ -16,4 +16,4 @@ function* addContactSaga(action) {
 }
 
 
-export default userWatcherSaga;
+export default contactUsSaga;

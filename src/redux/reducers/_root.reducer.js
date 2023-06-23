@@ -17,13 +17,13 @@ import partnerReportsReducer from './partnerreports.reduer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  contactReducer, // holds state for contact us form
-  applicationReducer, // holds state for the application that the user fills out
-  adminApplicationReducer, // holds state for admin application table
-  transactionDataReducer,
-  reportsReducer,
-  partnerReducer,
-  partnerReportsReducer
+  contactReducer, // holds contact us form information
+  applicationReducer, // holds user application information
+  adminApplicationReducer, // holds applications for the admin
+  transactionDataReducer, // hol
+  reportsReducer, // holds all reports for the admin
+  partnerReducer, // holds partner information to map over.
+  partnerReportsReducer // holds partner reports
   
 });
 

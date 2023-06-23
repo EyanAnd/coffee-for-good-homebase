@@ -2,10 +2,10 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import userWatcherSaga from './contact.saga';
+import contactUsSaga from './contact.saga';
 import applicationSaga from './application.saga';
-import adminappSaga from './adminapp.saga';
-import transactiondataSaga from './transactiondata.saga';
+import adminApplicationSaga from './adminApplication';
+import transactionDataSaga from './transactionData.saga';
 import reportsSaga from './reports.saga';
 import partnerWatcherSaga from './partner.saga';
 import partnerReportsSaga from './partnerReports.saga';
@@ -21,13 +21,13 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    userWatcherSaga(),
-    applicationSaga(),
-    adminappSaga(),
-    transactiondataSaga(),
-    reportsSaga(),
-    partnerWatcherSaga(),
-    partnerReportsSaga()
+    contactUsSaga(), // runs all dispatches and requests for the contact us page
+    applicationSaga(), // runs all dispatches and request for the user application saga
+    adminApplicationSaga(), // runs all dispatches and requests for the admin applicatios saga
+    transactionDataSaga(), // get transactional data to partners and admin
+    reportsSaga(), // runs all dispatches and requests for the reports saga
+    partnerWatcherSaga(), // runs dispatches for to check if the user is a partner on load of the page
+    partnerReportsSaga() // dispatches and requests for particular parnter reports
 
   ]);
 }

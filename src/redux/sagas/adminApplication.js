@@ -2,7 +2,7 @@ import axios from "axios";
 import { takeLatest, put, takeEvery} from 'redux-saga/effects'
 import errorsReducer from "../reducers/errors.reducer";
 
-function* adminappSaga() {
+function* adminApplicationSaga() {
     
     yield takeLatest('FETCH_ADMIN_APPS', fetchAdminAppsSaga)
     yield takeLatest('APPROVE_APP', approveSaga)
@@ -43,4 +43,4 @@ function* deleteAppSaga(action) { // to do put action in here and put payload in
 }
 
 
-export default adminappSaga;
+export default adminApplicationSaga;
