@@ -10,7 +10,6 @@ const router = express.Router();
 
 // GET to grab application if started
 router.get('/', rejectUnauthenticated, async (req, res) => { // TODO replace with req.user
-    console.log(req.params)
     const id = req.user.id
     const queryText = `SELECT * FROM "application" WHERE "user_id"=$1;`;
     try {
@@ -32,7 +31,6 @@ router.get('/', rejectUnauthenticated, async (req, res) => { // TODO replace wit
 
 // router.post to submit an application
 router.post('/',rejectUnauthenticated, (req, res) => {
-    console.log(req.params)
     const id = req.user.id
     const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
     pool.query(checkExistingQuery, [id]).then(result => {

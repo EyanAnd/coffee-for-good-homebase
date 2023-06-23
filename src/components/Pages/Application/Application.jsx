@@ -43,6 +43,7 @@ export default function Application() {
     const applicationSubmit = () => {
         console.log(application);
         dispatch({ type: 'SUBMIT_APP', payload: application });
+        history.push('/user')
     }
     return (
         <div className="container">

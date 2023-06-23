@@ -5,8 +5,9 @@ import contactReducer from './contact.reducer';
 import applicationReducer from './application.reducer';
 import adminApplicationReducer from './adminapp.reducer';
 import transactionDataReducer from './transactiondata.reducer';
-import adminReportsReducer from './adminreports.reducer';
+import reportsReducer from './reports.reducer';
 import partnerReducer from './partner.reducer';
+import partnerReportsReducer from './partnerreports.reduer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,8 +21,9 @@ const rootReducer = combineReducers({
   applicationReducer, // holds state for the application that the user fills out
   adminApplicationReducer, // holds state for admin application table
   transactionDataReducer,
-  adminReportsReducer,
-  partnerReducer
+  reportsReducer,
+  partnerReducer,
+  partnerReportsReducer
   
 });
 

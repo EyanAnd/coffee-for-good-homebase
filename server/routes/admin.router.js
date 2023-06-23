@@ -75,6 +75,7 @@ router.get('/reports', async (req, res) => {
 // get to post a report
 router.post('/reports', async (req, res) => {
     try {
+        // TODO reconfigure post to add in a way to auto polulate the partner_id
         const queryText = `INSERT INTO "reports" ("partner_id", "name", "description", "date_sent", "category") VALUES ($1, $2, $3, $4, $5);`;
 
         await pool.query(queryText, [req.body.partner_id, req.body.name, req.body.description, req.body.date_sent, req.body.category])

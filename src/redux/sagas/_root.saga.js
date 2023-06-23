@@ -6,8 +6,9 @@ import userWatcherSaga from './contact.saga';
 import applicationSaga from './application.saga';
 import adminappSaga from './adminapp.saga';
 import transactiondataSaga from './transactiondata.saga';
-import adminReportsSaga from './adminreports.saga';
+import reportsSaga from './reports.saga';
 import partnerWatcherSaga from './partner.saga';
+import partnerReportsSaga from './partnerReports.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -24,8 +25,9 @@ export default function* rootSaga() {
     applicationSaga(),
     adminappSaga(),
     transactiondataSaga(),
-    adminReportsSaga(),
-    partnerWatcherSaga()
+    reportsSaga(),
+    partnerWatcherSaga(),
+    partnerReportsSaga()
 
   ]);
 }

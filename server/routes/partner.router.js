@@ -80,9 +80,9 @@ router.get('/info',rejectUnauthenticated, (req, res) => {
     })
 })
 // GET to reports to grab any reports to put in a table
-router.get('/reports/', rejectUnauthenticated, (req, res) => {
+router.get('/reports', rejectUnauthenticated, (req, res) => {
     const id = req.user.id;
-    const queryText = `SELECT * FROM "reports" WHERE "partner_id"=$1;`;
+    const queryText = `SELECT * FROM "reports" WHERE "user_id"=$1;`;
 
     pool.query(queryText, [id]).then(result => {
         res.send(result.rows);

@@ -43,12 +43,15 @@ function Nav() {
             <Link className="navLink" to="/partner/reports">
               Reports
             </Link>
+            <Link className="navLink" to="/contact">
+              Contact Us
+            </Link>
 
             <LogOutButton className="navLink" />
           </>
         )}
         {/* If a user is logged in, show these links */}
-        {user.id && !isPartner && (
+        {user.id && !isPartner && !user.is_admin &&(
           <>
             <Link className="navLink" to="/user">
               Home

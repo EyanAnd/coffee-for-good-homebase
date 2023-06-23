@@ -7,7 +7,7 @@ import AdminReportsItem from "./AdminReportsItem";
 export default function AdminReports() {
 
     // initalize the store
-    const reports = useSelector(store => store.adminReportsReducer)
+    const reports = useSelector(store => store.reportsReducer)
     console.log(reports)
     // initalize use dispatch
     const dispatch = useDispatch();
