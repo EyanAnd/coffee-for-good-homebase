@@ -1,13 +1,16 @@
+import { Table, TableCaption, TableContainer, Td, Tr } from '@chakra-ui/react';
+import moment from 'moment';
+
 export default function PartnerReportsItem({ report }) {
 
-    // grab report from props and set table data to report data
+    const formattedDate = moment(report.date_sent).format('MMM Do YY');
+
+
     return (
-        <>
-            <tr key={report.user_id}>
-                <td>{report.name}</td>
-                <td>{report.description}</td>
-                <td>{report.date_sent}</td>
-            </tr>
-        </>
-    )
+                <Tr>
+                    <Td>{report.name}</Td>
+                    <Td>{report.description}</Td>
+                    <Td>{formattedDate}</Td>
+                </Tr>
+    );
 }

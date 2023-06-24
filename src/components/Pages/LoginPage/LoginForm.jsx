@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -57,7 +58,7 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button colorScheme='brand' variant='outline' type="submit" name="submit" value="Log In">Log In</Button>
       </div>
     </form>
   );

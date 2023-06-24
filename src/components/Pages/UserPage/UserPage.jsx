@@ -2,6 +2,8 @@ import React from 'react';
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Heading, Text } from '@chakra-ui/react'
 
 
 
@@ -20,12 +22,11 @@ function UserPage() {
   // function to give applicationa a rendering status
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      {doesFormExist ? <p>Application Status: Started</p> : <p>Application Status Not Started</p>}
-      {doesFormExist ? <button onClick={() => history.push('/application')} className='app-btn'>Continue Application</button> :
-      <button onClick={() => history.push('/application')} className='app-btn'>Start Application</button>}
-      <LogOutButton className="btn" />
+      <Heading>Welcome, {user.username}!</Heading>
+      {doesFormExist ? <Text>Application Status: Started</Text> : <Text>Application Status Not Started</Text>}
+      {doesFormExist ? <Button onClick={() => history.push('/application')} >Continue Application</Button> :
+      <Button colorScheme='brand' variant='outline' onClick={() => history.push('/application')}>Start Application</Button>}
+      <LogOutButton colorScheme='brand' />
     </div>
   );
 }

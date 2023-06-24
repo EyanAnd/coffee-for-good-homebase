@@ -25,9 +25,12 @@ import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
 
+
 function App() {
   // initalize dispatch
   const dispatch = useDispatch();
+
+
 
   const user = useSelector(store => store.user); // grab user store
   const partner = useSelector(store => store.partnerReducer); // grab partner store

@@ -1,7 +1,21 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react";
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+    Button,
+} from '@chakra-ui/react'
 
 export default function AdminApplicationsItem({ app }) {
+
+
     // initalize use disaptch
     const dispatch = useDispatch();
     console.log(app);
@@ -10,27 +24,25 @@ export default function AdminApplicationsItem({ app }) {
     // on click function to do a PUT request to update the application to approved
     // on click delete an application
     return (
-        <>
-            <tr key={app.user_id} onClick={() => setShowDescription(!showDescription)}>
-                <td>{app.name}</td>
-                {showDescription ? (
-                    <>
-                        <td>{app.collab}</td>
-                        <td>{app.email}</td>
-                        <td>{app.impact}</td>
-                        <td>{app.mission}</td>
-                        <td>{app.notes}</td>
-                        <td>{app.previous_partners}</td>
-                        <td>{app.success_stories}</td>
-                        <td>{app.reporting}</td>
-                        <td>{app.sharing}</td>
-                        <td>{app.values}</td>
-                    </>) : (<>
-                        < td > {!app.approved ? <button onClick={() => dispatch({ type: 'APPROVE_APP', payload: app.user_id })}>Approve</button> :
-                            <button>Approved</button>}</td>
-                        <td><button onClick={() => dispatch({ type: 'DELETE_APP', payload: app.user_id })}>Delete</button></td>
-                    </>)}
-            </tr >
-        </>
+                <Tr key={app.user_id} onClick={() => setShowDescription(!showDescription)}>
+                    <Td>{app.name}</Td>
+                    {showDescription ? (
+                        <>
+                            <Td>{app.collab}</Td>
+                            <Td>{app.email}</Td>
+                            <Td>{app.impact}</Td>
+                            <Td>{app.mission}</Td>
+                            <Td>{app.notes}</Td>
+                            <Td>{app.previous_partners}</Td>
+                            <Td>{app.success_stories}</Td>
+                            <Td>{app.reporting}</Td>
+                            <Td>{app.sharing}</Td>
+                            <Td>{app.values}</Td>
+                        </>) : (<>
+                            <Td> {!app.approved ? <Button colorScheme='brand' variant='outline' size='sm' onClick={() => dispatch({ type: 'APPROVE_APP', payload: app.user_id })}>Approve</Button> :
+                                <button>Approved</button>}</Td>
+                            <Td><Button colorScheme='brand' variant='outline' size='sm' onClick={() => dispatch({ type: 'DELETE_APP', payload: app.user_id })}>Delete</Button></Td>
+                        </>)}
+                </Tr >
     )
 }

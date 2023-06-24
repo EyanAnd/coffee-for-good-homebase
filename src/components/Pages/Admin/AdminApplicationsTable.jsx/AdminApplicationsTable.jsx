@@ -1,7 +1,18 @@
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+    Button,
+} from '@chakra-ui/react'
 
 
 import AdminApplicationsItem from "./AdminApplicationsItem"
@@ -20,20 +31,18 @@ export default function AdminApplicationsTable() {
   
     // Map over the store and display the applciants name and status 
     return (
-        <>
-            <table>
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Status</td>
-                        </tr>
-                    </thead>
-                <tbody>
+            <Table>
+                    <Thead>
+                        <Tr>
+                            <Td>Name</Td>
+                            <Td>Status</Td>
+                        </Tr>
+                    </Thead>
+                <Tbody>
                         {applications.map((app, key) => (
                             <AdminApplicationsItem app={app} key={key}/>
                         ))}
-                </tbody>
-            </table>
-        </>
+                </Tbody>
+            </Table>
     )
 }

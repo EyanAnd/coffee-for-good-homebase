@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
+import { theme } from '@chakra-ui/react';
 
 function Nav() {
   // initalize use history

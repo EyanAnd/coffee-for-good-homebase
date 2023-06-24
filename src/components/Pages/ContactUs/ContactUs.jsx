@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Input, Textarea } from '@chakra-ui/react';
+import { Button, Heading } from '@chakra-ui/react';
 
 function ContactUs() {
 
@@ -21,13 +23,13 @@ function ContactUs() {
   }
   return (
     <div className="container">
-      <p>Contact Us</p>
-      <label htmlFor="name">Name :<input type="text" value={submission.name} onChange={(e) => setSubmission({...submission, name: e.target.value})}/></label>
-      <label htmlFor="email">Email :<input type="text" value={submission.email} onChange={(e) => setSubmission({...submission, email: e.target.value})}/></label>
-      <label htmlFor="subject">Subject :<input type="text" value={submission.subject} onChange={(e) => setSubmission({...submission, subject: e.target.value})}/></label>
-      <label htmlFor="description">Description :<input type="text" value={submission.description} onChange={(e) => setSubmission({...submission, description: e.target.value})}/></label>
-      <button onClick={() => history.push('/user')}>Back</button>
-      <button onClick={addSubmission}>Submit</button>
+      <Heading>Contact Us</Heading>
+      <label htmlFor="name">Name :<Input variant={'flushed'} type="text" value={submission.name} onChange={(e) => setSubmission({...submission, name: e.target.value})}/></label>
+      <label htmlFor="email">Email :<Input variant={'flushed'} type="text" value={submission.email} onChange={(e) => setSubmission({...submission, email: e.target.value})}/></label>
+      <label htmlFor="subject">Subject :<Input variant={'flushed'} type="text" value={submission.subject} onChange={(e) => setSubmission({...submission, subject: e.target.value})}/></label>
+      <label htmlFor="description">Description :<Textarea placeholder='description' type="text" value={submission.description} onChange={(e) => setSubmission({...submission, description: e.target.value})}/></label>
+      <Button colorScheme='brand' variant={'outline'} onClick={() => history.push('/user')}>Back</Button>
+      <Button colorScheme='brand' variant={'outline'} onClick={addSubmission}>Submit</Button>
     </div>
   );
 }
