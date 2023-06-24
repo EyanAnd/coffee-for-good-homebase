@@ -13,8 +13,6 @@ import {
     TableContainer,
     Button,
 } from '@chakra-ui/react'
-
-
 import AdminApplicationsItem from "./AdminApplicationsItem"
 export default function AdminApplicationsTable() {
 

@@ -2,6 +2,18 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import AdminReportsItem from "./AdminReportsItem";
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+    Button,
+} from '@chakra-ui/react'
 
 
 export default function AdminReports() {
@@ -17,24 +29,24 @@ export default function AdminReports() {
     }, [])
     return (
         <>
-        <div className="button">
+        {/* TODO: STRETCH GOAL<div className="button">
             <button>Add A new report</button>
-        </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Description</td>
-                        <td>Date Sent</td>
-                    </tr>
-                </thead>
-                <tbody>
+        </div> */}
+            <Table>
+                <Thead>
+                    <Tr>
+                        <Td>Name</Td>
+                        <Td>Description</Td>
+                        <Td>Date Sent</Td>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/* Map ove the reports and send a report as a prop ot the item component */}
                     {reports.map(report => (
                        <AdminReportsItem report={report} />
                     ))}
-                </tbody>
-            </table>
+                </Tbody>
+            </Table>
         </>
     )
 }
