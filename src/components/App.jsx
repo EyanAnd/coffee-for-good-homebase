@@ -24,7 +24,7 @@ import AdminReports from './Pages/Admin/AdminReports/AdminReports';
 import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
-import { ChakraProvider, Container } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 
 function App() {
@@ -38,8 +38,24 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
+
+
+  // create color theme
+  const colors = {
+    brand: {
+      100: '#DDC6A6',
+      200: '#E9DCCF',
+      300: '#9e6b42',
+      400: '#858a7a',
+      500: 'rgb(43, 60, 87)',
+    },
+  }
+  // initalize theme
+  const theme = extendTheme({ colors })
+ 
+
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <div>
           <Nav />

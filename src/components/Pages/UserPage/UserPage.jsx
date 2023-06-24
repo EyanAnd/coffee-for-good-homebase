@@ -2,10 +2,10 @@ import React from 'react';
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, ChakraProvider } from '@chakra-ui/react'
+import { Button, ChakraProvider, theme } from '@chakra-ui/react'
 import { Heading, Text } from '@chakra-ui/react'
 
-function UserPage() {
+function UserPage({...theme}) {
   const user = useSelector((store) => store.user);
   const application = useSelector((store) => store.applicationReducer);
   const doesFormExist = useSelector(store => store.existanceReducer);
@@ -22,22 +22,20 @@ function UserPage() {
   };
 
   return (
-    <ChakraProvider>
+ 
       <div className="container">
         <Heading letterSpacing={"0.1rem"}>Welcome, {user.username}!</Heading>
         <Text>{getApplicationStatus()}</Text>
         {doesFormExist ? (
-          <Button variant='blue' onClick={() => history.push('/application')}>
+          <Button colorScheme='brand' onClick={() => history.push('/application')}>
             Continue Application
           </Button>
         ) : (
-          <Button variant='outline' color={'navyblue.500'} onClick={() => history.push('/application')}>
+          <Button colorScheme='brand' onClick={() => history.push('/application')}>
             Start Application
           </Button>
         )}
-        <LogOutButton variant='outline' color='' />
       </div>
-    </ChakraProvider>
   );
 }
 

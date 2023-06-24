@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
-import { theme } from '@chakra-ui/react';
+import { Heading, theme, colorScheme } from '@chakra-ui/react';
 
 function Nav() {
   // initalize use history
@@ -22,11 +22,10 @@ function Nav() {
     dispatch({ type: 'FETCH_PARTNER' })
   }, [])
 
-
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Coffee For Good</h2>
+        <Heading className="nav-title">Coffee For Good</Heading>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
