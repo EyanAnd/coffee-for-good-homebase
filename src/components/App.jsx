@@ -5,15 +5,12 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from './Shared/Nav/Nav';
 import Footer from './Shared/Footer/Footer';
-
 import ProtectedRoute from './Shared/ProtectedRoute/ProtectedRoute';
 import ProtectedAdminRoute from './Shared/ProtectedRoute/ProtectedAdminRoute';
 import ProtectedPartnerRoute from './Shared/ProtectedRoute/ProtectedPartnerRoute';
-
 import AboutPage from './Pages/AboutPage/AboutPage';
 import UserPage from './Pages/UserPage/UserPage';
 import ContactUs from './Pages/ContactUs/ContactUs';
@@ -40,8 +37,6 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
-
-
   return (
     <Router>
       <div>

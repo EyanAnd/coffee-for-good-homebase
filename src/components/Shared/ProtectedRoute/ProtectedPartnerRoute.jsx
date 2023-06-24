@@ -29,7 +29,7 @@ function ProtectedPartnerRoute({ component, children, ...props }) {
       // are now passed along to the 'Route' Component
       {...props}
     >
-      {user.id ?
+      {user.id && isPartner ?
         // If the user is logged in, show the protected component
         <ProtectedPartnerComponent />
         :
