@@ -21,10 +21,21 @@ function Nav() {
     dispatch({ type: 'FETCH_PARTNER' })
   }, [])
 
+  // implement nav click to make sure the user goes to their respective  route
+  const handleNavClick = () => {
+    if (user.id && isPartner) {
+      history.push('/partner/');
+    } else if (user.id && !isPartner && !user.is_admin) {
+      history.push('/user');
+    } else if (user.is_admin) {
+      history.push('/admin');
+    }
+  };
+
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Coffee For Good</h2>
+        <h2 className="nav-title" onClick={handleNavClick}>Coffee For Good</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

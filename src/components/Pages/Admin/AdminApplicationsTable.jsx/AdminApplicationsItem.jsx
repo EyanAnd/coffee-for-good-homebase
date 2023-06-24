@@ -11,11 +11,14 @@ import {
     TableCaption,
     TableContainer,
     Button,
+    useStyleConfig,
 } from '@chakra-ui/react'
+import { useTheme } from "@emotion/react";
 
 export default function AdminApplicationsItem({ app }) {
 
-
+    // initalize use theme
+    const theme = useTheme();
     // initalize use disaptch
     const dispatch = useDispatch();
     console.log(app);
@@ -28,7 +31,7 @@ export default function AdminApplicationsItem({ app }) {
                     <Td>{app.name}</Td>
                     {showDescription ? (
                         <>
-                            <Td>{app.collab}</Td>
+                            <Td __css={{...theme.colors.tan}}>{app.collab}</Td>
                             <Td>{app.email}</Td>
                             <Td>{app.impact}</Td>
                             <Td>{app.mission}</Td>
@@ -39,9 +42,9 @@ export default function AdminApplicationsItem({ app }) {
                             <Td>{app.sharing}</Td>
                             <Td>{app.values}</Td>
                         </>) : (<>
-                            <Td> {!app.approved ? <Button colorScheme='brand' variant='outline' size='sm' onClick={() => dispatch({ type: 'APPROVE_APP', payload: app.user_id })}>Approve</Button> :
-                                <button>Approved</button>}</Td>
-                            <Td><Button colorScheme='brand' variant='outline' size='sm' onClick={() => dispatch({ type: 'DELETE_APP', payload: app.user_id })}>Delete</Button></Td>
+                            <Td> {!app.approved ? <Button variant='ghost' size='sm' onClick={() => dispatch({ type: 'APPROVE_APP', payload: app.user_id })}>Approve</Button> :
+                                <Button variant='ghost' size='sm'>Approved</Button>}</Td>
+                            <Td><Button  variant='ghost' size='sm' onClick={() => dispatch({ type: 'DELETE_APP', payload: app.user_id })}>Delete</Button></Td>
                         </>)}
                 </Tr >
     )

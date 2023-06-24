@@ -24,7 +24,7 @@ export default function AdminReportsItem({ report }) {
     // TODO add in on click functionality to view a singular report
     // this will look like getting rid of the description and just keeping the name and the date sent most likely.
     return (
-            <Tr key={report.user_id} onClick={() => setShowDescription(!showDescription)}>
+            <Tr key={report.id} onClick={() => setShowDescription(!showDescription)}>
                 <Td>{report.name}</Td>
                 {showDescription ? (
                 <Td>{report.description}</Td>) : ( 

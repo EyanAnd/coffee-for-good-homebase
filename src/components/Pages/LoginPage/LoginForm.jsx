@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
-import { Button } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import { Button, Container, Heading, Input } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -27,39 +29,35 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <Heading size='md'>Login</Heading>
       {errors.loginMessage && (
-        <h3 className="alert" role="alert">
+        <Heading size={'sm'} className="alert" role="alert">
           {errors.loginMessage}
-        </h3>
+        </Heading>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
+      <Container>
+          <Input
+          variant={'flushed'}
+            placeholder='Username'
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
+      </Container>
+      <Container>
+          <Input variant={'flushed'} placeholder='Password'
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <Button colorScheme='brand' variant='outline' type="submit" name="submit" value="Log In">Log In</Button>
-      </div>
+      </Container>
+      <Flex>
+        <Button size='lg' justifyContent={'flex-end'}  variant={'outline'} type="submit" name="submit" value="Log In">Log In</Button>
+      </Flex>
     </form>
   );
 }

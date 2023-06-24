@@ -29,9 +29,6 @@ import './App.css';
 function App() {
   // initalize dispatch
   const dispatch = useDispatch();
-
-
-
   const user = useSelector(store => store.user); // grab user store
   const partner = useSelector(store => store.partnerReducer); // grab partner store
   const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
@@ -176,6 +173,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+
   );
 }
 

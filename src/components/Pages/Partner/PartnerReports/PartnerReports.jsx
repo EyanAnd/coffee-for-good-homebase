@@ -23,7 +23,7 @@ export default function PartnerReports() {
                 </Thead>
                 <Tbody>
                     {reports.map((report) => (
-                        <PartnerReportsItem key={report.user_id} report={report} />
+                        <PartnerReportsItem report={report} />
                     ))}
                 </Tbody>
             </Table>

@@ -7,7 +7,7 @@ export default function PartnerReportsItem({ report }) {
 
 
     return (
-                <Tr>
+                <Tr key={report.id}>
                     <Td>{report.name}</Td>
                     <Td>{report.description}</Td>
                     <Td>{formattedDate}</Td>
