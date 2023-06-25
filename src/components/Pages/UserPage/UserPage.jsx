@@ -8,8 +8,8 @@ import { Heading, Text } from '@chakra-ui/react'
 function UserPage({...theme}) {
   const user = useSelector((store) => store.user);
   const application = useSelector((store) => store.applicationReducer);
-  const doesFormExist = useSelector(store => store.existanceReducer);
   const history = useHistory();
+  console.log(application)
 
   const getApplicationStatus = () => {
     if (!application.app_id) {
@@ -26,13 +26,13 @@ function UserPage({...theme}) {
       <div className="container">
         <Heading letterSpacing={"0.1rem"}>Welcome, {user.username}!</Heading>
         <Text>{getApplicationStatus()}</Text>
-        {doesFormExist ? (
+        {user.id !== application.user_id ? (
           <Button colorScheme='brand' onClick={() => history.push('/application')}>
-            Continue Application
+            Start Application
           </Button>
         ) : (
           <Button colorScheme='brand' onClick={() => history.push('/application')}>
-            Start Application
+            Continue Application
           </Button>
         )}
       </div>

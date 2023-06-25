@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Input, Textarea } from '@chakra-ui/react';
 import { Button, Heading } from '@chakra-ui/react';
-import { Stack, Container } from '@chakra-ui/react';
+import { Stack, Container, } from '@chakra-ui/react';
 
 function ContactUs() {
 
@@ -24,7 +24,7 @@ function ContactUs() {
   }
   return (
     <div className="container">
-      <Heading>Contact Us</Heading>
+      <Heading color={'brand.300'}>Contact Us</Heading>
       <Container>
       <Stack spacing={2} rowGap={2}>
       <Input placeholder='Name' variant={'flushed'} type="text" value={submission.name} onChange={(e) => setSubmission({ ...submission, name: e.target.value })} />
@@ -32,8 +32,8 @@ function ContactUs() {
       </Stack>
       <Input placeholder='Subject'variant={'outline'} type="text" value={submission.subject} onChange={(e) => setSubmission({ ...submission, subject: e.target.value })} />
       <Textarea placeholder='description' type="text" value={submission.description} onChange={(e) => setSubmission({ ...submission, description: e.target.value })} />
-      <Button color={'red'}  onClick={() => history.push('/user')}>Back</Button>
-      <Button color={'blue'}  onClick={addSubmission}>Submit</Button>
+      <Button color='brand.500' variant={'outline'} size={'lg'} onClick={() => history.push('/user')}>Back</Button>
+      <Button color='brand.500' variant={'outline'} size={'lg'} onClick={addSubmission}>Submit</Button>
       </Container>
     </div>
   );
