@@ -1,17 +1,19 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { useHistory } from 'react-router-dom';
-import { Button } from '@chakra-ui/react';
+import { Button, Container, Box, Flex } from '@chakra-ui/react';
 
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <Box className='login-page' w={'100%'}>
       <LoginForm />
+      <Flex justifyContent={'center'}>
 
-      <center>
-        <Button colorScheme='brand' variant={'outline'}
+        <Button
+          color={'brand.500'}
+          variant={'outline'}
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -20,9 +22,10 @@ function LoginPage() {
         >
           Register
         </Button>
-      </center>
-    </div>
+      </Flex>
+    </Box>
   );
 }
 
 export default LoginPage;
+

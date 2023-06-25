@@ -1,0 +1,6 @@
+.login-page {
+    background-image: url('/public/images/login_background.JPG'); /* Replace 'path_to_your_image.jpg' with the actual path to your image file */
+    background-size: cover;
+    background-position: center;
+  }
+  

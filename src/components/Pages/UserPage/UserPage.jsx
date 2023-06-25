@@ -2,10 +2,10 @@ import React from 'react';
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, ChakraProvider, theme } from '@chakra-ui/react'
-import { Heading, Text } from '@chakra-ui/react'
+import { Button, ChakraProvider, Container, theme } from '@chakra-ui/react'
+import { Heading, Text, Stack } from '@chakra-ui/react'
 
-function UserPage({...theme}) {
+function UserPage({ ...theme }) {
   const user = useSelector((store) => store.user);
   const application = useSelector((store) => store.applicationReducer);
   const history = useHistory();
@@ -22,20 +22,22 @@ function UserPage({...theme}) {
   };
 
   return (
- 
-      <div className="container">
+    <Container maxW={'container.xl'} color={'brand.500'}>
+      <Stack spacing={4}>
         <Heading letterSpacing={"0.1rem"}>Welcome, {user.username}!</Heading>
-        <Text>{getApplicationStatus()}</Text>
+
+        <Heading size={'lg'}>{getApplicationStatus()}</Heading>
         {user.id !== application.user_id ? (
-          <Button colorScheme='brand' onClick={() => history.push('/application')}>
+          <Button w={'fit-content'} justifyContent='left' color={'brand.500'} variant='outline' size='lg' onClick={() => history.push('/application')}>
             Start Application
           </Button>
         ) : (
-          <Button colorScheme='brand' onClick={() => history.push('/application')}>
+          <Button w={'fit-content'} justifyContent={'left'} color={'brand.500'} variant='outline' size='lg' onClick={() => history.push('/application')}>
             Continue Application
           </Button>
         )}
-      </div>
+      </Stack>
+    </Container>
   );
 }
 
