@@ -11,7 +11,7 @@ function LoginPage() {
       <LoginForm />
       <Flex justifyContent={'center'}>
 
-        <Button
+        <Button justifyContent={'space-between'}
           color={'brand.500'}
           variant={'outline'}
           type="button"

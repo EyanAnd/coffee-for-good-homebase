@@ -34,10 +34,21 @@ function App() {
   const partner = useSelector(store => store.partnerReducer); // grab partner store
   const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
 
+  useEffect(() => {
+
+    dispatch({ type: 'FETCH_APP' });
+    dispatch({ type: 'FETCH_PARTNER'});
+    dispatch({ type: 'FETCH_PARTNER_REPORTS'});
+    dispatch({ type: 'FETCH_REPORTS'});
+    dispatch({ type: 'FETCH_DATA' });
+  }, [user])
+
   // call to grab the user on load of the app.
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-  }, [dispatch]);
+
+
+  }, []);
 
 
 
@@ -111,8 +122,15 @@ function App() {
               // logged in shows User Page
               exact
               path="/user"
-            >
-              <UserPage />
+            >  {isPartner ? (
+              <Redirect to="/partner/" />
+            ) : (
+              user.is_admin ? (
+                <Redirect to="/admin/" />
+              ) : (
+                <UserPage />
+              )
+            )}
             </ProtectedRoute>
             <ProtectedRoute
               // logged in shows  application page
@@ -155,21 +173,15 @@ function App() {
                 <RegisterPage />
               }
             </Route>
-
-            <Route
-              exact
-              path="/home"
-            >
-
-              {user.id ?
-                // If the user is already logged in, 
-                // redirect them to the /user page
-                <Redirect to="/user" />
-                :
-                // Otherwise, show the Landing page
-                <LandingPage />
-              }
-            </Route>
+            <Route exact path="/home">
+            {isPartner ? (
+              <Redirect to="/partner/" />
+            ) : user.id ? (
+              <Redirect to="/user" />
+            ) : (
+              <LandingPage />
+            )}
+          </Route>
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
               <h1>404</h1>

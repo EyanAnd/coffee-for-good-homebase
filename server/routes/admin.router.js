@@ -136,19 +136,19 @@ router.get('/', async (req, res) => {
 
     // responses
     const response1 = await pool.query(queryText1)
-    const resposne2 = await pool.query(queryText2)
+    const response2 = await pool.query(queryText2)
     const response3 = await pool.query(queryText3)
-    const resposne4 = await pool.query(queryText4)
+    const response4 = await pool.query(queryText4)
     const response5 = await pool.query(queryText5)
-    const resposne6 = await pool.query(queryText6)
+    const response6 = await pool.query(queryText6)
     
     res.send({
         response1: response1.rows,
-        response2: resposne2.rows,
+        response2: response2.rows,
         response3: response3.rows,
-        resposne4: resposne4.rows,
-        response5: response5.rows,
-        resposne6: resposne6.rows
+        total_sum: response4.rows[0] || 0,
+        total_orders: response5.rows[0] || 0,
+        orders_per_channel_type: response6.rows[0] || 0
     })
     } catch (error) {
         console.log('there was an error GETTING ALL THIS', error)

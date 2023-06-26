@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Button, ChakraProvider, Container, theme } from '@chakra-ui/react'
 import { Heading, Text, Stack } from '@chakra-ui/react'
 
-function UserPage({ ...theme }) {
+function UserPage() {
   const user = useSelector((store) => store.user);
   const application = useSelector((store) => store.applicationReducer);
   const history = useHistory();

@@ -10,7 +10,7 @@ function* transactionDataSaga() {
 function* fetchDataSaga() {
     try {
         const response = yield axios.get('/api/admin/')
-        console.log(response)
+        console.log(response.data)
         yield put({ type: 'SET_DATA', payload: response.data})
     } catch (error) {
         console.log('there was an error FETCHing the data', error)

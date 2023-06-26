@@ -4,16 +4,18 @@ import { useSelector } from 'react-redux';
 import { Button, CardBody, Container, Heading, Input } from '@chakra-ui/react';
 import { Flex, Card, Box } from '@chakra-ui/react';
 import './LoginForm.css'
-
+import { useHistory } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
+
 
     if (username && password) {
       dispatch({
@@ -26,14 +28,16 @@ function LoginForm() {
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
+
+    history.push('/user')
   }; // end login
 
   return (
-    <Box >
-      <Flex  height={'100vh'} alignItems={'center'}justifyContent={'center'} >
-        <Card w={'50%'} bg={'whiteAlpha.400'}>
-          <CardBody >
-            <form className="formPanel" onSubmit={login} >
+    <Box>
+      <Flex height={'100vh'} alignItems={'center'} justifyContent={'center'}>
+        <Card w={'25%'} bg={'whitesmoke'}>
+          <CardBody>
+            <Container >
               <Heading size='md'>Login</Heading>
               {errors.loginMessage && (
                 <Heading size={'sm'} className="alert" role="alert">
@@ -52,7 +56,9 @@ function LoginForm() {
                 />
               </Container>
               <Container>
-                <Input variant={'flushed'} placeholder='Password'
+                <Input
+                  variant={'flushed'}
+                  placeholder='Password'
                   type="password"
                   name="password"
                   required
@@ -62,15 +68,17 @@ function LoginForm() {
               </Container>
               <Flex>
                 <Container>
-                  <Button color={'brand.500'} variant={'outline'} type="submit" name="submit" value="Log In">Log In</Button>
+                  <Button color={'brand.500'} variant={'outline'} onClick={login}>Log In</Button>
                 </Container>
               </Flex>
-            </form>
+            </Container>
           </CardBody>
-        </Card >
+        </Card>
       </Flex>
     </Box>
   );
 }
 
 export default LoginForm;
+
+
