@@ -131,12 +131,11 @@ router.get('/', async (req, res) => {
     // grabbing the amount of orders total
     const queryText5 = `SELECT COUNT(order_id) FROM "cfg_data";`;
     // grabbing number of orders per channel type.
-    const queryText6 = `SELECT channel_type, COUNT(*) AS order_count
-    FROM cfg_data
-    GROUP BY channel_type;`;
+    const queryText6 = `SELECT COUNT(DISTINCT shipping_state) AS state_count
+    FROM cfg_data;`;
 
     // responses
-    const response1 = await pool.query(queryText1).then()
+    const response1 = await pool.query(queryText1)
     const resposne2 = await pool.query(queryText2)
     const response3 = await pool.query(queryText3)
     const resposne4 = await pool.query(queryText4)
