@@ -10,13 +10,18 @@ import {
     Card,
     CardHeader,
     CardBody,
+    Stat,
+    StatHelpText,
+    StatLabel,
+    StatNumber,
+    StatArrow
 } from "@chakra-ui/react";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "#76818E", "#CC7E85", "#B0C0BC", "#453F3C", "#F6AE2D", "#F26419", "#FE6D73", "#FFCB77",
- "#563635", "#6E9075", "#5B6057", "639FAB", "#94524A", "#A27E6F", "#C94277", "#EAE151", "#CEC3C1", "#8332AC" , "#BAD1CD", "#462749", "#76E5FC", "#76E5FC", "#88665D",
-  "#BCAA99", "#C2B97F", "#007EA7", "#00171F", "#B3001B", "#255C99", "CCAD8F", "#D6D9CE", "#F3DAD8", "#F4C3C2", "#F1B5CB", "#2F0601", "#553A41", "#32908F", "#26C485", 
-  "#A3E7FC", "#374B4A", "#526760", "#8B8BAE", "#88D9E6",  "#C5FFFD", "#92BFB1"];
+    "#563635", "#6E9075", "#5B6057", "639FAB", "#94524A", "#A27E6F", "#C94277", "#EAE151", "#CEC3C1", "#8332AC", "#BAD1CD", "#462749", "#76E5FC", "#76E5FC", "#88665D",
+    "#BCAA99", "#C2B97F", "#007EA7", "#00171F", "#B3001B", "#255C99", "CCAD8F", "#D6D9CE", "#F3DAD8", "#F4C3C2", "#F1B5CB", "#2F0601", "#553A41", "#32908F", "#26C485",
+    "#A3E7FC", "#374B4A", "#526760", "#8B8BAE", "#88D9E6", "#C5FFFD", "#92BFB1"];
 
 export default function AdminHome() {
     const cfg = useSelector((store) => store.transactionDataReducer);
@@ -77,7 +82,7 @@ export default function AdminHome() {
                     const activeIndex = activeIndices[key];
 
                     return (
-                        <Card  align='center' textAlign={'center'} justifyContent={'center'} w={'50%'} key={key} boxShadow="md">
+                        <Card align='center' textAlign={'center'} justifyContent={'center'} w={'50%'} key={key} boxShadow="md">
                             <CardHeader>
                                 <Heading color={'brand.500'} as="h2" size="md">
                                     {key === "response1" && "Amount Of Shipping items per state"}
@@ -86,7 +91,7 @@ export default function AdminHome() {
                                 </Heading>
                             </CardHeader>
                             <CardBody>
-                                
+
                                 <PieChart width={200} height={200}>
                                     <Pie
                                         data={data}
@@ -126,45 +131,45 @@ export default function AdminHome() {
                                         </Tooltip>
                                     )}
                                 </PieChart>
-                         
+
                             </CardBody>
                         </Card>
                     );
                 })}
                 <Card textAlign={'center'} w={'50%'} key={'response4'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Amount of States that have ordered our Coffee
-                        </Heading>
-                    </CardHeader>
                     <CardBody>
-                        <Box p={4}>
-                            {cfg.orders_per_channel_type?.state_count || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}>States</StatLabel>
+                            <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
                 <Card textAlign={'center'} w={'50%'} key={'response5'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Total Sum of all donations
-                        </Heading>
-                    </CardHeader>
                     <CardBody>
-                        <Box p={4}>
-                            {cfg.total_sum?.sum || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}>All Donations</StatLabel>
+                            <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
                 <Card textAlign={'center'} w={'50%'} key={'response6'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Total Orders
-                        </Heading>
-                    </CardHeader>
                     <CardBody >
-                        <Box p={4}>
-                            {cfg.total_orders?.count || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}> Total Orders</StatLabel>
+                            <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
 

@@ -28,7 +28,7 @@ function Nav() {
       </Link>
       <Box fontSize={'lg'} letterSpacing={'wide'} textTransform={'lowercase'}>
         {!user.id && (
-          <HStack>
+          <HStack spacing='24px'>
             <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/login">
             <Text color={'brand.500'}>Login / Register</Text>
             </ChakraLink>
@@ -39,7 +39,7 @@ function Nav() {
         )}
 
         {isPartner && (
-          <HStack>
+          <HStack spacing='24px'>
             <ChakraLink  as={Link} className="navLink" to="/partner/">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
@@ -49,7 +49,7 @@ function Nav() {
             <ChakraLink as={Link} className="navLink" to="/contact">
             <Text color={'brand.500'}>Contact Us</Text>
             </ChakraLink>
-            <LogOutButton className="navLink" onClick={() => history.push('/login')} />
+            <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
           </HStack>
         )}
 
@@ -64,12 +64,12 @@ function Nav() {
             <ChakraLink as={Link} className="navLink" to="/application">
             <Text color={'brand.500'}>Application</Text>
             </ChakraLink>
-            <LogOutButton className="navLink" onClick={() => history.push('/login')} />
+            <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
           </HStack>
         )}
 
         {user.is_admin && (
-          <HStack>
+          <HStack spacing='24px'>
             <ChakraLink as={Link} className="navLink" to="/admin/">
             <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
@@ -79,7 +79,7 @@ function Nav() {
             <ChakraLink as={Link} className="navLink" to="/admin/reports">
             <Text color={'brand.500'}>Reports</Text>
             </ChakraLink>
-             <LogOutButton />
+             <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
           </HStack>
         )}
       </Box>
