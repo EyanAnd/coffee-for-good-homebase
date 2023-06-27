@@ -1,10 +1,12 @@
 import React from 'react';
 import { Box, Text, Link, Icon, Button, Stack, IconButton, Image, ButtonGroup, VStack, HStack, Container } from '@chakra-ui/react';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+//TODO import divider for the footer
+import '../Footer/Footer.css';
 
 function Footer() {
   return (
-    <Box as="footer" role="contentinfo" bg="brand.100" py="4" px="6" mt="auto">
+    <Box className='footer' as="footer" role="contentinfo" bg="white" py="4" px="6" mt="auto">
       <Container maxW="container.xl" display="flex" justifyContent="space-between" alignItems="center">
         <ButtonGroup variant="tertiary">
           <IconButton
@@ -33,7 +35,7 @@ function Footer() {
           />
         </ButtonGroup>
         <Text fontSize="sm" color="fg.subtle">
-          &copy; {new Date().getFullYear()} Coffee For Good. All rights reserved.
+          &copy; {new Date().getFullYear()} Coffee For Good.
         </Text>
       </Container>
     </Box>

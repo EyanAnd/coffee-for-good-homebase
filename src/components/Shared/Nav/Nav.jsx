@@ -4,7 +4,8 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Flex, Box, Heading, Link as ChakraLink, Text, HStack } from '@chakra-ui/react';
+import { Flex, Box, Heading, Link as ChakraLink, Text, HStack, Divider, Container } from '@chakra-ui/react';
+
 
 function Nav() {
   const history = useHistory();
@@ -16,11 +17,11 @@ function Nav() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_PARTNER' });
-    dispatch({ type: 'FETCH_DATA'})
+    dispatch({ type: 'FETCH_DATA' })
   }, []);
 
   return (
-    <Flex  bg={'brand.100'} alignItems="center" justifyContent="space-between">
+    <Flex height={'80px'} bg={'white'} alignItems="center" justifyContent="space-between">
       <Link to="/home">
         <Heading as="h1" size="md" className="nav-title">
           Coffee For Good
@@ -30,56 +31,59 @@ function Nav() {
         {!user.id && (
           <HStack spacing='24px'>
             <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/login">
-            <Text color={'brand.500'}>Login / Register</Text>
+              <Text color={'brand.500'}>Login / Register</Text>
             </ChakraLink>
             <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/about">
-            <Text color={'brand.500'}>About</Text>
+              <Text color={'brand.500'}>About</Text>
             </ChakraLink>
           </HStack>
         )}
 
         {isPartner && (
-          <HStack spacing='24px'>
-            <ChakraLink  as={Link} className="navLink" to="/partner/">
-              <Text color={'brand.500'}>Home</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/partner/reports">
-            <Text color={'brand.500'}>Reports</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/contact">
-            <Text color={'brand.500'}>Contact Us</Text>
-            </ChakraLink>
-            <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
-          </HStack>
+            <HStack spacing='24px'>
+              <ChakraLink as={Link} className="navLink" to="/partner/">
+                <Text color={'brand.500'}>Home</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} className="navLink" to="/partner/reports">
+                <Text color={'brand.500'}>Reports</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} className="navLink" to="/contact">
+                <Text color={'brand.500'}>Contact Us</Text>
+              </ChakraLink>
+              <Divider orientation='vertical' color={'brand.500'} />
+              <LogOutButton onClick={() => history.push('/login')} />
+            </HStack>
         )}
 
         {user.id && !isPartner && !user.is_admin && (
           <HStack>
             <ChakraLink as={Link} className="navLink" to="/user">
-            <Text color={'brand.500'}>Home</Text>
+              <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
             <ChakraLink as={Link} className="navLink" to="/user/contact">
-            <Text color={'brand.500'}>Contact Us</Text>
+              <Text color={'brand.500'}>Contact Us</Text>
             </ChakraLink>
             <ChakraLink as={Link} className="navLink" to="/application">
-            <Text color={'brand.500'}>Application</Text>
+              <Text color={'brand.500'}>Application</Text>
             </ChakraLink>
-            <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
+            <Divider orientation='vertical' color={'brand.500'} />
+            <LogOutButton onClick={() => history.push('/login')} />
           </HStack>
         )}
 
         {user.is_admin && (
           <HStack spacing='24px'>
             <ChakraLink as={Link} className="navLink" to="/admin/">
-            <Text color={'brand.500'}>Home</Text>
+              <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
             <ChakraLink as={Link} className="navLink" to="/admin/applications">
-            <Text color={'brand.500'}>Applications</Text>
+              <Text color={'brand.500'}>Applications</Text>
             </ChakraLink>
             <ChakraLink as={Link} className="navLink" to="/admin/reports">
-            <Text color={'brand.500'}>Reports</Text>
+              <Text color={'brand.500'}>Reports</Text>
             </ChakraLink>
-             <Text><LogOutButton onClick={() => history.push('/login')}/></Text>
+            <Divider orientation='vertical' color={'brand.500'} />
+            <LogOutButton onClick={() => history.push('/login')} />
           </HStack>
         )}
       </Box>

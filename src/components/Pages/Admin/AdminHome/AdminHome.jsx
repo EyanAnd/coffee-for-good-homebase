@@ -172,7 +172,6 @@ export default function AdminHome() {
                         </Stat>
                     </CardBody>
                 </Card>
-
             </SimpleGrid>
         </Box>
     );

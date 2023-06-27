@@ -24,6 +24,7 @@ import AdminReports from './Pages/Admin/AdminReports/AdminReports';
 import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
+import { Container, Flex, Heading, Divider } from '@chakra-ui/react';
 
 
 
@@ -37,9 +38,9 @@ function App() {
   useEffect(() => {
 
     dispatch({ type: 'FETCH_APP' });
-    dispatch({ type: 'FETCH_PARTNER'});
-    dispatch({ type: 'FETCH_PARTNER_REPORTS'});
-    dispatch({ type: 'FETCH_REPORTS'});
+    dispatch({ type: 'FETCH_PARTNER' });
+    dispatch({ type: 'FETCH_PARTNER_REPORTS' });
+    dispatch({ type: 'FETCH_REPORTS' });
     dispatch({ type: 'FETCH_DATA' });
   }, [user])
 
@@ -54,9 +55,11 @@ function App() {
 
 
   return (
-      <Router>
-        <div>
+    <Router>
+      <Flex flexDirection={'column'} minHeight={'100vh'}>
+        <Container padding={'0'} flex={'1'} maxW={'100%'}>
           <Nav />
+          <Divider color={'brand.500'} />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -174,22 +177,23 @@ function App() {
               }
             </Route>
             <Route exact path="/home">
-            {isPartner ? (
-              <Redirect to="/partner/" />
-            ) : user.id ? (
-              <Redirect to="/user" />
-            ) : (
-              <LandingPage />
-            )}
-          </Route>
+              {isPartner ? (
+                <Redirect to="/partner/" />
+              ) : user.id ? (
+                <Redirect to="/user" />
+              ) : (
+                <LandingPage />
+              )}
+            </Route>
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
-              <h1>404</h1>
+              <Heading>404</Heading>
             </Route>
           </Switch>
-          <Footer />
-        </div>
-      </Router>
+        </Container>
+      </Flex>
+      <Footer />
+    </Router>
   );
 }
 

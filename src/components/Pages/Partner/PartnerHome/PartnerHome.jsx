@@ -133,42 +133,41 @@ export default function PartnerHome() {
                     );
                 })}
                 <Card textAlign={'center'} w={'50%'} key={'response4'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Amount of States that have ordered our Coffee
-                        </Heading>
-                    </CardHeader>
                     <CardBody>
-                        <Box p={4}>
-                            {cfg.orders_per_channel_type?.state_count || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}>States</StatLabel>
+                            <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
                 <Card textAlign={'center'} w={'50%'} key={'response5'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Total Sum of all donations
-                        </Heading>
-                    </CardHeader>
                     <CardBody>
-                        <Box p={4}>
-                            {cfg.total_sum?.sum || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}>All Donations</StatLabel>
+                            <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
                 <Card textAlign={'center'} w={'50%'} key={'response6'} boxShadow="md">
-                    <CardHeader>
-                        <Heading color={'brand.500'} as="h2" size="md">
-                            Total Orders
-                        </Heading>
-                    </CardHeader>
                     <CardBody >
-                        <Box p={4}>
-                            {cfg.total_orders?.count || 'Loading...'}
-                        </Box>
+                        <Stat>
+                            <StatLabel color={'brand.500'}> Total Orders</StatLabel>
+                            <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
                     </CardBody>
                 </Card>
-
             </SimpleGrid>
         </Box>
     );

@@ -2,19 +2,22 @@ import React from "react"
 import { useState } from "react"
 import moment from "moment"
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
     Tr,
-    Th,
     Td,
-    TableCaption,
-    TableContainer,
-    Button,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+    useDisclosure,
+    ModalOverlay,
+    Text
 } from '@chakra-ui/react'
 
 export default function AdminReportsItem({ report }) {
+
+    
     // initalize useState
     const [showDescription, setShowDescription] = useState(false)
 
