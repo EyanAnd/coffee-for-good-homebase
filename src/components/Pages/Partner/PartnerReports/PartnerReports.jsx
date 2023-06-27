@@ -17,7 +17,6 @@ export default function PartnerReports() {
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
-                        <Th>Description</Th>
                         <Th>Date Sent</Th>
                     </Tr>
                 </Thead>

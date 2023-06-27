@@ -36,7 +36,6 @@ export default function AdminReports() {
                 <Thead>
                     <Tr>
                         <Td>Name</Td>
-                        <Td>Description</Td>
                         <Td>Date Sent</Td>
                     </Tr>
                 </Thead>

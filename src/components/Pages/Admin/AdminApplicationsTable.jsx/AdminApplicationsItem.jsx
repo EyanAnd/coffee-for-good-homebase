@@ -21,8 +21,6 @@ export default function AdminApplicationsItem({ app }) {
     // initalize useDisclosure
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    // initalize use theme
-    const theme = useTheme();
     // initalize use disaptch
     const dispatch = useDispatch();
     console.log(app);
