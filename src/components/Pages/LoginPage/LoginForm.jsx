@@ -11,8 +11,8 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
-  const history = useHistory();
 
+  const history = useHistory();
   const login = (event) => {
     event.preventDefault();
 
@@ -70,6 +70,15 @@ function LoginForm() {
                 <Container>
                   <Button color={'brand.500'} variant={'outline'} onClick={login}>Log In</Button>
                 </Container>
+                <Button 
+          color={'brand.500'}
+          variant={'outline'}
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </Button>
               </Flex>
             </Container>
           </CardBody>

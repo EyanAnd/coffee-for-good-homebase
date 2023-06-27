@@ -1,99 +1,91 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
-import { Heading, theme, colorScheme } from '@chakra-ui/react';
+import { Flex, Box, Heading, Link as ChakraLink, Text, HStack } from '@chakra-ui/react';
 
 function Nav() {
-  // initalize use history
-  const history = useHistory(); // initalize dispatch for grabbing the partner
-  const dispatch = useDispatch(); // initalize use dispatch
-  const user = useSelector((store) => store.user); //  // create store for users to check if the user is logged in and what they get to see.
-  const partner = useSelector(store => store.partnerReducer) // create store for partner
-  const isPartner = partner.some((partner) => partner.user_id === user.id) // check if the user also has a partner id
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const partner = useSelector((store) => store.partnerReducer);
+  const isPartner = partner.some((partner) => partner.user_id === user.id);
 
-  // dispatch a call to grab the partner 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER'})
-    dispatch({ type: 'FETCH_PARTNER' })
-  }, [])
+    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_PARTNER' });
+    dispatch({ type: 'FETCH_DATA'})
+  }, []);
 
   return (
-    <div className="nav">
+    <Flex  bg={'brand.100'} alignItems="center" justifyContent="space-between">
       <Link to="/home">
-        <Heading className="nav-title">Coffee For Good</Heading>
+        <Heading as="h1" size="md" className="nav-title">
+          Coffee For Good
+        </Heading>
       </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
+      <Box fontSize={'lg'} letterSpacing={'wide'} textTransform={'lowercase'}>
         {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
+          <HStack>
+            <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/login">
+            <Text color={'brand.500'}>Login / Register</Text>
+            </ChakraLink>
+            <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/about">
+            <Text color={'brand.500'}>About</Text>
+            </ChakraLink>
+          </HStack>
         )}
-        {!user.id && <Link className="navLink" to="/about">
-          About
-        </Link>}
 
-        {/* if a partner is logged in show these links */}
         {isPartner && (
-          <>
-            <Link className="navLink" to="/partner/">
-              Home
-            </Link>
-            <Link className="navLink" to="/partner/reports">
-              Reports
-            </Link>
-            <Link className="navLink" to="/contact">
-              Contact Us
-            </Link>
-
+          <HStack>
+            <ChakraLink  as={Link} className="navLink" to="/partner/">
+              <Text color={'brand.500'}>Home</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/partner/reports">
+            <Text color={'brand.500'}>Reports</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/contact">
+            <Text color={'brand.500'}>Contact Us</Text>
+            </ChakraLink>
             <LogOutButton className="navLink" onClick={() => history.push('/login')} />
-          </>
+          </HStack>
         )}
-        {/* If a user is logged in, show these links */}
+
         {user.id && !isPartner && !user.is_admin && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-            <Link className="navLink" to="/user/contact">
-              Contact Us
-            </Link>
-
-            <Link className="navLink" to="/application">
-              Application
-            </Link>
-
-            <LogOutButton className="navLink" onClick={() => history.push('/login')}/>
-          </>
+          <HStack>
+            <ChakraLink as={Link} className="navLink" to="/user">
+            <Text color={'brand.500'}>Home</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/user/contact">
+            <Text color={'brand.500'}>Contact Us</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/application">
+            <Text color={'brand.500'}>Application</Text>
+            </ChakraLink>
+            <LogOutButton className="navLink" onClick={() => history.push('/login')} />
+          </HStack>
         )}
-        {/* If the user is an admin show these routes */}
+
         {user.is_admin && (
-          <>
-            <Link className="navLink" to="/admin/applications">
-              Applications
-            </Link>
-            <Link className="navLink" to="/admin/reports">
-              Reports
-            </Link>
-            <Link className="navLink" to="/admin/">
-              Home
-            </Link>
-            {/* TODO fix logout. Lots of weird redirects going on right now. */}
-            <LogOutButton className="navLink" />
-          </>
-        )
-        }
-
-
-      </div>
-    </div>
+          <HStack>
+            <ChakraLink as={Link} className="navLink" to="/admin/">
+            <Text color={'brand.500'}>Home</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/admin/applications">
+            <Text color={'brand.500'}>Applications</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/admin/reports">
+            <Text color={'brand.500'}>Reports</Text>
+            </ChakraLink>
+             <LogOutButton />
+          </HStack>
+        )}
+      </Box>
+    </Flex>
   );
 }
 
 export default Nav;
+

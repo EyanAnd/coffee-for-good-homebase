@@ -1,11 +1,15 @@
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Container, Heading, FormLabel, Input } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -20,41 +24,51 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+    <Container className="formPanel" onSubmit={registerUser}>
+      <Heading>Register User</Heading>
       {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
+        <Heading size={'sm'} className="alert" role="alert">
           {errors.registrationMessage}
-        </h3>
+        </Heading>
       )}
-      <div>
-        <label htmlFor="username">
+      <Container>
+        <FormLabel color={'brand.500'} htmlFor="username">
           Username:
-          <input
+          <Input
             type="text"
             name="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
+        </FormLabel>
+      </Container>
+      <Container>
+        <FormLabel color={'brand.500'} htmlFor="password">
           Password:
-          <input
+          <Input
             type="password"
             name="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+        </FormLabel>
+      </Container>
+      <Container justifyContent={'space-between'}>
+        <Button color={'brand.500'} variant={'outline'} onClick={registerUser} type="submit" name="submit" value="Register">Register</Button>
+        <Button align={'right'} color={'brand.500'}
+          variant={'outline'}
+
+          type="button"
+          onClick={() => {
+            history.push('/login');
+          }}
+        >
+          Login
+        </Button>
+      </Container>
+    </Container>
   );
 }
 
