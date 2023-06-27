@@ -17,9 +17,12 @@ function Footer() {
           />
           <IconButton
             as={Link}
-            href="/public/images/cfg_dark_logo.png"
+            src="/images/cfg_dark_logo.png"
             aria-label="cfg-logo"
-            icon={<Image src="/public/images/cfg_dark_logo.png" fontSize="1.25rem" />}
+            icon={
+              <Box h={'35px'} w={'35px'}>
+                <Image src="/images/cfg_dark_logo.png" fontSize="1.25rem" />
+              </Box>}
           />
           <IconButton
             as={Link}

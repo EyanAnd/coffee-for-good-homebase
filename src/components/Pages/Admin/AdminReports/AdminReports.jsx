@@ -32,7 +32,7 @@ export default function AdminReports() {
         {/* TODO: STRETCH GOAL<div className="button">
             <button>Add A new report</button>
         </div> */}
-            <Table>
+            <Table variant={'striped'} colorScheme="brand">
                 <Thead>
                     <Tr>
                         <Td>Name</Td>

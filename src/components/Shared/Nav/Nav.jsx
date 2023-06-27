@@ -4,7 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Flex, Box, Heading, Link as ChakraLink, Text, HStack, Divider, Container } from '@chakra-ui/react';
+import { Flex, Box, Heading, Link as ChakraLink, Text, HStack, Divider, Container, Image } from '@chakra-ui/react';
 
 
 function Nav() {
@@ -23,9 +23,11 @@ function Nav() {
   return (
     <Flex height={'80px'} bg={'white'} alignItems="center" justifyContent="space-between">
       <Link to="/home">
-        <Heading as="h1" size="md" className="nav-title">
-          Coffee For Good
-        </Heading>
+        <Flex align={'center'}>
+            <Box h={'80px'} w={'80px'}>
+            <Image src='/images/cfg_dark_logo.png' alt='Coffee For Good' />
+            </Box>
+        </Flex>
       </Link>
       <Box fontSize={'lg'} letterSpacing={'wide'} textTransform={'lowercase'}>
         {!user.id && (
@@ -40,19 +42,19 @@ function Nav() {
         )}
 
         {isPartner && (
-            <HStack spacing='24px'>
-              <ChakraLink as={Link} className="navLink" to="/partner/">
-                <Text color={'brand.500'}>Home</Text>
-              </ChakraLink>
-              <ChakraLink as={Link} className="navLink" to="/partner/reports">
-                <Text color={'brand.500'}>Reports</Text>
-              </ChakraLink>
-              <ChakraLink as={Link} className="navLink" to="/contact">
-                <Text color={'brand.500'}>Contact Us</Text>
-              </ChakraLink>
-              <Divider orientation='vertical' color={'brand.500'} />
-              <LogOutButton onClick={() => history.push('/login')} />
-            </HStack>
+          <HStack spacing='24px'>
+            <ChakraLink as={Link} className="navLink" to="/partner/">
+              <Text color={'brand.500'}>Home</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/partner/reports">
+              <Text color={'brand.500'}>Reports</Text>
+            </ChakraLink>
+            <ChakraLink as={Link} className="navLink" to="/contact">
+              <Text color={'brand.500'}>Contact Us</Text>
+            </ChakraLink>
+            <Divider orientation='vertical' color={'brand.500'} />
+            <LogOutButton onClick={() => history.push('/login')} />
+          </HStack>
         )}
 
         {user.id && !isPartner && !user.is_admin && (

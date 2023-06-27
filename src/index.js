@@ -17,8 +17,8 @@ const colors = {
 }
 
 const fonts = {
-  heading: 'Archivo Black',
-  body: 'Playfair Display'
+  heading: 'Archivo-Black',
+  body: 'Playfair Display',
 }
 // initalize theme
 const theme = extendTheme({ 

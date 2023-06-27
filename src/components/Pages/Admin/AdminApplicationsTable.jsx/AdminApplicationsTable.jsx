@@ -29,7 +29,7 @@ export default function AdminApplicationsTable() {
   
     // Map over the store and display the applciants name and status 
     return (
-            <Table>
+            <Table variant={'striped'} colorScheme="brand">
                     <Thead>
                         <Tr>
                             <Td>Name</Td>
