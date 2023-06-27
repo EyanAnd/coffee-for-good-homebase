@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import {
     Box,
     Heading,
-    UnorderedList,
-    ListItem,
     SimpleGrid,
     Card,
     CardHeader,
@@ -14,7 +12,10 @@ import {
     StatHelpText,
     StatLabel,
     StatNumber,
-    StatArrow
+    StatArrow,
+    useDisclosure,
+    Text,
+    Button
 } from "@chakra-ui/react";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -25,8 +26,11 @@ const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "
 
 export default function AdminHome() {
     const cfg = useSelector((store) => store.transactionDataReducer);
+    const user = useSelector((store) => store.user)
     const dispatch = useDispatch();
     console.log(cfg);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
         dispatch({ type: "FETCH_DATA" });
@@ -51,128 +55,135 @@ export default function AdminHome() {
     const responseOrder = ["response1", "response2", "response3"];
 
     return (
-        <Box p={4}>
-            <SimpleGrid columns={[1, 2]} spacing={4}>
-                {responseOrder.map((key, index) => {
-                    const response = cfg[key];
-                    console.log(response)
-                    if (!response) {
-                        return null; // Skip rendering if response is undefined
-                    }
+        <>
+            <Box>
+                <Heading>Welcome Back, {user.username}</Heading>
+                <Button variant={'unstyled'} size={'md'} color={'brand.500'} onClick={onOpen}>Change Password</Button>
+                {/* TODO add modal here to change password */}
+            </Box>
+            <Box paddingLeft={'32'} align={'center'}>
+                <SimpleGrid columns={[1, 3]} spacing={8}>
+                    {responseOrder.map((key, index) => {
+                        const response = cfg[key];
+                        console.log(response)
+                        if (!response) {
+                            return null; // Skip rendering if response is undefined
+                        }
 
-                    const data = response.map((chart, index) => ({
-                        name:
-                            chart.shipping_state ||
-                            chart.channel_type ||
-                            chart.shipping_method ||
-                            chart.sate_count ||
-                            'Total Sum' ||
-                            'Orders Per State',
-                        value: Number(
-                            chart.shipment_count ||
-                            chart.order_count ||
-                            chart.sate_count ||
-                            chart.sum ||
-                            chart.count ||
-                            chart.state_count
-                        ),
-                        color: COLORS[index % COLORS.length],
-                    }));
+                        const data = response.map((chart, index) => ({
+                            name:
+                                chart.shipping_state ||
+                                chart.channel_type ||
+                                chart.shipping_method ||
+                                chart.sate_count ||
+                                'Total Sum' ||
+                                'Orders Per State',
+                            value: Number(
+                                chart.shipment_count ||
+                                chart.order_count ||
+                                chart.sate_count ||
+                                chart.sum ||
+                                chart.count ||
+                                chart.state_count
+                            ),
+                            color: COLORS[index % COLORS.length],
+                        }));
 
-                    const activeIndex = activeIndices[key];
+                        const activeIndex = activeIndices[key];
 
-                    return (
-                        <Card align='center' textAlign={'center'} justifyContent={'center'} w={'50%'} key={key} boxShadow="md">
-                            <CardHeader>
-                                <Heading color={'brand.500'} as="h2" size="md">
-                                    {key === "response1" && "Amount Of Shipping items per state"}
-                                    {key === "response2" && "Amount of orders per channel"}
-                                    {key === "response3" && "Get Type of orders per state"}
-                                </Heading>
-                            </CardHeader>
-                            <CardBody>
+                        return (
+                            <Card align='center' textAlign={'center'} justifyContent={'center'} w={'50%'} key={key} boxShadow="md">
+                                <CardHeader>
+                                    <Heading color={'brand.500'} as="h2" size="md">
+                                        {key === "response1" && "Amount Of Shipping items per state"}
+                                        {key === "response2" && "Amount of orders per channel"}
+                                        {key === "response3" && "Get Type of orders per state"}
+                                    </Heading>
+                                </CardHeader>
+                                <CardBody>
 
-                                <PieChart width={200} height={200}>
-                                    <Pie
-                                        data={data}
-                                        dataKey="value"
-                                        nameKey="name"
-                                        cx="50%"
-                                        cy="50%"
-                                        outerRadius={80}
-                                        fill="#8884d8"
-                                        onMouseEnter={(event) =>
-                                            handleMouseEnter(key, event.index)
-                                        }
-                                        onMouseLeave={() => handleMouseLeave(key)}
-                                    >
-                                        {data.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.color} />
-                                        ))}
-                                    </Pie>
-                                    {activeIndex !== null && (
-                                        <Tooltip
-                                            label={data[activeIndex]?.name}
-                                            aria-label={data[activeIndex]?.name}
-                                            bg="gray.800"
-                                            color="white"
-                                            placement="top"
+                                    <PieChart width={200} height={200}>
+                                        <Pie
+                                            data={data}
+                                            dataKey="value"
+                                            nameKey="name"
+                                            cx="50%"
+                                            cy="50%"
+                                            outerRadius={80}
+                                            fill="#8884d8"
+                                            onMouseEnter={(event) =>
+                                                handleMouseEnter(key, event.index)
+                                            }
+                                            onMouseLeave={() => handleMouseLeave(key)}
                                         >
-                                            <Box
-                                                as="span"
-                                                display="inline-block"
-                                                backgroundColor={data[activeIndex]?.color}
-                                                borderRadius="full"
-                                                p={1}
-                                                ml={2}
+                                            {data.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                        {activeIndex !== null && (
+                                            <Tooltip
+                                                label={data[activeIndex]?.name}
+                                                aria-label={data[activeIndex]?.name}
+                                                bg="gray.800"
+                                                color="white"
+                                                placement="top"
                                             >
-                                                {data[activeIndex]?.value}
-                                            </Box>
-                                        </Tooltip>
-                                    )}
-                                </PieChart>
+                                                <Box
+                                                    as="span"
+                                                    display="inline-block"
+                                                    backgroundColor={data[activeIndex]?.color}
+                                                    borderRadius="full"
+                                                    p={1}
+                                                    ml={2}
+                                                >
+                                                    {data[activeIndex]?.value}
+                                                </Box>
+                                            </Tooltip>
+                                        )}
+                                    </PieChart>
 
-                            </CardBody>
-                        </Card>
-                    );
-                })}
-                <Card textAlign={'center'} w={'50%'} key={'response4'} boxShadow="md">
-                    <CardBody>
-                        <Stat>
-                            <StatLabel color={'brand.500'}>States</StatLabel>
-                            <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-                <Card textAlign={'center'} w={'50%'} key={'response5'} boxShadow="md">
-                    <CardBody>
-                        <Stat>
-                            <StatLabel color={'brand.500'}>All Donations</StatLabel>
-                            <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-                <Card textAlign={'center'} w={'50%'} key={'response6'} boxShadow="md">
-                    <CardBody >
-                        <Stat>
-                            <StatLabel color={'brand.500'}> Total Orders</StatLabel>
-                            <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-            </SimpleGrid>
-        </Box>
+                                </CardBody>
+                            </Card>
+                        );
+                    })}
+                    <Card textAlign={'center'} w={'50%'} key={'response4'} boxShadow="md">
+                        <CardBody>
+                            <Stat>
+                                <StatLabel color={'brand.500'}>States</StatLabel>
+                                <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
+                                <StatHelpText>
+                                    <StatArrow type='increase' />
+                                    23.36%
+                                </StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
+                    <Card textAlign={'center'} w={'50%'} key={'response5'} boxShadow="md">
+                        <CardBody>
+                            <Stat>
+                                <StatLabel color={'brand.500'}>All Donations</StatLabel>
+                                <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
+                                <StatHelpText>
+                                    <StatArrow type='increase' />
+                                    23.36%
+                                </StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
+                    <Card textAlign={'center'} w={'50%'} key={'response6'} boxShadow="md">
+                        <CardBody >
+                            <Stat>
+                                <StatLabel color={'brand.500'}> Total Orders</StatLabel>
+                                <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
+                                <StatHelpText>
+                                    <StatArrow type='increase' />
+                                    23.36%
+                                </StatHelpText>
+                            </Stat>
+                        </CardBody>
+                    </Card>
+                </SimpleGrid>
+            </Box>
+        </>
     );
 }
