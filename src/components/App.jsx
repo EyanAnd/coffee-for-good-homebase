@@ -56,7 +56,7 @@ function App() {
 
   return (
     <Router>
-      <Flex flexDirection={'column'} minHeight={'100vh'}>
+      <Flex flexDirection={'column'} minHeight={'100vh'} h={'auto'}>
         <Container padding={'0'} flex={'1'} maxW={'100%'}>
           <Nav />
           <Divider color={'brand.500'} />

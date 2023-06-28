@@ -35,7 +35,7 @@ function LoginForm() {
   return (
     <Box>
       <Flex height={'100vh'} alignItems={'center'} justifyContent={'center'}>
-        <Card w={'25%'} bg={'whitesmoke'}>
+        <Card w={'25%'} color={'brand.500'} bg={'white'}>
           <CardBody>
             <Container >
               <Heading size='md'>Login</Heading>

@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box, Text, Link, Icon, Button, Stack, IconButton, Image, ButtonGroup, VStack, HStack, Container } from '@chakra-ui/react';
+import { Box, Text, Link, Icon, Button, Stack, IconButton, Image, ButtonGroup, VStack, HStack, Container, Flex, Divider } from '@chakra-ui/react';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
-//TODO import divider for the footer
 import '../Footer/Footer.css';
 
 function Footer() {
   return (
-    <Box className='footer' as="footer" role="contentinfo" bg="white" py="4" px="6">
-      <Container maxW="container.xl" display="flex" justifyContent="space-between" alignItems="center">
-        <ButtonGroup variant="tertiary">
+    <>
+      <Flex paddingBotton={'2rem'}>
+        <Divider orientation='horizontal' color={'brand.500'} />
+      </Flex>
+      <Flex h={'80px'} className='footer' as="footer" role="contentinfo" bg="white" justifyContent="space-between" alignItems="center" p={8}>
+        <ButtonGroup variant="tertiary" mr={4} paddingTop={'1rem'}>
           <IconButton
             as={Link}
             href="https://www.linkedin.com/in/eyanand/"
@@ -20,9 +22,9 @@ function Footer() {
             src="/images/cfg_dark_logo.png"
             aria-label="cfg-logo"
             icon={
-              <Box h={'35px'} w={'35px'}>
-                <Image src="/images/cfg_dark_logo.png" fontSize="1.25rem" />
-              </Box>}
+              <Flex h={'32px'} w={'32px'}>
+                <Image src="/images/cfg_dark_logo.png" fontSize="1.25rem" objectFit="contain" />
+              </Flex>}
           />
           <IconButton
             as={Link}
@@ -37,15 +39,22 @@ function Footer() {
             icon={<FaInstagram fontSize="1.25rem" />}
           />
         </ButtonGroup>
+        <Box flex={1} textAlign="center" alignContent={'center'}>
+          <Image src='/images/leaf.png' alt='leaf image' h={'100kpx'} paddingTop={'1rem'} w={'100px'} objectFit="contain" />
+        </Box>
+        <Flex paddingTop={'1rem'}>
         <Text fontSize="sm" color="fg.subtle">
           &copy; {new Date().getFullYear()} Coffee For Good.
         </Text>
-      </Container>
-    </Box>
+        </Flex>
+      </Flex>
+    </>
   );
 }
 
 export default Footer;
+
+
 
 
 
