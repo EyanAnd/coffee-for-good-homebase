@@ -29,8 +29,6 @@ export default function Application() {
     // initalize dispatch
     const dispatch = useDispatch();
 
-    // TODO find out if you really need this here
-    const userId = useSelector(store => store.user.id)
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_APP' })
