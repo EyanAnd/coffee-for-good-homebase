@@ -43,21 +43,21 @@ function Nav() {
 
         {isPartner && (
           <>
-          <Flex gap={'2rem'} textTransform={'lowercase'} >
-            <ChakraLink as={Link} to="/partner/">
-              <Text color={'brand.500'}>Home</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} to="/partner/reports">
-              <Text color={'brand.500'}>Reports</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} to="/contact">
-              <Text color={'brand.500'}>Contact</Text>
-            </ChakraLink>
-            <Divider orientation='horizontal' color={'brand.500'} />
-          </Flex>
-          <Flex pr={'1'}>
-        <LogOutButton onClick={() => history.push('/login')} />
-        </Flex>
+            <Flex gap={'2rem'} textTransform={'lowercase'} >
+              <ChakraLink as={Link} to="/partner/">
+                <Text color={'brand.500'}>Home</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} to="/partner/reports">
+                <Text color={'brand.500'}>Reports</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} to="/contact">
+                <Text color={'brand.500'}>Contact</Text>
+              </ChakraLink>
+              <Divider orientation='horizontal' color={'brand.500'} />
+            </Flex>
+            <Flex pr={'1'}>
+              <LogOutButton onClick={() => history.push('/login')} />
+            </Flex>
           </>
         )}
 
@@ -82,18 +82,23 @@ function Nav() {
         )}
 
         {user.is_admin && (
-          <Flex gap={'2rem'} textTransform={'lowercase'}  >
-            <ChakraLink as={Link} to="/admin/">
-              <Text color={'brand.500'}>Home</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} to="/admin/applications">
-              <Text color={'brand.500'}>Applications</Text>
-            </ChakraLink>
-            <ChakraLink as={Link} to="/admin/reports">
-              <Text color={'brand.500'}>Reports</Text>
-            </ChakraLink>
-            <Divider orientation='horizontal' color={'brand.500'} />
-          </Flex>
+          <>
+            <Flex gap={'2rem'} textTransform={'lowercase'}  >
+              <ChakraLink as={Link} to="/admin/">
+                <Text color={'brand.500'}>Home</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} to="/admin/applications">
+                <Text color={'brand.500'}>Applications</Text>
+              </ChakraLink>
+              <ChakraLink as={Link} to="/admin/reports">
+                <Text color={'brand.500'}>Reports</Text>
+              </ChakraLink>
+              <Divider orientation='horizontal' color={'brand.500'} />
+            </Flex>
+            <Flex pr={'1'}>
+              <LogOutButton onClick={() => history.push('/login')} />
+            </Flex>
+          </>
         )}
       </Flex>
     </Flex>

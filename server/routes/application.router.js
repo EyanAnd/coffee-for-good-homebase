@@ -36,16 +36,17 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         const id = req.user.id
         const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
         const result1 = await pool.query(checkExistingQuery, [id])
+        console.log(result1.rows)
         if (result1.rows.length > 0) {
             res.status(400).send('Application already submitted')
             return;
         }
         const queryText = `INSERT INTO "application" ("user_id", "name", "email", "mission", "impact", "values", "previous_partners", "success_stories", "collab", "reporting", "sharing", "notes", "approved")
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
-
         const result2 = await pool.query(queryText, [id, req.body.name, req.body.email, req.body.mission, req.body.impact, req.body.values,
             req.body.previous_partners, req.body.success_stories, req.body.collab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved])
-        res.send(result2.rows)
+            res.send(result2.rows)
+            console.log(result2.rows)
     } catch (err) {
         console.log('there was an error POSTING an application', err)
         res.sendStatus(500);

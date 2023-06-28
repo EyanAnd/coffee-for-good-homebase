@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -35,6 +35,9 @@ function App() {
   const partner = useSelector(store => store.partnerReducer); // grab partner store
   const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
 
+
+  // set state for application
+  const [forRealSubmit, setForRealSubmit] = useState(false)
   useEffect(() => {
 
     dispatch({ type: 'FETCH_APP' });
@@ -131,7 +134,7 @@ function App() {
               user.is_admin ? (
                 <Redirect to="/admin/" />
               ) : (
-                <UserPage />
+                <UserPage  forRealSubmit={forRealSubmit} setForRealSubmit={setForRealSubmit}  />
               )
             )}
             </ProtectedRoute>
@@ -140,7 +143,7 @@ function App() {
               exact
               path="/application"
             >
-              <Application />
+              <Application forRealSubmit={forRealSubmit} setForRealSubmit={setForRealSubmit}/>
             </ProtectedRoute>
             <ProtectedRoute
               // logged in shows Contact Us else shows Contact Us page

@@ -24,8 +24,32 @@ function* fetchUser() {
   }
 }
 
+// update submit app saga
+function* updateUserSubmitSaga(action) {
+  try {
+    console.log(action.payload)
+    const response = yield axios.put('/api/user/application_submitted', {id: action.payload})
+ 
+    yield put({ type: 'FETCH_USER'})
+  } catch (error) {
+    console.log('there was an error in the update submit user application saga', error)
+  }
+}
+
+function* updateUserStartedSaga(action) {
+  try {
+    const response = yield axios.put('/api/user/application_started', {id: action.payload})
+    
+    yield put({ type: 'FETCH_USER'})
+  } catch (error) {
+    console.log('there was an error in the update submit user application saga', error)
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('IS_SUBMITTED', updateUserSubmitSaga);
+  yield takeLatest('IS_STARTED', updateUserStartedSaga);
 }
 
 export default userSaga;

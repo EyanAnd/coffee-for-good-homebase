@@ -32,6 +32,43 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+// put to update user has started application
+router.put('/application_started', rejectUnauthenticated, async (req, res) => {
+    try {
+      // grab user id
+      const id = req.user.id
+
+      // text to send to the database
+      const queryText = `UPDATE "user" SET "app_started"=true WHERE "id"=$1;`;
+
+      // send it of
+      const response = await pool.query(queryText, [id])
+      res.sendStatus(200)
+      console.log(response)
+    } catch (error) {
+      console.log('there was an error updating the application start PUT')
+      res.sendStatus(500)
+    }
+})
+
+// put to update user has submitted application
+router.put('/application_submitted', rejectUnauthenticated, async (req, res) => {
+  try {
+    // grab user id
+    const id = req.user.id
+
+    // text to send to the database
+    const queryText = `UPDATE "user" SET "app_submitted"=true WHERE "id"=$1;`;
+    // send it of
+    const response = await pool.query(queryText, [id])
+    res.sendStatus(200)
+    console.log(response)
+  } catch (error) {
+    console.log('there was an error updating the application submitt PUT')
+    res.sendStatus(500)
+  }
+})
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

@@ -11,16 +11,18 @@ import {
     FormErrorMessage,
     FormHelperText,
     HStack,
-    Divider
+    Divider,
+    useDisclosure
 } from "@chakra-ui/react"
 
 export default function Application() {
 
-    // TODO conditionally render application if they have submitted one or not.
+    // initalize useDisclosure for modals
+    const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
 
     // grab current application from the store
     const currentApplication = useSelector(store => store.applicationReducer)
-    
+
     // initalize history
     const history = useHistory();
 
@@ -42,6 +44,7 @@ export default function Application() {
         })
     }, [currentApplication])
 
+
     // set state for the form
     const [application, setApplication] = useState({ id: null, name: '', email: '', mission: '', impact: '', values: '', previous_partners: '', success_stories: '', collab: '', reporting: '', sharing: '', notes: '' })
     // check admin applications reducer to see if the application matches one in the applciations 
@@ -52,35 +55,24 @@ export default function Application() {
     }
     // click handler for dispatch to update the status maybe take the user_id in?
     const applicationSubmit = () => {
+        console.log(application)
         dispatch({ type: 'SUBMIT_APP', payload: application });
-        history.push('/user') // push user to new page. 
+        setForRealSubmit(true)
+        if(forRealSubmit) {
+            history.push('/user')
+        } 
     }
 
 
-    //TODO add alerts to applications
-//     <Alert size={'lg'} color={'brand.400'} status='success'>
-//     <AlertIcon />
-//     <Box>
-//       <AlertTitle>Success! Your Message Has Been Sent</AlertTitle>
-//       <AlertDescription>
-//         Your Message has been recieved, one of our employees will get back to you within 48 hours.
-//       </AlertDescription>
-//     </Box>
-//     <CloseButton 
-//     alignSelf={'flex-start'}
-//     position={'relative'}
-//     right={-1}
-//     top={-1}
-//     onClick={onClose}
-//     />
-//   </Alert>
+    //     TODO add alerts to applications
+
     return (
         <Flex w={'75%'} maxW={'100%'} gap={'1rem'} direction={'column'} >
             <Flex gap={'1rem'} padding={'1rem'} >
                 <Heading size={"lg"}>Contact Info</Heading>
             </Flex>
             <Flex gap={'0.5rem'} padding={'1rem'} >
-                <FormControl isRequired>
+                <FormControl>
                     <FormLabel>Name:</FormLabel>
                     <Input variant={'flushed'} type="email" value={application.name} onChange={(e) => setApplication({ ...application, name: e.target.value })} />
                     <FormLabel>Email Address:</FormLabel>
@@ -91,7 +83,7 @@ export default function Application() {
                 <Heading size={'lg'}>Mission & Values</Heading>
             </Flex>
             <Flex gap={'0.5rem'} padding={'1rem'}>
-                <FormControl isRequired>
+                <FormControl >
                     <FormLabel>Mission:</FormLabel>
                     <Textarea type="text" value={application.mission} onChange={(e) => setApplication({ ...application, mission: e.target.value })} />
                     <FormLabel>Impact:</FormLabel>
@@ -105,7 +97,7 @@ export default function Application() {
                 <Divider color={'brand.300'} />
             </Flex>
             <Flex gap={'0.5'} padding={'1rem'}>
-                <FormControl isRequired>
+                <FormControl>
                     <FormLabel>Previous Partners:</FormLabel>
                     <Textarea type="text" value={application.previous_partners} onChange={(e) => setApplication({ ...application, previous_partners: e.target.value })} />
                     <FormLabel>Success Stories:</FormLabel>
@@ -124,7 +116,27 @@ export default function Application() {
             <Flex gap={'2rem'} paddingRight={'1.25rem'}>
                 <Button color={'brand.300'} onClick={() => history.push('/user')}>Back</Button>
                 <Button color={'brand.500'} onClick={saveHandler}>Save Application</Button>
-                <Button justifyContent={'right'} color={'brand.400'} onClick={applicationSubmit}>Submit</Button>
+                {isVisible ? (
+                    <Alert size={'lg'} color={'brand.400'} status='success'>
+                        <AlertIcon />
+                        <Box>
+                            <AlertTitle>Success! Your Application Has Been Submitted</AlertTitle>
+                            <AlertDescription>
+                                We will review your applciation and get back to you by email or phone call within 72 horus.
+                            </AlertDescription>
+                        </Box>
+                        <CloseButton
+                            alignSelf={'flex-start'}
+                            position={'relative'}
+                            right={-1}
+                            top={-1}
+                            onClick={history.push('/user')}
+                            
+                        />
+                    </Alert>)
+                    :
+                    <Button justifyContent={'right'} color={'brand.400'} onClick={applicationSubmit}>Submit</Button>
+                }
             </Flex>
         </Flex>
     )

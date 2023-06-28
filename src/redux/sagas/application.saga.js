@@ -11,6 +11,7 @@ function* applicationSaga() {
 
 function* addAppSaga(action) {
     try {
+        console.log(action.payload)
         
         const response = yield axios.post(`/api/application/`, action.payload)
         console.log(response.data)
