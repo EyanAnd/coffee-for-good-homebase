@@ -16,19 +16,14 @@ import {
 } from "@chakra-ui/react"
 
 export default function Application() {
-
     // grab user store
      const user = useSelector((store) => store.user);
-
     // initalize useDisclosure for modals
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
-
     // grab current application from the store
     const currentApplication = useSelector(store => store.applicationReducer)
-
     // initalize history
     const history = useHistory();
-
     // initalize dispatch
     const dispatch = useDispatch();
 
@@ -37,15 +32,12 @@ export default function Application() {
         dispatch({ type: 'FETCH_APP' })
         console.log("IN USE effect")
     }, [])
-
     // new useEffect to watch cuurent application
     useEffect(() => {
         setApplication({
             ...currentApplication
         })
     }, [currentApplication])
-
-
     // set state for the form
     const [application, setApplication] = useState({ id: null, name: '', email: '', mission: '', impact: '', values: '', previous_partners: '', success_stories: '', collab: '', reporting: '', sharing: '', notes: '' })
     // check admin applications reducer to see if the application matches one in the applciations 
@@ -55,6 +47,8 @@ export default function Application() {
         dispatch({ type: 'UPDATE_APP', payload: application })
         // set start application on user to true just to be sure
         dispatch({ type: "IS_STARTED", payload: user.id})
+        // push them to the user page
+        history.push('/user')
     }
     // click handler for dispatch to update the status maybe take the user_id in?
     const applicationSubmit = () => {
@@ -65,7 +59,6 @@ export default function Application() {
 
 
     //     TODO add alerts to applications
-
     return (
         <Flex w={'75%'} maxW={'100%'} gap={'1rem'} direction={'column'} >
             <Flex gap={'1rem'} padding={'1rem'} >
@@ -130,12 +123,12 @@ export default function Application() {
                             position={'relative'}
                             right={-1}
                             top={-1}
-                            onClick={history.push('/user')}
+                            onClick={applicationSubmit}
                             
                         />
                     </Alert>)
                     :
-                    <Button justifyContent={'right'} color={'brand.400'} onClick={applicationSubmit}>Submit</Button>
+                    <Button justifyContent={'right'} color={'brand.400'} onClick={onClose}>Submit</Button>
                 }
             </Flex>
         </Flex>

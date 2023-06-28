@@ -18,6 +18,13 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
   // init useDispatch
   const dispatch = useDispatch();
 
+  // start application handler
+  const startApplicationHandler = () => {
+      // dispatch to update users started boolean
+      dispatch({ type: 'IS_STARTED', payload: user.id })
+      // push to applications page
+      history.push('/application')
+  }
 
   // render different things depending on status of application
   const appStatus = () => {
@@ -35,10 +42,11 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
     <Flex gap={'8rem'} direction={'column'} color={'brand.500'}>
       <Flex gap={'4rem'}>
         <Heading>Welcome, {user.username}!</Heading>
+        <Heading>{appStatus()}</Heading>
       </Flex>
       <Flex gap={'2rem'}>
         {!user.app_started && !user.app_submitted ? (
-          <Button onClick={() => dispatch({ type: 'IS_STARTED', payload: user.id })}>Start Application</Button>
+          <Button onClick={startApplicationHandler}>Start Application</Button>
         ) : user.app_started && !user.app_submitted ? (
           <Button onClick={() => history.push('/application')}>Continue Application</Button>
         ) : null}
