@@ -17,6 +17,9 @@ import {
 
 export default function Application() {
 
+    // grab user store
+     const user = useSelector((store) => store.user);
+
     // initalize useDisclosure for modals
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
 
@@ -50,15 +53,14 @@ export default function Application() {
     const saveHandler = () => {
         // this will update the application when the user hits the save button
         dispatch({ type: 'UPDATE_APP', payload: application })
+        // set start application on user to true just to be sure
+        dispatch({ type: "IS_STARTED", payload: user.id})
     }
     // click handler for dispatch to update the status maybe take the user_id in?
     const applicationSubmit = () => {
         console.log(application)
         dispatch({ type: 'SUBMIT_APP', payload: application });
-        setForRealSubmit(true)
-        if(forRealSubmit) {
-            history.push('/user')
-        } 
+        dispatch({ type: "IS_SUBMITTED", payload: user.id})
     }
 
 

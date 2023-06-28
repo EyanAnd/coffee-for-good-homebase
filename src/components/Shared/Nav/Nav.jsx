@@ -70,9 +70,10 @@ function Nav() {
               <ChakraLink as={Link} to="/user/contact">
                 <Text color={'brand.500'}>Contact</Text>
               </ChakraLink>
-              <ChakraLink as={Link} to="/application">
-                <Text color={'brand.500'}>Application</Text>
-              </ChakraLink>
+              {!user.app_submitted &&
+                <ChakraLink as={Link} to="/application">
+                  <Text color={'brand.500'}>Application</Text>
+                </ChakraLink>}
               <Divider orientation='horizontal' color={'brand.500'} />
             </Flex>
             <Flex pr={'1'}>
