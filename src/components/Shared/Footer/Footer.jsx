@@ -6,7 +6,7 @@ import '../Footer/Footer.css';
 
 function Footer() {
   return (
-    <Box className='footer' as="footer" role="contentinfo" bg="white" py="4" px="6" mt="auto">
+    <Box className='footer' as="footer" role="contentinfo" bg="white" py="4" px="6">
       <Container maxW="container.xl" display="flex" justifyContent="space-between" alignItems="center">
         <ButtonGroup variant="tertiary">
           <IconButton

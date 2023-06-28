@@ -21,74 +21,74 @@ function Nav() {
   }, []);
 
   return (
-    <Flex height={'80px'} bg={'white'} alignItems="center" justifyContent="space-between">
+    <Flex justifyContent={'space-between'} align={'center'} bg={'white'} >
       <Link to="/home">
         <Flex align={'center'}>
-            <Box h={'80px'} w={'80px'}>
+            <Box h={16} w={16}>
             <Image src='/images/cfg_dark_logo.png' alt='Coffee For Good' />
             </Box>
         </Flex>
       </Link>
-      <Box fontSize={'lg'} letterSpacing={'wide'} textTransform={'lowercase'}>
+      <Flex align={'center'} gap={2} p={6} paddingBottom={3} display={'flex'}>
         {!user.id && (
-          <HStack spacing='24px'>
-            <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/login">
+          <Flex pr={6} gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'}>
+            <ChakraLink as={Link} to="/login">
               <Text color={'brand.500'}>Login / Register</Text>
             </ChakraLink>
-            <ChakraLink color={'brand.300'} as={Link} className="navLink" to="/about">
+            <ChakraLink as={Link} to="/about">
               <Text color={'brand.500'}>About</Text>
             </ChakraLink>
-          </HStack>
+          </Flex>
         )}
 
         {isPartner && (
-          <HStack spacing='24px'>
-            <ChakraLink as={Link} className="navLink" to="/partner/">
+          <Flex gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+            <ChakraLink as={Link} to="/partner/">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/partner/reports">
+            <ChakraLink as={Link} to="/partner/reports">
               <Text color={'brand.500'}>Reports</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/contact">
-              <Text color={'brand.500'}>Contact Us</Text>
+            <ChakraLink as={Link} to="/contact">
+              <Text color={'brand.500'}>Contact</Text>
             </ChakraLink>
-            <Divider orientation='vertical' color={'brand.500'} />
-            <LogOutButton onClick={() => history.push('/login')} />
-          </HStack>
+            <Divider orientation='horizontal' color={'brand.500'} />
+          </Flex>
         )}
 
         {user.id && !isPartner && !user.is_admin && (
-          <HStack>
-            <ChakraLink as={Link} className="navLink" to="/user">
+          <Flex gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+            <ChakraLink as={Link} to="/user">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/user/contact">
-              <Text color={'brand.500'}>Contact Us</Text>
+            <ChakraLink as={Link} to="/user/contact">
+              <Text color={'brand.500'}>Contact</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/application">
+            <ChakraLink as={Link} to="/application">
               <Text color={'brand.500'}>Application</Text>
             </ChakraLink>
-            <Divider orientation='vertical' color={'brand.500'} />
-            <LogOutButton onClick={() => history.push('/login')} />
-          </HStack>
+            <Divider orientation='horizontal' color={'brand.500'} />
+          </Flex>
         )}
 
         {user.is_admin && (
-          <HStack spacing='24px'>
-            <ChakraLink as={Link} className="navLink" to="/admin/">
+          <Flex  gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+            <ChakraLink as={Link} to="/admin/">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/admin/applications">
+            <ChakraLink as={Link} to="/admin/applications">
               <Text color={'brand.500'}>Applications</Text>
             </ChakraLink>
-            <ChakraLink as={Link} className="navLink" to="/admin/reports">
+            <ChakraLink as={Link} to="/admin/reports">
               <Text color={'brand.500'}>Reports</Text>
             </ChakraLink>
-            <Divider orientation='vertical' color={'brand.500'} />
-            <LogOutButton onClick={() => history.push('/login')} />
-          </HStack>
+            <Divider orientation='horizontal' color={'brand.500'} />
+          </Flex>
         )}
-      </Box>
+        <Flex pr={'1'}>
+        <LogOutButton onClick={() => history.push('/login')} />
+        </Flex>
+      </Flex>
     </Flex>
   );
 }

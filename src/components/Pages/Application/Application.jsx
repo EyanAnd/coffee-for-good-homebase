@@ -20,6 +20,7 @@ export default function Application() {
 
     // grab current application from the store
     const currentApplication = useSelector(store => store.applicationReducer)
+    
     // initalize history
     const history = useHistory();
 
@@ -34,7 +35,7 @@ export default function Application() {
         console.log("IN USE effect")
     }, [])
 
-    // new useEffect 
+    // new useEffect to watch cuurent application
     useEffect(() => {
         setApplication({
             ...currentApplication
@@ -43,7 +44,7 @@ export default function Application() {
 
     // set state for the form
     const [application, setApplication] = useState({ id: null, name: '', email: '', mission: '', impact: '', values: '', previous_partners: '', success_stories: '', collab: '', reporting: '', sharing: '', notes: '' })
-
+    // check admin applications reducer to see if the application matches one in the applciations 
     // dispatch here to POST in the saga 
     const saveHandler = () => {
         // this will update the application when the user hits the save button
@@ -54,6 +55,25 @@ export default function Application() {
         dispatch({ type: 'SUBMIT_APP', payload: application });
         history.push('/user') // push user to new page. 
     }
+
+
+    //TODO add alerts to applications
+//     <Alert size={'lg'} color={'brand.400'} status='success'>
+//     <AlertIcon />
+//     <Box>
+//       <AlertTitle>Success! Your Message Has Been Sent</AlertTitle>
+//       <AlertDescription>
+//         Your Message has been recieved, one of our employees will get back to you within 48 hours.
+//       </AlertDescription>
+//     </Box>
+//     <CloseButton 
+//     alignSelf={'flex-start'}
+//     position={'relative'}
+//     right={-1}
+//     top={-1}
+//     onClick={onClose}
+//     />
+//   </Alert>
     return (
         <Flex w={'75%'} maxW={'100%'} gap={'1rem'} direction={'column'} >
             <Flex gap={'1rem'} padding={'1rem'} >
