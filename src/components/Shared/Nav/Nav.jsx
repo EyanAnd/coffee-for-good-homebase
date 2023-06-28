@@ -31,7 +31,7 @@ function Nav() {
       </Link>
       <Flex align={'center'} gap={2} p={6} paddingBottom={3} display={'flex'}>
         {!user.id && (
-          <Flex pr={6} gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'}>
+          <Flex pr={6} gap={'2rem'} textTransform={'lowercase'} >
             <ChakraLink as={Link} to="/login">
               <Text color={'brand.500'}>Login / Register</Text>
             </ChakraLink>
@@ -43,7 +43,7 @@ function Nav() {
 
         {isPartner && (
           <>
-          <Flex gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+          <Flex gap={'2rem'} textTransform={'lowercase'} >
             <ChakraLink as={Link} to="/partner/">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>
@@ -63,7 +63,7 @@ function Nav() {
 
         {user.id && !isPartner && !user.is_admin && (
           <>
-            <Flex gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+            <Flex gap={'2rem'} textTransform={'lowercase'}  >
               <ChakraLink as={Link} to="/user">
                 <Text color={'brand.500'}>Home</Text>
               </ChakraLink>
@@ -82,7 +82,7 @@ function Nav() {
         )}
 
         {user.is_admin && (
-          <Flex gap={'2rem'} textTransform={'lowercase'} letterSpacing={'wide'} >
+          <Flex gap={'2rem'} textTransform={'lowercase'}  >
             <ChakraLink as={Link} to="/admin/">
               <Text color={'brand.500'}>Home</Text>
             </ChakraLink>

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import App from './components/App';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import '@fontsource/montserrat'
 
 // create color theme
 const colors = {
@@ -18,7 +19,7 @@ const colors = {
 
 const fonts = {
   heading: 'Archivo-Black',
-  body: 'Playfair Display',
+  body: `'Montserrat', sans-serif`,
 }
 // initalize theme
 const theme = extendTheme({ 

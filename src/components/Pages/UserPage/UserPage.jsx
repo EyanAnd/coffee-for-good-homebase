@@ -35,7 +35,7 @@ function UserPage() {
   return (
     <Container maxW={'container.xl'} color={'brand.500'}>
       <Stack spacing={4}>
-        <Heading letterSpacing={"0.1rem"}>Welcome, {user.username}!</Heading>
+        <Heading>Welcome, {user.username}!</Heading>
         {isUserApplicationSubmitted ? (
             <Flex gap={'3rem'} padding={'2rem'} direction={'column'}>
               <Flex gap={'1.5rem'} padding={'1rem'}>
