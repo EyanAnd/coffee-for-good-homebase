@@ -29,8 +29,8 @@ export default function AdminApplicationsItem({ app }) {
     // on click function to do a PUT request to update the application to approved
     // on click delete an application
     return (
-            <Tr onClick={onOpen} key={app.user_id}>
-                <Td>{app.name}</Td>
+            <Tr key={app.user_id}>
+                <Td  onClick={onOpen}> {app.name}</Td>
                     <Modal isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
                         <ModalContent>

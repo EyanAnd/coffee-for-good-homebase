@@ -12,6 +12,7 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
   const user = useSelector((store) => store.user);
   const application = useSelector((store) => store.applicationReducer);
   console.log(application)
+  console.log(application.sharing)
 
   const history = useHistory();
 
@@ -20,10 +21,10 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
 
   // start application handler
   const startApplicationHandler = () => {
-      // dispatch to update users started boolean
-      dispatch({ type: 'IS_STARTED', payload: user.id })
-      // push to applications page
-      history.push('/application')
+    // dispatch to update users started boolean
+    dispatch({ type: 'IS_STARTED', payload: user.id })
+    // push to applications page
+    history.push('/application')
   }
 
   // render different things depending on status of application
@@ -39,8 +40,8 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
     }
   }
   return (
-    <Flex gap={'8rem'} direction={'column'} color={'brand.500'}>
-      <Flex gap={'4rem'}>
+    <Flex gap={'2rem'} direction={'column'} color={'brand.500'}>
+      <Flex gap={'1rem'}>
         <Heading>Welcome, {user.username}!</Heading>
         <Heading>{appStatus()}</Heading>
       </Flex>
@@ -50,26 +51,42 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
         ) : user.app_started && !user.app_submitted ? (
           <Button onClick={() => history.push('/application')}>Continue Application</Button>
         ) : null}
-        {user.app_submitted && 
-          <>
-            <Heading>Your Application</Heading>
-            <Text>{application.name}</Text>
-            <Text>{application.email}</Text>
-            <Text>{application.collab}</Text>
-            <Text>{application.mission}</Text>
-            <Text>{application.mission}</Text>
-            <Text>{application.previous_partners}</Text>
-            <Text>{application.success_stories}</Text>
-            <Text>{application.reporting}</Text>
-            <Text>{application.sharing}</Text>
-            <Text>{application.values}</Text>
-            <Text>{application.notes}</Text>
-          </>
+        {user.app_submitted &&
+          <Flex direction={'column'}  gap={'2rem'} p={'2rem'}>
+            <Flex gap={'1rem'} >
+              <Heading>Your Application</Heading>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              <Heading>User Info</Heading>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              
+              <Text>Name : {application.name}</Text>
+              <Text>Email : {application.email}</Text>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              <Heading>Mission & Values</Heading>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              <Text>Collaboration : {application.collab}</Text>
+              <Text>Mission : {application.mission}</Text>
+              <Text>Impact{application.impact}</Text>
+              <Text>Values : {application.values}</Text>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              <Heading>A Little More About You</Heading>
+            </Flex>
+            <Flex gap={'1rem'} p={'0.5'}>
+              <Text>Previous Partners : {application.previous_partners}</Text>
+              <Text>Success Stories : {application.success_stories}</Text>
+              <Text>Reporting: {application.reporting}</Text>
+              <Text>Open to sharing: {application.sharing ? "Yes" : "No"}</Text>
+              <Text>Additional Notes : {application.notes}</Text>
+            </Flex>
+          </Flex>
         }
       </Flex>
-      <Button onClick={() => dispatch({ type: 'IS_SUBMITTED', payload: user.id })}>Click me to set app_submitted to true</Button>
-      <Button onClick={() => dispatch({ type: 'IS_STARTED', payload: user.id })}>Click me to set app_started to true</Button>
-    </Flex>
+    </Flex >
   );
 }
 

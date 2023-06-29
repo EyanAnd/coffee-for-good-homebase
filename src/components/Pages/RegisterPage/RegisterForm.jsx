@@ -28,7 +28,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <Flex align={'center'} direction={'column'} className="formPanel" onSubmit={registerUser}>
+    <Flex color={'brand/500'} align={'center'} direction={'column'} className="formPanel" onSubmit={registerUser}>
       <Flex gap={'2rem'} padding={'2rem'}>
         <Heading>Register User</Heading>
       </Flex>

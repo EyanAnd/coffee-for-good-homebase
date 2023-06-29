@@ -45,8 +45,8 @@ function Footer() {
             icon={<FaInstagram fontSize="1.25rem" />}
           />
         </ButtonGroup>
-        <Box paddingRight={8} textAlign="center" alignContent={'center'}>
-          <Image src='/images/leaf.png' alt='leaf image' h={'100px'} paddingTop={'1rem'} w={'100px'}  objectFit="contain" />
+        <Box paddingRight={20} textAlign="center" alignContent={'center'}>
+          <Image src='/images/leaf.png' alt='leaf image' h={'120px'} paddingTop={'1rem'} w={'100px'}  objectFit="contain" />
         </Box>
         <Flex paddingTop={'1rem'}>
         <Text fontSize="sm" color="fg.subtle">

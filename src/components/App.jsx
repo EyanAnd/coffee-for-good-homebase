@@ -24,7 +24,8 @@ import AdminReports from './Pages/Admin/AdminReports/AdminReports';
 import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
-import { Container, Flex, Heading, Divider } from '@chakra-ui/react';
+import { Container, Flex, Heading, Divider, Chakra } from '@chakra-ui/react';
+import { isValidMotionProp, motion } from 'framer-motion';
 
 
 
@@ -36,10 +37,7 @@ function App() {
   const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
 
 
-  // set state for application
-  const [forRealSubmit, setForRealSubmit] = useState(false)
   useEffect(() => {
-
     dispatch({ type: 'FETCH_APP' });
     dispatch({ type: 'FETCH_PARTNER' });
     dispatch({ type: 'FETCH_PARTNER_REPORTS' });
@@ -50,8 +48,6 @@ function App() {
   // call to grab the user on load of the app.
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-
-
   }, []);
 
 
@@ -61,9 +57,9 @@ function App() {
     <Router>
       <Flex flexDirection={'column'} minHeight={'100vh'} h={'auto'}>
         <Container padding={'0'} flex={'1'} maxW={'100%'}>
-          <Nav />
+            <Nav />
           <Divider color={'brand.500'} />
-          <Switch>
+          <Switch >
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
 
@@ -134,7 +130,7 @@ function App() {
               user.is_admin ? (
                 <Redirect to="/admin/" />
               ) : (
-                <UserPage  forRealSubmit={forRealSubmit} setForRealSubmit={setForRealSubmit}  />
+                <UserPage />
               )
             )}
             </ProtectedRoute>
@@ -143,7 +139,7 @@ function App() {
               exact
               path="/application"
             >
-              <Application forRealSubmit={forRealSubmit} setForRealSubmit={setForRealSubmit}/>
+              <Application />
             </ProtectedRoute>
             <ProtectedRoute
               // logged in shows Contact Us else shows Contact Us page

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import {
     Table,
@@ -14,6 +14,7 @@ import {
     Button,
 } from '@chakra-ui/react'
 import AdminApplicationsItem from "./AdminApplicationsItem"
+import { AnimatePresence } from "framer-motion"
 export default function AdminApplicationsTable() {
 
     // initalize dispatch
@@ -38,7 +39,7 @@ export default function AdminApplicationsTable() {
                     </Thead>
                 <Tbody>
                         {applications.map((app, key) => (
-                            <AdminApplicationsItem app={app} key={key}/>
+                            <AdminApplicationsItem  app={app} key={key}/>
                         ))}
                 </Tbody>
             </Table>

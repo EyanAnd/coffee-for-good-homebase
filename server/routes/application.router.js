@@ -5,16 +5,26 @@ const {
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const { useSelector } = require('react-redux');
 
 const router = express.Router();
+
 
 // GET to grab application if started
 router.get('/', rejectUnauthenticated, async (req, res) => {
     console.log("in get")
     const id = req.user.id
+    const isAdmin = req.user.is_admin
+
     const queryText = `SELECT * FROM "application" WHERE "user_id"=$1;`;
+    if(isAdmin) {
+        return
+    }
     try {
         const result = await pool.query(queryText, [id])
+        
+
+
         if (result.rows.length === 0) {
             const queryText2 = `INSERT INTO "application" ("user_id") VALUES ($1) RETURNING *;`;
             const result2 = await pool.query(queryText2, [id])
@@ -45,8 +55,8 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
         const result2 = await pool.query(queryText, [id, req.body.name, req.body.email, req.body.mission, req.body.impact, req.body.values,
             req.body.previous_partners, req.body.success_stories, req.body.collab, req.body.reporting, req.body.sharing, req.body.notes, req.body.approved])
-            res.send(result2.rows)
-            console.log(result2.rows)
+        res.send(result2.rows)
+        console.log(result2.rows)
     } catch (err) {
         console.log('there was an error POSTING an application', err)
         res.sendStatus(500);

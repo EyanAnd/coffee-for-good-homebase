@@ -34,13 +34,13 @@ function LoginForm() {
 
   return (
     <Box maxW={'100%'}>
-      <Flex height={'100vh'} alignItems={'center'} justifyContent={'center'}>
+      <Flex height={'120vh'} alignItems={'center'} justifyContent={'center'}>
         <Card w={'25%'} color={'brand.500'} bg={'snow'}>
           <CardHeader>
             <Image src={'/images/white-logo.png'} />
           </CardHeader>
           <CardBody>
-            <Container h={'180px'}>          
+            <Container h={'275px'}>          
                 <Heading size={'md'}>Login</Heading>
               {errors.loginMessage && (
                 <Heading size={'sm'} className="alert" role="alert">
