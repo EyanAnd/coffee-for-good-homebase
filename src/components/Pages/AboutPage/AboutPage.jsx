@@ -98,7 +98,7 @@ function AboutPage() {
         <Text>A Huge Thanks to the EDA staff, <strong>Blaine</strong>, <strong>Mason</strong>, and <strong>Katie</strong> for all of the help and encouragement through this project.
            A huge thanks to <strong>Kord</strong>, <strong>Jack</strong>, <strong>Travis</strong>, <strong>Garrett</strong>, <strong>Sawyer</strong>, and <strong>Zeke</strong> 
            for making the den such a fun place to come learn and be challenged. A huge thanks for my wife <strong>Sage</strong> for being the best support I could ask for. 
-          Thanks to my mentors <strong>Adrian</strong>, <strong>Jede</strong>, <strong>Jason</strong>, and <strong>Anthony</strong> for always challenging me and supporting my growth as a developer. 
+          Thanks to my mentors <strong>Adrian</strong>, <strong>Jide</strong>, <strong>Jason</strong>, and <strong>Anthony</strong> for always challenging me and supporting my growth as a developer. 
           </Text>
       </Flex>
     </Flex>

@@ -50,8 +50,55 @@ export default function PartnerHome() {
     const responseOrder = ["response1", "response2", "response3"];
 
     return (
-        <Box p={4}>
-            <SimpleGrid columns={[1, 2]} spacing={4}>
+        <Flex direction="column" gap="1rem" padding="2rem">
+            <Heading color="brand.500">Welcome Back, {user.username}</Heading>
+            <Flex justifyContent="space-between" p="1rem">
+                <Button variant="link" size="md" color="brand.500" onClick={onOpen}>
+                    Change Password
+                </Button>
+            </Flex>
+            {/* TODO add modal here to change password */}
+            <Flex gap={'1rem'} p={'1rem'}>
+                <Heading color={'brand.500'}>Transactional Data</Heading>
+            </Flex>
+            <Flex justifyContent={"space-evenly"} gap={'1rem'} padding={'3rem'}>
+                <Flex gap={'2rem'} p={'1rem'}>
+                    <Stat>
+                        <StatLabel color={'brand.500'}>States</StatLabel>
+                        <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
+                        <StatHelpText>
+                            <StatArrow type='increase' />
+                            23.36%
+                        </StatHelpText>
+                    </Stat>
+
+                </Flex>
+                <Flex gap={'2rem'} p={'1rem'} >
+                    <Flex>
+                        <Stat>
+                            <StatLabel color={'brand.500'}>All Donations</StatLabel>
+                            <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
+                    </Flex>
+                </Flex>
+                <Flex gap={'2rem'} p={'1rem'}>
+                    <Flex >
+                        <Stat>
+                            <StatLabel color={'brand.500'}> Total Orders</StatLabel>
+                            <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
+                            <StatHelpText>
+                                <StatArrow type='increase' />
+                                23.36%
+                            </StatHelpText>
+                        </Stat>
+                    </Flex>
+                </Flex>
+            </Flex>
+            <Flex justifyContent={'space-evenly'} gap={'1rem'} padding={'0.5rem'}>
                 {responseOrder.map((key, index) => {
                     const response = cfg[key];
                     console.log(response)
@@ -81,16 +128,14 @@ export default function PartnerHome() {
                     const activeIndex = activeIndices[key];
 
                     return (
-                        <Card  align='center' textAlign={'center'} justifyContent={'center'} w={'50%'} key={key} boxShadow="md">
-                            <CardHeader>
-                                <Heading color={'brand.500'} as="h2" size="md">
-                                    {key === "response1" && "Amount Of Shipping items per state"}
-                                    {key === "response2" && "Amount of orders per channel"}
-                                    {key === "response3" && "Get Type of orders per state"}
-                                </Heading>
-                            </CardHeader>
-                            <CardBody>
-                                
+                        <Flex direction={'column'} gap={'4rem'} padding={'2rem'} align='center' textAlign={'center'} justifyContent={'center'} key={key} >
+                            <Heading color={'brand.500'} as="h2" size="md">
+                                {key === "response1" && "Amount Of Shipping items per state"}
+                                {key === "response2" && "Amount of orders per channel"}
+                                {key === "response3" && "Get Type of orders per state"}
+                            </Heading>
+                            <Flex gap={'2rem'} padding={'1rem'}>
+
                                 <PieChart width={200} height={200}>
                                     <Pie
                                         data={data}
@@ -117,7 +162,7 @@ export default function PartnerHome() {
                                             color="white"
                                             placement="top"
                                         >
-                                            <Box
+                                            <Flex
                                                 as="span"
                                                 display="inline-block"
                                                 backgroundColor={data[activeIndex]?.color}
@@ -126,53 +171,17 @@ export default function PartnerHome() {
                                                 ml={2}
                                             >
                                                 {data[activeIndex]?.value}
-                                            </Box>
+                                            </Flex>
                                         </Tooltip>
                                     )}
                                 </PieChart>
-                         
-                            </CardBody>
-                        </Card>
+
+                            </Flex>
+                        </Flex>
                     );
                 })}
-                <Card textAlign={'center'} w={'50%'} key={'response4'} boxShadow="md">
-                    <CardBody>
-                        <Stat>
-                            <StatLabel color={'brand.500'}>States</StatLabel>
-                            <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-                <Card textAlign={'center'} w={'50%'} key={'response5'} boxShadow="md">
-                    <CardBody>
-                        <Stat>
-                            <StatLabel color={'brand.500'}>All Donations</StatLabel>
-                            <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-                <Card textAlign={'center'} w={'50%'} key={'response6'} boxShadow="md">
-                    <CardBody >
-                        <Stat>
-                            <StatLabel color={'brand.500'}> Total Orders</StatLabel>
-                            <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
-                        </Stat>
-                    </CardBody>
-                </Card>
-            </SimpleGrid>
-        </Box>
+            </Flex >
+        </Flex>
     );
 }
 
