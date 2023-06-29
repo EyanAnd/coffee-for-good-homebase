@@ -11,44 +11,26 @@ function LandingPage() {
 
   return (
 
-    <Flex direction={'column'} gap={'4rem'} p={4}  >
-      <Flex justifyContent={'space-between'} gap={'2rem'} padding={'2rem'}>
-        <Heading>Welcome to Coffee For Good</Heading>
+    <Flex direction={'column'} gap={'1rem'} p={'2rem'} >
+        <Heading size={'xl'}>Welcome to Homebase</Heading>
+      <Flex justifyContent={'space-between'} gap={'1rem'} padding={'0.5'}>
+        <Heading size={'lg'}>By Coffee For Good</Heading>
       </Flex>
+   
 
-      <Flex w={'85%'} alignContent={'center'} gap={'2rem'} padding={'2rem'}>
+      <Flex w={'100%'} alignContent={'center'} padding={'1rem'} gap={'2rem'}>
         <Text >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-          ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-          interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-          sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-          elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-          interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-          Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-          luctus. Duis a sapien metus.
+          What is Homebase? Homebase is an web application that is filled with great tools that directly apply to helping a business I co-founded. Coffee For Good. 
         </Text>
         <Text>
-          Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-          id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-          consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-          finibus metus facilisis. Nullam eget lectus non urna rhoncus
-          accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-          euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-          lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-          congue.
+          Coffee For Good is a coffee roasting business that gives 50% of its profits to helping women and children in crisis. We are a lightweight team of 4 and prior to EDA we were stuck with no technical skills to make a dream like Homebase come true. 
         </Text>
         <Text>
-          Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-          Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-          vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-          sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-          non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-          amet nisi.
+            Homebase will help our business in a multitude of ways. The first and arguably most importat is that it allows non-profits to apply to become partners with us. It also allows parnters to see real financial data straight from squarespace. We are keen on being as transparent as possible with our partners and customers alike. On the admin side of this application they can also see real time data, as well as approve or delete applications.
         </Text>
       </Flex>
       <Divider />
-      <Flex justifyContent={'space-between'} direction={'row'} alignContent={'center'} gap={'1rem'} padding={'1rem'}>
+      <Flex justifyContent={'space-between'} direction={'row'} alignContent={'center'} gap={'1rem'} padding={'3rem'}>
         <RegisterForm />
         <Flex gap={'1rem'} padding={'1rem'}>
           <Image h={'300px'} w={'300px'} src="/images/white-logo.png" alt="est logo" />
