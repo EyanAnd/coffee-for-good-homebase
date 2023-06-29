@@ -28,7 +28,7 @@ function Footer() {
             src="/images/cfg_dark_logo.png"
             aria-label="cfg-logo"
             icon={
-              <Flex h={'32px'} w={'32px'}>
+              <Flex h={'30px'} w={'30px'}>
                 <Image src="/images/cfg_dark_logo.png" fontSize="1.25rem" objectFit="contain" />
               </Flex>}
           />
