@@ -12,10 +12,18 @@ import {
     FormHelperText,
     HStack,
     Divider,
-    useDisclosure
+    useDisclosure,
+    Alert,
+    AlertDescription,
+    AlertIcon,
+    CloseButton,
+    AlertTitle,
+    AlertStatus,
+    
 } from "@chakra-ui/react"
 
 export default function Application() {
+
     // grab user store
      const user = useSelector((store) => store.user);
     // initalize useDisclosure for modals
@@ -52,9 +60,16 @@ export default function Application() {
     }
     // click handler for dispatch to update the status maybe take the user_id in?
     const applicationSubmit = () => {
-        console.log(application)
+        dispatch({ type: 'UPDATE_APP', payload: application })
         dispatch({ type: 'SUBMIT_APP', payload: application });
-        dispatch({ type: "IS_SUBMITTED", payload: user.id})
+        dispatch({ type: "IS_SUBMITTED", payload: user.id});
+        
+    }
+
+    const closeHandler = () => {
+        onClose();
+        applicationSubmit;
+        history.push('/user')
     }
 
 
@@ -110,27 +125,34 @@ export default function Application() {
                 <Button color={'brand.300'} onClick={() => history.push('/user')}>Back</Button>
                 <Button color={'brand.500'} onClick={saveHandler}>Save Application</Button>
                 {isVisible ? (
-                    <Alert size={'lg'} color={'brand.400'} status='success'>
-                        <AlertIcon />
-                        <Box>
-                            <AlertTitle>Success! Your Application Has Been Submitted</AlertTitle>
-                            <AlertDescription>
-                                We will review your applciation and get back to you by email or phone call within 72 horus.
-                            </AlertDescription>
-                        </Box>
-                        <CloseButton
-                            alignSelf={'flex-start'}
-                            position={'relative'}
-                            right={-1}
-                            top={-1}
-                            onClick={applicationSubmit}
-                            
-                        />
-                    </Alert>)
-                    :
-                    <Button justifyContent={'right'} color={'brand.400'} onClick={onClose}>Submit</Button>
-                }
-            </Flex>
-        </Flex>
-    )
+          <Alert size={'lg'} color={'brand.400'} status='success'>
+            <AlertIcon />
+            <Box>
+              <AlertTitle>Success! Your Application Has Been Submitted</AlertTitle>
+              <AlertDescription>
+                We will review your application and get back to you by email or phone call within 72 hours.
+              </AlertDescription>
+            </Box>
+            <CloseButton
+              alignSelf={'flex-start'}
+              position={'relative'}
+              right={-1}
+              top={-1}
+              onClick={closeHandler}
+            />
+          </Alert>
+        ) : (
+          <Button justifyContent={'right'} color={'brand.400'} onClick={onOpen}>
+            Submit
+          </Button>
+        )}
+      </Flex>
+    </Flex>
+  );
 }
+
+
+
+
+
+

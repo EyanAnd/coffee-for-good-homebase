@@ -1,16 +1,22 @@
 import React from 'react';
 import { Box, Text, Link, Icon, Button, Stack, IconButton, Image, ButtonGroup, VStack, HStack, Container, Flex, Divider } from '@chakra-ui/react';
-import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin, FaGithub, FaFacebookF, FaFacebook } from 'react-icons/fa';
 import '../Footer/Footer.css';
 
 function Footer() {
   return (
     <>
-      <Flex paddingBotton={'2rem'}>
+      <Flex paddingBottom={'2rem'}>
         <Divider orientation='horizontal' color={'brand.500'} />
       </Flex>
       <Flex h={'80px'} className='footer' as="footer" role="contentinfo" bg="white" justifyContent="space-between" alignItems="center" p={8}>
-        <ButtonGroup variant="tertiary" mr={4} paddingTop={'1rem'}>
+        <ButtonGroup variant="tertiary"  paddingTop={'1rem'}>
+        <IconButton
+            as={Link}
+            href="https://www.facebook.com/profile.php?id=100094271915631"
+            aria-label="Facebook"
+            icon={<FaFacebook  fontSize={'1.25rem'}/>}
+          />
           <IconButton
             as={Link}
             href="https://www.linkedin.com/in/eyanand/"

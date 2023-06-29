@@ -50,9 +50,7 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
         ) : user.app_started && !user.app_submitted ? (
           <Button onClick={() => history.push('/application')}>Continue Application</Button>
         ) : null}
-
-
-        {user.app_submitted && (
+        {user.app_submitted && 
           <>
             <Heading>Your Application</Heading>
             <Text>{application.name}</Text>
@@ -67,7 +65,7 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
             <Text>{application.values}</Text>
             <Text>{application.notes}</Text>
           </>
-        )}
+        }
       </Flex>
       <Button onClick={() => dispatch({ type: 'IS_SUBMITTED', payload: user.id })}>Click me to set app_submitted to true</Button>
       <Button onClick={() => dispatch({ type: 'IS_STARTED', payload: user.id })}>Click me to set app_started to true</Button>
