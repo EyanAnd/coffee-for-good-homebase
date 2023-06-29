@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Container, Heading, FormLabel, Input } from '@chakra-ui/react';
+import { Button, Flex, Text, Container, Heading, FormLabel, Input } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -10,7 +11,10 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
+  const onLogin = (event) => {
+    history.push('/login');
 
+  };
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -24,8 +28,10 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <Container className="formPanel" onSubmit={registerUser}>
-      <Heading>Register User</Heading>
+    <Flex align={'center'} direction={'column'} className="formPanel" onSubmit={registerUser}>
+      <Flex gap={'2rem'} padding={'2rem'}>
+        <Heading>Register User</Heading>
+      </Flex>
       {errors.registrationMessage && (
         <Heading size={'sm'} className="alert" role="alert">
           {errors.registrationMessage}
@@ -35,6 +41,7 @@ function RegisterForm() {
         <FormLabel color={'brand.500'} htmlFor="username">
           Username:
           <Input
+            variant={'flushed'}
             type="text"
             name="username"
             value={username}
@@ -47,6 +54,7 @@ function RegisterForm() {
         <FormLabel color={'brand.500'} htmlFor="password">
           Password:
           <Input
+            variant={'flushed'}
             type="password"
             name="password"
             value={password}
@@ -55,20 +63,14 @@ function RegisterForm() {
           />
         </FormLabel>
       </Container>
-      <Container justifyContent={'space-between'}>
+      <Flex align={'center'} justifyContent={'space-between'} gap={'2rem'}>
         <Button color={'brand.500'} variant={'outline'} onClick={registerUser} type="submit" name="submit" value="Register">Register</Button>
-        <Button align={'right'} color={'brand.500'}
-          variant={'outline'}
-
-          type="button"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
+        <Text paddingLeft={'6rem'}>Already a Member?</Text>
+        <Button color={'brand.500'} variant={'outline'} onClick={onLogin}>
           Login
         </Button>
-      </Container>
-    </Container>
+      </Flex>
+    </Flex>
   );
 }
 

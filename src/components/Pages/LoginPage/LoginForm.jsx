@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Button, CardBody, Container, Heading, Input } from '@chakra-ui/react';
+import { Button, CardBody, Container, Heading, Input, CardHeader, Image } from '@chakra-ui/react';
 import { Flex, Card, Box } from '@chakra-ui/react';
 import './LoginForm.css'
 import { useHistory } from 'react-router-dom';
@@ -33,18 +33,21 @@ function LoginForm() {
   }; // end login
 
   return (
-    <Box>
+    <Box maxW={'100%'}>
       <Flex height={'100vh'} alignItems={'center'} justifyContent={'center'}>
-        <Card w={'25%'} color={'brand.500'} bg={'white'}>
+        <Card w={'25%'} color={'brand.500'} bg={'snow'}>
+          <CardHeader>
+            <Image src={'/images/white-logo.png'} />
+          </CardHeader>
           <CardBody>
-            <Container >
-              <Heading size='md'>Login</Heading>
+            <Container h={'200px'}>          
+                <Heading size={'md'}>Login</Heading>
               {errors.loginMessage && (
                 <Heading size={'sm'} className="alert" role="alert">
                   {errors.loginMessage}
                 </Heading>
               )}
-              <Container>
+              <Container justifyContent={'left'}>
                 <Input
                   variant={'flushed'}
                   placeholder='Username'
@@ -70,15 +73,15 @@ function LoginForm() {
                 <Container>
                   <Button color={'brand.500'} variant={'outline'} onClick={login}>Log In</Button>
                 </Container>
-                <Button 
-          color={'brand.500'}
-          variant={'outline'}
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          Register
-        </Button>
+                <Button
+                  color={'brand.500'}
+                  variant={'outline'}
+                  onClick={() => {
+                    history.push('/registration');
+                  }}
+                >
+                  Register
+                </Button>
               </Flex>
             </Container>
           </CardBody>
