@@ -24,7 +24,7 @@ function Nav() {
     <Flex justifyContent={'space-between'} align={'center'} bg={'white'} >
       <Link to="/home">
         <Flex align={'center'}>
-          <Box h={16} w={16}>
+          <Box h={28} w={28}>
             <Image src='/images/cfg_dark_logo.png' alt='Coffee For Good' />
           </Box>
         </Flex>

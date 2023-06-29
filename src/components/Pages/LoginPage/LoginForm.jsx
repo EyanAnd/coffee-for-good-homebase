@@ -40,14 +40,14 @@ function LoginForm() {
             <Image src={'/images/white-logo.png'} />
           </CardHeader>
           <CardBody>
-            <Container h={'200px'}>          
+            <Container h={'180px'}>          
                 <Heading size={'md'}>Login</Heading>
               {errors.loginMessage && (
                 <Heading size={'sm'} className="alert" role="alert">
                   {errors.loginMessage}
                 </Heading>
               )}
-              <Container justifyContent={'left'}>
+              <Container >
                 <Input
                   variant={'flushed'}
                   placeholder='Username'
