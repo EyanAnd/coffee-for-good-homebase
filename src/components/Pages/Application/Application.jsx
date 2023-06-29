@@ -68,7 +68,7 @@ export default function Application() {
 
     const closeHandler = () => {
         onClose();
-        applicationSubmit;
+        applicationSubmit();
         history.push('/user')
     }
 
