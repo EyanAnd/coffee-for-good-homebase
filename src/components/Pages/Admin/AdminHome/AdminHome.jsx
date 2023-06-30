@@ -11,7 +11,7 @@ import {
     useDisclosure,
     Button,
     Flex,
-    Table, Thead, Tbody, Tr, Th, Td, Box
+    Table, Thead, Tbody, Tr, Th, Td, Box, Text
 } from "@chakra-ui/react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
@@ -51,24 +51,25 @@ export default function AdminHome() {
     const responseOrder = ["response1", "response2", "response3"];
 
     return (
-        <Flex direction="column" gap="2rem" padding="1rem">
+        <Flex direction="column" gap="2rem" padding="2rem">
             <Heading color="brand.500">Welcome Back, {user.username}</Heading>
-            <Flex justifyContent="space-between">
-                <Button variant="link" size="md" color="brand.500" onClick={onOpen}>
-                    Change Password
-                </Button>
+            <Flex p={'2rem'}>
+                <Heading color={'brand.500'}>Business Data</Heading>
             </Flex>
-            {/* TODO add modal here to change password */}
-
-            <Flex justifyContent={"space-evenly"} >
-                <Flex gap={'2rem'} >
+            <Text>
+                This is where our data will be displayed for admin.
+                This is powerful for admin to see because we have to login to multiple accounts to track all
+                of our current transactional data, so having it all available saves us time.
+            </Text>
+            <Flex  justifyContent={"space-evenly"} >
+                <Flex >
                     <Stat>
                         <StatLabel color={'brand.500'}>States</StatLabel>
                         <StatNumber>{cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
                     </Stat>
 
                 </Flex>
-                <Flex gap={'2rem'} >
+                <Flex  >
                     <Flex>
                         <Stat>
                             <StatLabel color={'brand.500'}>All Donations</StatLabel>
@@ -76,7 +77,7 @@ export default function AdminHome() {
                         </Stat>
                     </Flex>
                 </Flex>
-                <Flex gap={'2rem'} >
+                <Flex >
                     <Flex >
                         <Stat>
                             <StatLabel color={'brand.500'}> Total Orders</StatLabel>
@@ -107,8 +108,6 @@ export default function AdminHome() {
                         ),
                         color: COLORS[index % COLORS.length],
                     }));
-
-                    const activeIndex = activeIndices[key];
 
                     return (
                         <Flex direction={"column"} gap={"4rem"} align="center" textAlign={"center"} justifyContent={"center"} key={key}>

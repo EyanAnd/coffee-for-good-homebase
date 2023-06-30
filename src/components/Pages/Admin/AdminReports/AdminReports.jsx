@@ -13,6 +13,7 @@ import {
     TableCaption,
     TableContainer,
     Button,
+    Flex, Text, Heading
 } from '@chakra-ui/react'
 
 
@@ -23,20 +24,28 @@ export default function AdminReports() {
     // initalize use dispatch
     const dispatch = useDispatch();
 
+    // initalize user store to get user information
+    const user = useSelector(store => store.user)
+
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
     }, [])
     return (
-        <>
-        {/* TODO: STRETCH GOAL<div className="button">
-            <button>Add A new report</button>
-        </div> */}
-            <Table variant={'striped'} colorScheme="brand">
+        <Flex direction={'column'} gap={'2rem'} p={'2rem'} >
+            <Flex>
+                <Heading>Admin Reports Table</Heading>
+            </Flex>
+            <Text>
+                Admin can view and send reports in the table. Click on the <strong>Name</strong> to see the report
+                click on the <strong>View Documents</strong> to view the document associated with the report.
+            </Text>
+            <Table variant={'simple'} colorScheme="brand">
                 <Thead>
                     <Tr>
                         <Td>Name</Td>
                         <Td>Date Sent</Td>
+                        <Td>View Documents</Td>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -46,6 +55,6 @@ export default function AdminReports() {
                     ))}
                 </Tbody>
             </Table>
-        </>
+        </Flex>
     )
 }

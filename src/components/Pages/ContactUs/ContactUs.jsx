@@ -29,15 +29,15 @@ function ContactUs() {
   return (
     <Flex w={'75%'} direction={'column'} gap={'2rem'} p={'2rem'}>
       <Heading color={'brand.300'}>Contact Us</Heading>
-      <Flex justifyContent={'space-between'} gap={'1rem'} p={'1rem'}>
+      <Flex justifyContent={'space-between'} gap={'1rem'} >
         <Input placeholder='Name' variant={'flushed'} type="text" value={submission.name} onChange={(e) => setSubmission({ ...submission, name: e.target.value })} />
         <Input placeholder='Email' variant={'flushed'} type="text" value={submission.email} onChange={(e) => setSubmission({ ...submission, email: e.target.value })} />
         <Input placeholder='Subject' variant={'flushed'} type="text" value={submission.subject} onChange={(e) => setSubmission({ ...submission, subject: e.target.value })} />
       </Flex>
-      <Flex gap={'1rem'} p={'1rem'}>
+      <Flex gap={'1rem'} >
         <Textarea placeholder='description' type="text" value={submission.description} onChange={(e) => setSubmission({ ...submission, description: e.target.value })} />
       </Flex>
-      <Flex gap={'1rem'} p={'1rem'}>
+      <Flex gap={'1rem'} >
         <ButtonGroup>
         <Button color='brand.500' variant={'outline'} size={'lg'} onClick={() => history.push('/user')}>Back</Button>
         <Spacer />

@@ -57,12 +57,12 @@ export default function PartnerHome() {
     const responseOrder = ["response1", "response2", "response3"];
 
     return (
-        <Flex direction="column" gap="1rem" padding="1rem">
+        <Flex direction="column" gap="1rem" padding="2rem">
             <Heading color="brand.500">Welcome Back, {user.username}</Heading>
             <Flex p={'2rem'}>
                 <Heading color={'brand.500'}>Business Data</Heading>
             </Flex>
-            <Flex p={'2rem'}>
+            <Flex px={'2rem'} >
                 <Text>
                     This is where our data will be displayed to our partners. This allows them to see how we are doing in real time and gives insights to 
                     what they can expect to be donated to their business.
