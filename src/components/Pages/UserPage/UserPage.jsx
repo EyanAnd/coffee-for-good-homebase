@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Badge, Button, ChakraProvider, Container, Flex, FormLabel, Hide, theme } from '@chakra-ui/react'
+import { Badge, Button, ChakraProvider, Container, Flex, } from '@chakra-ui/react'
 import { Heading, Text, Stack } from '@chakra-ui/react'
 
 function UserPage({ forRealSubmit, setForRealSubmit }) {
@@ -40,52 +40,54 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
     }
   }
   return (
-    <Flex gap={'2rem'} direction={'column'} color={'brand.500'}>
-      <Flex gap={'1rem'}>
-        <Heading>Welcome, {user.username}!</Heading>
-        <Heading>{appStatus()}</Heading>
-      </Flex>
-      <Flex gap={'2rem'}>
-        {!user.app_started && !user.app_submitted ? (
-          <Button onClick={startApplicationHandler}>Start Application</Button>
-        ) : user.app_started && !user.app_submitted ? (
-          <Button onClick={() => history.push('/application')}>Continue Application</Button>
-        ) : null}
-        {user.app_submitted &&
-          <Flex direction={'column'}  gap={'2rem'} p={'2rem'}>
-            <Flex gap={'1rem'} >
-              <Heading>Your Application</Heading>
+    <Flex gap={'2rem'} direction={'column'} align={'center'} color={'brand.500'}>
+      <Container >
+        <Flex gap={'1rem'} >
+          <Heading>Welcome, {user.username}!</Heading>
+          <Heading>{appStatus()}</Heading>
+        </Flex>
+        <Flex gap={'2rem'}>
+          {!user.app_started && !user.app_submitted ? (
+            <Button onClick={startApplicationHandler}>Start Application</Button>
+          ) : user.app_started && !user.app_submitted ? (
+            <Button onClick={() => history.push('/application')}>Continue Application</Button>
+          ) : null}
+          {user.app_submitted &&
+            <Flex direction={'column'} gap={'2rem'} p={'1rem'}>
+              <Flex gap={'1rem'} >
+                <Heading>Your Application</Heading>
+              </Flex>
+              <Flex gap={'1rem'} >
+                <Heading>User Info</Heading>
+              </Flex>
+              <Flex gap={'1rem'} p={'0.5'}>
+
+                <Text>Name : {application.name}</Text>
+                <Text>Email : {application.email}</Text>
+              </Flex>
+              <Flex gap={'1rem'} p={'0.5'}>
+                <Heading>Mission & Values</Heading>
+              </Flex>
+              <Flex gap={'1rem'} p={'0.5'}>
+                <Text>Collaboration : {application.collab}</Text>
+                <Text>Mission : {application.mission}</Text>
+                <Text>Impact{application.impact}</Text>
+                <Text>Values : {application.values}</Text>
+              </Flex>
+              <Flex gap={'1rem'} p={'0.5'}>
+                <Heading>A Little More About You</Heading>
+              </Flex>
+              <Flex gap={'1rem'} p={'0.5'}>
+                <Text>Previous Partners : {application.previous_partners}</Text>
+                <Text>Success Stories : {application.success_stories}</Text>
+                <Text>Reporting: {application.reporting}</Text>
+                <Text>Open to sharing: {application.sharing ? "Yes" : "No"}</Text>
+                <Text>Additional Notes : {application.notes}</Text>
+              </Flex>
             </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              <Heading>User Info</Heading>
-            </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              
-              <Text>Name : {application.name}</Text>
-              <Text>Email : {application.email}</Text>
-            </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              <Heading>Mission & Values</Heading>
-            </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              <Text>Collaboration : {application.collab}</Text>
-              <Text>Mission : {application.mission}</Text>
-              <Text>Impact{application.impact}</Text>
-              <Text>Values : {application.values}</Text>
-            </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              <Heading>A Little More About You</Heading>
-            </Flex>
-            <Flex gap={'1rem'} p={'0.5'}>
-              <Text>Previous Partners : {application.previous_partners}</Text>
-              <Text>Success Stories : {application.success_stories}</Text>
-              <Text>Reporting: {application.reporting}</Text>
-              <Text>Open to sharing: {application.sharing ? "Yes" : "No"}</Text>
-              <Text>Additional Notes : {application.notes}</Text>
-            </Flex>
-          </Flex>
-        }
-      </Flex>
+          }
+        </Flex>
+      </Container>
     </Flex >
   );
 }
