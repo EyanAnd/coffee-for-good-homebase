@@ -113,10 +113,10 @@ export default function Application() {
             </Flex>   
                 <Progress value={calculateProgress()} bg={'brand.400'} colorScheme="brand"  size="lg" />
             <Flex gap={'0.5rem'} padding={'1rem'} >
-                <FormControl>
-                    <FormLabel>Name:</FormLabel>
+                <FormControl isRequired>
+                    <FormLabel>What is the name of your organization? :</FormLabel>
                     <Input variant={'flushed'} type="email" value={application.name} onChange={(e) => setApplication({ ...application, name: e.target.value })} />
-                    <FormLabel>Email Address:</FormLabel>
+                    <FormLabel>What is your Email Address? :</FormLabel>
                     <Input variant={'flushed'} type="text" value={application.email} onChange={(e) => setApplication({ ...application, email: e.target.value })} />
                 </FormControl>
             </Flex>
@@ -124,12 +124,12 @@ export default function Application() {
                 <Heading size={'lg'}>Mission & Values</Heading>
             </Flex>
             <Flex gap={'0.5rem'} padding={'1rem'}>
-                <FormControl >
-                    <FormLabel>Mission:</FormLabel>
+                <FormControl isRequired>
+                    <FormLabel>Describe your businesses Mission:</FormLabel>
                     <Textarea type="text" value={application.mission} onChange={(e) => setApplication({ ...application, mission: e.target.value })} />
-                    <FormLabel>Impact:</FormLabel>
+                    <FormLabel>What measurable outcomes or impact have your programs achieved? :</FormLabel>
                     <Textarea type="text" value={application.impact} onChange={(e) => setApplication({ ...application, impact: e.target.value })} />
-                    <FormLabel>Values:</FormLabel>
+                    <FormLabel>How does your organization's mission align with our company's focus on helping women and children in crisis? :</FormLabel>
                     <Textarea type="text" value={application.values} onChange={(e) => setApplication({ ...application, values: e.target.value })} />
                 </FormControl>
             </Flex>
@@ -138,16 +138,16 @@ export default function Application() {
                 <Divider color={'brand.300'} />
             </Flex>
             <Flex gap={'0.5'} padding={'1rem'}>
-                <FormControl>
-                    <FormLabel>Previous Partners:</FormLabel>
+                <FormControl isRequired>
+                    <FormLabel>Have you previously partnered with other businesses or organizations? If yes, please provide details. :</FormLabel>
                     <Textarea type="text" value={application.previous_partners} onChange={(e) => setApplication({ ...application, previous_partners: e.target.value })} />
-                    <FormLabel>Success Stories:</FormLabel>
+                    <FormLabel>Can you provide any success stories or testimonials from individuals or communities you have helped? :</FormLabel>
                     <Textarea type="text" value={application.success_stories} onChange={(e) => setApplication({ ...application, success_stories: e.target.value })} />
-                    <FormLabel>Collaboration:</FormLabel>
+                    <FormLabel>How do you envision partnering with our coffee roasting company? Do you have any specific ideas or proposals? :</FormLabel>
                     <Textarea type="text" value={application.collab} onChange={(e) => setApplication({ ...application, collab: e.target.value })} />
-                    <FormLabel>Reporting:</FormLabel>
+                    <FormLabel>How do you measure and report the impact of your programs? :</FormLabel>
                     <Textarea type="text" value={application.reporting} onChange={(e) => setApplication({ ...application, reporting: e.target.value })} />
-                    <FormLabel>Sharing:</FormLabel>
+                    <FormLabel>Would you be open to sharing periodic progress reports and updates if we partner together? :</FormLabel>
                     <Checkbox isChecked={application.sharing} onChange={handleSharingChange}>Allow Sharing?</Checkbox>
                     <FormLabel>Additional Notes:</FormLabel>
                     <Textarea type="text" value={application.notes} onChange={(e) => setApplication({ ...application, notes: e.target.value })} />

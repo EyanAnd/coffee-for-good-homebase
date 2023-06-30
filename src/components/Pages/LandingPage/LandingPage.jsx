@@ -32,7 +32,7 @@ function LandingPage() {
       <Divider />
       <Flex justifyContent={'space-between'} direction={'row'} alignContent={'center'} gap={'1rem'} padding={'3rem'}>
         <RegisterForm />
-        <Flex gap={'1rem'} padding={'1rem'}>
+        <Flex gap={'1rem'} padding={'3rem'}>
           <Image h={'300px'} w={'300px'} src="/images/white-logo.png" alt="est logo" />
         </Flex>
       </Flex>

@@ -8,9 +8,9 @@ function LoginPage() {
 
   return (
     <Flex justifyContent={'center'} color={'brand.200'}>
-      <Box className='login-page' w={'100%'} gap={'8rem'}>
+      <Container className='login-page' maxW={'100%'} gap={'8rem'}>
       <LoginForm />
-      </Box>
+      </Container>
     </Flex>
   );
 }

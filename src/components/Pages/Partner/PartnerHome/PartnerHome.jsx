@@ -13,6 +13,9 @@ import {
     StatLabel,
     StatNumber,
     StatArrow,
+    Flex,
+    Button,
+    useDisclosure
 } from "@chakra-ui/react";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -23,9 +26,13 @@ const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "
 
 
 export default function PartnerHome() {
+    const user = useSelector(store => store.user)
     const cfg = useSelector((store) => store.transactionDataReducer);
     const dispatch = useDispatch();
     console.log(cfg);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
 
     useEffect(() => {
         dispatch({ type: "FETCH_DATA" });
@@ -50,55 +57,43 @@ export default function PartnerHome() {
     const responseOrder = ["response1", "response2", "response3"];
 
     return (
-        <Flex direction="column" gap="1rem" padding="2rem">
+        <Flex direction="column" gap="2rem" padding="1rem">
             <Heading color="brand.500">Welcome Back, {user.username}</Heading>
-            <Flex justifyContent="space-between" p="1rem">
+            <Flex justifyContent="space-between">
                 <Button variant="link" size="md" color="brand.500" onClick={onOpen}>
                     Change Password
                 </Button>
             </Flex>
             {/* TODO add modal here to change password */}
-            <Flex gap={'1rem'} p={'1rem'}>
-                <Heading color={'brand.500'}>Transactional Data</Heading>
+            <Flex>
+                <Heading color={'brand.500'}>At a Glance</Heading>
             </Flex>
-            <Flex justifyContent={"space-evenly"} gap={'1rem'} padding={'3rem'}>
-                <Flex gap={'2rem'} p={'1rem'}>
+            <Flex justifyContent={"space-evenly"} gap={'1rem'} >
+                <Flex  >
                     <Stat>
                         <StatLabel color={'brand.500'}>States</StatLabel>
-                        <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
-                        <StatHelpText>
-                            <StatArrow type='increase' />
-                            23.36%
-                        </StatHelpText>
+                        <StatNumber>{cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber> 
                     </Stat>
 
                 </Flex>
-                <Flex gap={'2rem'} p={'1rem'} >
+                <Flex >
                     <Flex>
                         <Stat>
                             <StatLabel color={'brand.500'}>All Donations</StatLabel>
                             <StatNumber>${cfg.total_sum?.sum || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
                         </Stat>
                     </Flex>
                 </Flex>
-                <Flex gap={'2rem'} p={'1rem'}>
+                <Flex>
                     <Flex >
                         <Stat>
                             <StatLabel color={'brand.500'}> Total Orders</StatLabel>
                             <StatNumber>{cfg.total_orders?.count || 'Loading...'}</StatNumber>
-                            <StatHelpText>
-                                <StatArrow type='increase' />
-                                23.36%
-                            </StatHelpText>
                         </Stat>
                     </Flex>
                 </Flex>
             </Flex>
-            <Flex justifyContent={'space-evenly'} gap={'1rem'} padding={'0.5rem'}>
+            <Flex  justifyContent={'space-evenly'} gap={'1rem'} >
                 {responseOrder.map((key, index) => {
                     const response = cfg[key];
                     console.log(response)
@@ -128,13 +123,13 @@ export default function PartnerHome() {
                     const activeIndex = activeIndices[key];
 
                     return (
-                        <Flex direction={'column'} gap={'4rem'} padding={'2rem'} align='center' textAlign={'center'} justifyContent={'center'} key={key} >
+                        <Flex direction={'column'} gap={'4rem'}  align='center' textAlign={'center'} justifyContent={'center'} key={key} >
                             <Heading color={'brand.500'} as="h2" size="md">
                                 {key === "response1" && "Amount Of Shipping items per state"}
                                 {key === "response2" && "Amount of orders per channel"}
                                 {key === "response3" && "Get Type of orders per state"}
                             </Heading>
-                            <Flex gap={'2rem'} padding={'1rem'}>
+                            <Flex gap={'2rem'}>
 
                                 <PieChart width={200} height={200}>
                                     <Pie
@@ -175,7 +170,6 @@ export default function PartnerHome() {
                                         </Tooltip>
                                     )}
                                 </PieChart>
-
                             </Flex>
                         </Flex>
                     );

@@ -2,24 +2,17 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
-    Box,
     Heading,
-    SimpleGrid,
-    Card,
-    CardHeader,
-    CardBody,
     Stat,
     StatHelpText,
     StatLabel,
     StatNumber,
     StatArrow,
     useDisclosure,
-    Text,
     Button,
     Flex,
-    Center
 } from "@chakra-ui/react";
-import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "#76818E", "#CC7E85", "#B0C0BC", "#453F3C", "#F6AE2D", "#F26419", "#FE6D73", "#FFCB77",
     "#563635", "#6E9075", "#5B6057", "639FAB", "#94524A", "#A27E6F", "#C94277", "#EAE151", "#CEC3C1", "#8332AC", "#BAD1CD", "#462749", "#76E5FC", "#76E5FC", "#88665D",
@@ -65,11 +58,11 @@ export default function AdminHome() {
                 </Button>
             </Flex>
             {/* TODO add modal here to change password */}
-            <Flex gap={'1rem'} p={'1rem'}>
+            {/* <Flex gap={'1rem'} p={'1rem'}>
                 <Heading color={'brand.500'}>Transactional Data</Heading>
-            </Flex>
-            <Flex justifyContent={"space-evenly"} gap={'1rem'} padding={'3rem'}>
-                <Flex gap={'2rem'} p={'1rem'}>
+            </Flex> */}
+            <Flex justifyContent={"space-evenly"} gap={'1rem'}>
+                <Flex gap={'2rem'} >
                     <Stat>
                         <StatLabel color={'brand.500'}>States</StatLabel>
                         <StatNumber>${cfg.orders_per_channel_type?.state_count || 'Loading...'}</StatNumber>
@@ -105,13 +98,9 @@ export default function AdminHome() {
                     </Flex>
                 </Flex>
             </Flex>
-            <Flex justifyContent={'space-evenly'} gap={'1rem'} padding={'0.5rem'}>
+            <Flex justifyContent={'space-evenly'} gap={'1rem'} >
                 {responseOrder.map((key, index) => {
                     const response = cfg[key];
-                    console.log(response)
-                    if (!response) {
-                        return null; // Skip rendering if response is undefined
-                    }
 
                     const data = response.map((chart, index) => ({
                         name:
@@ -135,22 +124,23 @@ export default function AdminHome() {
                     const activeIndex = activeIndices[key];
 
                     return (
-                        <Flex direction={'column'} gap={'4rem'} padding={'2rem'} align='center' textAlign={'center'} justifyContent={'center'} key={key} >
-                            <Heading color={'brand.500'} as="h2" size="md">
-                                {key === "response1" && "Amount Of Shipping items per state"}
-                                {key === "response2" && "Amount of orders per channel"}
-                                {key === "response3" && "Get Type of orders per state"}
-                            </Heading>
-                            <Flex gap={'2rem'} padding={'1rem'}>
-
-                                <PieChart width={200} height={200}>
+                        <Flex gap={'4rem'}  direction={'column'} key={key} >
+                            <Flex >
+                               <Heading color={'brand.500'} as="h2" size="md">
+                                    {key === "response1" && "Orders by State"}
+                                    {key === "response2" && "How people are buying our coffee"}
+                                    {key === "response3" && "How people are getting our coffee"}
+                                </Heading>
+                            </Flex>
+                            <Flex gap={'2rem'} paddingLeft={'3rem'}>
+                                <PieChart width={200} height={300}>
                                     <Pie
                                         data={data}
                                         dataKey="value"
                                         nameKey="name"
                                         cx="50%"
                                         cy="50%"
-                                        outerRadius={80}
+                                        outerRadius={100}
                                         fill="#8884d8"
                                         onMouseEnter={(event) =>
                                             handleMouseEnter(key, event.index)
@@ -182,7 +172,6 @@ export default function AdminHome() {
                                         </Tooltip>
                                     )}
                                 </PieChart>
-
                             </Flex>
                         </Flex>
                     );
