@@ -31,7 +31,7 @@ export default function AdminReports() {
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
-        
+        dispatch({ type: 'FETCH_PARTNERS' })
     }, [])
 
     // initalize useDisclosure
@@ -57,8 +57,7 @@ export default function AdminReports() {
                         {isOpen && <AdminReportsForm />}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color={'brand.300'} variant={'solid'} onClick={onClose}>Close</Button>
-                        <Button variant={'ghost'} color={'brand.500'} onClick={() => dispatch({ type: 'ADD_REPORT'})}>Add Report</Button>
+                    <Button color={'brand.300'} variant={'solid'} onClick={onClose}>Close</Button>
                     </ModalFooter>
                 </ModalContent>
 
