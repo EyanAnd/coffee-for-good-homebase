@@ -13,7 +13,6 @@ import {
     Flex,
     Table, Thead, Tbody, Tr, Th, Td, Box, Text
 } from "@chakra-ui/react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "#76818E", "#CC7E85", "#B0C0BC", "#453F3C", "#F6AE2D", "#F26419", "#FE6D73", "#FFCB77",
     "#563635", "#6E9075", "#5B6057", "639FAB", "#94524A", "#A27E6F", "#C94277", "#EAE151", "#CEC3C1", "#8332AC", "#BAD1CD", "#462749", "#76E5FC", "#76E5FC", "#88665D",

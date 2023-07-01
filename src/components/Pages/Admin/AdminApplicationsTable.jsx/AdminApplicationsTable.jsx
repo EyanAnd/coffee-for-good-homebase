@@ -15,7 +15,6 @@ import {
     Flex, Text, Heading
 } from '@chakra-ui/react'
 import AdminApplicationsItem from "./AdminApplicationsItem"
-import { AnimatePresence } from "framer-motion"
 export default function AdminApplicationsTable() {
 
     // initalize dispatch
@@ -37,8 +36,7 @@ export default function AdminApplicationsTable() {
             </Flex>
             <Flex>
                 <Text>
-                    This is where all submitted applications will show up. Admin have the ability to <strong>Approve</strong> or <strong>Delete</strong>
-                    A users application. If approved, they will become a partner and will have access to our transactional data and customized reports.
+                    This is where all submitted applications will show up. Admin have the ability to <strong>Approve</strong> or <strong>Delete</strong> a users application. If approved, they will become a partner and will have access to our transactional data and customized reports.
                 </Text>
             </Flex>
             <Table variant={'striped'} colorScheme="brand">

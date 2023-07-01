@@ -31,7 +31,7 @@ export default function AdminReportsItem({ report }) {
         <Tr onClick={onOpen} key={report.id}>
             <Td>{report.name}</Td>
             <Td>{formattedDate}</Td>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>{report.name}</ModalHeader>
