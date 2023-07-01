@@ -15,6 +15,7 @@ import {
     Button,
     Flex, Text, Heading, useDisclosure, Modal, ModalBody, ModalCloseButton, ModalHeader, ModalFooter, ModalContent, ModalOverlay
 } from '@chakra-ui/react'
+import AdminReportsForm from "./AdminReportsForm";
 
 
 export default function AdminReports() {
@@ -30,6 +31,7 @@ export default function AdminReports() {
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
+        
     }, [])
 
     // initalize useDisclosure
@@ -51,8 +53,8 @@ export default function AdminReports() {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader color={'brand.500'}>Add A Report</ModalHeader>
-                    <ModalBody colorScheme={'brand'}>
-                        <Text color={'brand.500'}>This will open report form component </Text>
+                    <ModalBody >
+                        {isOpen && <AdminReportsForm />}
                     </ModalBody>
                     <ModalFooter>
                         <Button color={'brand.300'} variant={'solid'} onClick={onClose}>Close</Button>
