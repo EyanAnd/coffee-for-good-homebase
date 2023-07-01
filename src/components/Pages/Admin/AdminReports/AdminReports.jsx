@@ -40,6 +40,7 @@ export default function AdminReports() {
                 Admin can view and send reports in the table. Click on the <strong>Name</strong> to see the report
                 click on the <strong>View Documents</strong> to view the document associated with the report.
             </Text>
+            <Button color={'brand.400'}>Click Me</Button>
             <Table variant={'simple'} colorScheme="brand">
                 <Thead>
                     <Tr>
