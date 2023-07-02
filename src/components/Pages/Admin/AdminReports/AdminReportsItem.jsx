@@ -20,9 +20,7 @@ import {
 } from '@chakra-ui/react'
 
 export default function AdminReportsItem({ report }) {
-
     console.log(report)
-
     // initalize use Disclosure
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -37,6 +35,7 @@ export default function AdminReportsItem({ report }) {
                 <Td>{report.name}</Td>
                 <Td>{report.category}</Td>
                 <Td>{formattedDate}</Td>
+                
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

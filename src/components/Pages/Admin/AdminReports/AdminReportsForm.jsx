@@ -1,4 +1,4 @@
-import { Flex, Heading, Select, useDisclosure, FormControl, FormLabel, Textarea, Input, Button } from "@chakra-ui/react";
+import { Flex, Heading, Select, useDisclosure, FormControl, FormLabel, Textarea, Input, Button, } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -7,7 +7,7 @@ export default function AdminReportsForm() {
 
     // import useState to set the state of the report
     const [newReport, setNewReport] = useState({
-        name: '', partner_id: '',user_id: '', date_sent: '', description: '', category: '', file_path: ''
+        name: '', partner_id: '', description: '', category: '', file_path: ''
     })
     // import use dispatch to send the POST and the put to update the forms for
     // partner that the admin is sending the report to as well as the admin themselves.
@@ -18,14 +18,26 @@ export default function AdminReportsForm() {
     // import modal useDisclosure to close the modal on a timeout the admin has created the report
     const { isOpen, onOpen, onClose, } = useDisclosure();
 
-    const categories = ['Quarterly Reports', 'Earnings Reports', 'News Updates', 'Announcements']
-    
+    const categories = ['Quarterly Report', 'Earnings Report', 'News Update', 'Announcement']
+
+
+
     const submitReportHandler = () => {
-            const currentDate = moment().format("YYYY-MM-DD");
-            console.log('current date: ', currentDate )
-            setNewReport(prevState => ({ ...prevState, date_sent: currentDate }));
-            dispatch({ type: 'ADD_REPORT', payload: newReport });   
-    }
+      const selectedPartner = currentPartners.find(
+        (partner) => partner.name === newReport.name
+      );
+      if (selectedPartner) {
+        // find the partner id of the selected partner to put in the store
+        setNewReport((prevState) => ({
+          ...prevState,
+          partner_id: selectedPartner.partner_id,
+        }));
+        // Dispatch the newReport after updating the partner_id
+        dispatch({ type: "ADD_REPORT", payload: newReport });
+      } else {
+        console.log("selected partner not found");
+      }
+    };
 
     return (
         <Flex direction={'column'} gap={'1rem'} p={'1rem'}>
@@ -38,9 +50,9 @@ export default function AdminReportsForm() {
                     <Select value={newReport.name} onChange={(e) => {
                         const selectedPartner = currentPartners.find(partner => partner.name === e.target.value);
                         setNewReport(prevState => ({ ...prevState, name: e.target.value, partner_id: selectedPartner ? selectedPartner.partner_id : '' }));
-                        
-                    }}>
 
+                    }}>
+                        <option>Select A Partner...</option>
                         {currentPartners.map(partner => (
                             <option key={partner.partner_id} value={partner.name} >{partner.name}</option>
                         ))}
@@ -56,7 +68,8 @@ export default function AdminReportsForm() {
             <Flex>
                 <FormControl>
                     <FormLabel>Category</FormLabel>
-                    <Select value={newReport.category} onChange={(e) =>  setNewReport(prevState => ({ ...prevState, category: e.target.value }))}>
+                    <Select value={newReport.category} onChange={(e) => setNewReport(prevState => ({ ...prevState, category: e.target.value }))}>
+                        <option>Select A Category...</option>
                         {categories.map(category => (
                             <option key={category} value={category}>{category}</option>
                         ))}
@@ -67,7 +80,7 @@ export default function AdminReportsForm() {
             <Flex>
                 <FormControl>
                     <FormLabel>Paste in a File here</FormLabel>
-                    <Input type="link" placeholder="insert link here" value={newReport.file_path} onChange={(e) =>  setNewReport(prevState => ({ ...prevState, file_path: e.target.value }))} />
+                    <Input type="text" placeholder="insert link here" value={newReport.file_path} onChange={(e) => setNewReport(prevState => ({ ...prevState, file_path: e.target.value }))} />
                 </FormControl>
             </Flex>
             <Button variant={'ghost'} color={'brand.500'} onClick={submitReportHandler}>Add Report</Button>

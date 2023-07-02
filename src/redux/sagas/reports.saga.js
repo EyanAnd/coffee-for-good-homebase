@@ -17,6 +17,7 @@ function* fetchReportsSaga() {
         const response = yield axios.get('/api/admin/reports')
         console.log(response)
         yield put({ type: 'SET_REPORTS', payload: response.data})
+        console.log(response.data)
     } catch (error) {
          console.log('there was an error fetching the reports')
     }
@@ -25,8 +26,9 @@ function* fetchReportsSaga() {
 // add a report
 function* addReportSaga(action) {
     try {
+        console.log(action.payload)
         const response = yield axios.post('/api/admin/reports', action.payload)
-        console.log(response)
+        console.log(response.data)
         yield put({ type: 'FETCH_REPORTS' })
     } catch (error) {
         console.log('there was an error in the add report saga', error)
