@@ -7,9 +7,9 @@ function* partnerReportsSaga() {
 }
 
 
-function* fetchPartnerReports() {
+function* fetchPartnerReports(action) {
     try {
-        const response = yield axios.get('/api/partner/reports')
+        const response = yield axios.get('/api/partner/reports', {params: action.payload})
         console.log(response)
         yield put({ type: 'SET_PARTNER_REPORTS', payload: response.data}) // set partnerReports reducer
     } catch (error) {

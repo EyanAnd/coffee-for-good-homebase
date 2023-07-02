@@ -46,7 +46,7 @@ export default function AdminReports() {
             <Flex>
             <Text>
                 Admin can view and send reports in the table. Click on the <strong>Name</strong> to see the report
-                click on the <strong>View Documents</strong> to view the document associated with the report.
+                click on <strong>View</strong> to view the document associated with the report.
             </Text>
             <Button onClick={onOpen} color={'brand.400'}>Add a report</Button>
             <Modal size={'full'} isCentered isOpen={isOpen} onClose={onClose}>

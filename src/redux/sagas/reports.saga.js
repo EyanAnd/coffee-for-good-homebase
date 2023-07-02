@@ -8,7 +8,6 @@ function* reportsSaga() {
     yield takeLatest('FETCH_REPORTS', fetchReportsSaga)
     yield takeLatest('ADD_REPORT', addReportSaga)
     yield takeLatest('FETCH_PARTNERS', getPartnersForAddingReports)
-    // yield takeLatest('FETCH_PARTNER_REPORTS', fetchPartnerReports)
     
 }
 
@@ -44,14 +43,6 @@ function* getPartnersForAddingReports() {
     }
 }
 
-function* fetchPartnerReports() {
-    try {
-        const response = yield axios.get('/api/partner/reports/')
-        console.log(response)
-        yield put({ type: 'SET_PARTNER_REPORTS', payload: response.data}) // set partnerReports reducer
-    } catch (error) {
-        console.log('there was an error getting the reports for the partner', error)
-    }
-}
+
 
 export default reportsSaga;

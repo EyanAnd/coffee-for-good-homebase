@@ -68,7 +68,7 @@ router.get('/',rejectUnauthenticated, async (req, res) => {
 // GET to partner table to show mission, goals, statistics
 router.get('/info',rejectUnauthenticated, (req, res) => {
     const id = req.user.id
-    const queryText = `SELECT "user_id", "name", "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "user_id"=$1`
+    const queryText = `SELECT "partner_id", "user_id", "name", "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "user_id"=$1`
 
     pool.query(queryText, [id]).then(result => {
         res.send(result.rows)
@@ -81,11 +81,16 @@ router.get('/info',rejectUnauthenticated, (req, res) => {
 })
 // GET to reports to grab any reports to put in a table
 router.get('/reports', rejectUnauthenticated, (req, res) => {
-    const id = req.user.id;
-    const queryText = `SELECT * FROM "reports" WHERE "user_id"=$1;`;
+    console.log(req.query)
+    const partner_id = req.query.partner_id
+    console.log(partner_id)
+    const queryText = `SELECT * FROM "reports" WHERE "partner_id"=$1;`;
 
-    pool.query(queryText, [id]).then(result => {
+    pool.query(queryText, [partner_id]).then(result => {
         res.send(result.rows);
+    }).catch(err => {
+        console.log('error getting reports for specific user', err)
+        res.sendStatus(500)
     })
 })
 
