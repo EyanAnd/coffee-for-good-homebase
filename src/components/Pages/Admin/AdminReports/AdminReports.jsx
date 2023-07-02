@@ -68,7 +68,7 @@ export default function AdminReports() {
                     <Tr>
                         <Td>Name</Td>
                         <Td>Date Sent</Td>
-                        <Td>View Documents</Td>
+                        <Td>Category</Td>
                     </Tr>
                 </Thead>
                 <Tbody>

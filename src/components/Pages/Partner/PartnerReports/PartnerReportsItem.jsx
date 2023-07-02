@@ -12,10 +12,13 @@ import {
     ModalOverlay,
     Text,
     Heading,
-    Button
+    Button,
+    Link
 } from '@chakra-ui/react'
 
 export default function PartnerReportsItem({ report }) {
+    
+    console.log(report)
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const formattedDate = moment(report.date_sent).format('MMM Do YY');
@@ -30,6 +33,7 @@ export default function PartnerReportsItem({ report }) {
                      <Tr onClick={onOpen} key={report.id}>
                      <Td>{report.name}</Td>
                      <Td>{formattedDate}</Td>
+                     <Td>{report.category}</Td>
                      <Modal isCentered isOpen={isOpen} onClose={onClose}>
                          <ModalOverlay />
                          <ModalContent>
@@ -38,6 +42,7 @@ export default function PartnerReportsItem({ report }) {
                              <ModalBody pb={6}>
                                  <Heading size={'md'} color={'brand.500'} >Report Description</Heading>
                                  <Text>{report.description}</Text>
+                                 <Link href="/images/project-report.png" target="_blank">View</Link>
                              </ModalBody>
                              <ModalFooter>
                                  <Button color={'brand.500'} onClick={onClose}>Close</Button>

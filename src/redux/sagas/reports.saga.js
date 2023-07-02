@@ -24,9 +24,9 @@ function* fetchReportsSaga() {
 }
 
 // add a report
-function* addReportSaga() {
+function* addReportSaga(action) {
     try {
-        const response = yield axios.post('/api/admin/reports')
+        const response = yield axios.post('/api/admin/reports', action.payload)
         console.log(response)
         yield put({ type: 'FETCH_REPORTS' })
     } catch (error) {

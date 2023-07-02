@@ -86,7 +86,7 @@ export default function Application() {
     // progress bar calculation
     const calculateProgress = () => {
         const { name, email, mission, impact, values, previous_partners, success_stories, collab, reporting, sharing, notes } = application;
-        const totalFields = 10; // The total number of fields in your form
+        const totalFields = 10; 
         let filledFields = 0;
 
         // Count the filled fields

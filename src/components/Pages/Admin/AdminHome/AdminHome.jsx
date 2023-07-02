@@ -14,6 +14,7 @@ import {
     Table, Thead, Tbody, Tr, Th, Td, Box, Text
 } from "@chakra-ui/react";
 
+
 const COLORS = ["rgb(43, 60, 87)", "#858a7a", "#9e6b42", "#E9DCCF", "#DDC6A6", "#76818E", "#CC7E85", "#B0C0BC", "#453F3C", "#F6AE2D", "#F26419", "#FE6D73", "#FFCB77",
     "#563635", "#6E9075", "#5B6057", "639FAB", "#94524A", "#A27E6F", "#C94277", "#EAE151", "#CEC3C1", "#8332AC", "#BAD1CD", "#462749", "#76E5FC", "#76E5FC", "#88665D",
     "#BCAA99", "#C2B97F", "#007EA7", "#00171F", "#B3001B", "#255C99", "CCAD8F", "#D6D9CE", "#F3DAD8", "#F4C3C2", "#F1B5CB", "#2F0601", "#553A41", "#32908F", "#26C485",
@@ -105,7 +106,7 @@ export default function AdminHome() {
                             chart.count ||
                             chart.state_count
                         ),
-                        color: COLORS[index % COLORS.length],
+                        
                     }));
 
                     return (
