@@ -76,9 +76,9 @@ router.get('/reports', async (req, res) => {
 router.post('/reports', async (req, res) => {
     try {
         // STRETCH reconfigure post to add in a way to auto polulate the partner_id
-        const queryText = `INSERT INTO "reports" ("partner_id", "name", "description", "date_sent", "category") VALUES ($1, $2, $3, $4, $5);`;
+        const queryText = `INSERT INTO "reports" ("name", "description", "date_sent", "category", "partner_id") VALUES ($1, $2, $3, $4, $5);`;
 
-        await pool.query(queryText, [req.body.partner_id, req.body.name, req.body.description, req.body.date_sent, req.body.category])
+        await pool.query(queryText, [req.body.name, req.body.description, req.body.date_sent, req.body.category, req.body.partner_id,])
         res.sendStatus(201);
 
     } catch (error) {

@@ -26,7 +26,6 @@ export default function PartnerReports() {
                 <Table variant="simple" colorScheme="brand">
                     <Thead>
                         <Tr>
-                            <Th>Name</Th>
                             <Th>Category</Th>
                             <Th>Date Sent</Th>
                         </Tr>
