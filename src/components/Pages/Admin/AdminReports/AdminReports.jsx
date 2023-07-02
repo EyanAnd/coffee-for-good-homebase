@@ -13,8 +13,9 @@ import {
     TableCaption,
     TableContainer,
     Button,
-    Flex, Text, Heading
+    Flex, Text, Heading, useDisclosure, Modal, ModalBody, ModalCloseButton, ModalHeader, ModalFooter, ModalContent, ModalOverlay
 } from '@chakra-ui/react'
+import AdminReportsForm from "./AdminReportsForm";
 
 
 export default function AdminReports() {
@@ -30,22 +31,44 @@ export default function AdminReports() {
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_REPORTS' })
+        dispatch({ type: 'FETCH_PARTNERS' })
     }, [])
+
+    // initalize useDisclosure
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+
     return (
         <Flex direction={'column'} gap={'2rem'} p={'2rem'} >
             <Flex>
                 <Heading>Admin Reports Table</Heading>
             </Flex>
+            <Flex>
             <Text>
                 Admin can view and send reports in the table. Click on the <strong>Name</strong> to see the report
                 click on the <strong>View Documents</strong> to view the document associated with the report.
             </Text>
+            <Button onClick={onOpen} color={'brand.400'}>Add a report</Button>
+            <Modal size={'full'} isCentered isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader color={'brand.500'}>Add A Report</ModalHeader>
+                    <ModalBody >
+                        {isOpen && <AdminReportsForm />}
+                    </ModalBody>
+                    <ModalFooter>
+                    <Button color={'brand.300'} variant={'solid'} onClick={onClose}>Close</Button>
+                    </ModalFooter>
+                </ModalContent>
+
+            </Modal>
+            </Flex>
             <Table variant={'simple'} colorScheme="brand">
                 <Thead>
                     <Tr>
                         <Td>Name</Td>
+                        <Td>Category</Td>
                         <Td>Date Sent</Td>
-                        <Td>View Documents</Td>
                     </Tr>
                 </Thead>
                 <Tbody>

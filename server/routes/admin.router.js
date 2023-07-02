@@ -155,4 +155,15 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/partners', rejectUnauthenticated, async (req, res) => {
+    try {
+        const queryText = `SELECT * FROM "partners";`;
+
+        const result = await pool.query(queryText)
+        res.send(result.rows)
+    } catch (error) {
+        console.log('there was an error getting all of the partners', error)
+    }
+})
+
 module.exports = router;

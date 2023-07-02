@@ -8,6 +8,7 @@ import transactionDataReducer from './transactiondata.reducer';
 import reportsReducer from './reports.reducer';
 import partnerReducer from './partner.reducer';
 import partnerReportsReducer from './partnerreports.reduer';
+import adminFetchPartnerReducer from './adminFetchPartnerReducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,8 +24,8 @@ const rootReducer = combineReducers({
   transactionDataReducer, // hol
   reportsReducer, // holds all reports for the admin
   partnerReducer, // holds partner information to map over.
-  partnerReportsReducer // holds partner reports
-  
+  partnerReportsReducer, // holds partner reports
+  adminFetchPartnerReducer, // holds database infor for all partners
 });
 
 export default rootReducer;
