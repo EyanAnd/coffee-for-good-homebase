@@ -35,9 +35,8 @@ export default function AdminReportsItem({ report }) {
         
             <Tr onClick={onOpen} key={report.id}>
                 <Td>{report.name}</Td>
-                <Td>{formattedDate}</Td>
                 <Td>{report.category}</Td>
-                <Td>{report.file_path && report.file_path.name}</Td>
+                <Td>{formattedDate}</Td>
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

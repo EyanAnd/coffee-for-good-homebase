@@ -21,11 +21,10 @@ export default function AdminReportsForm() {
     const categories = ['Quarterly Reports', 'Earnings Reports', 'News Updates', 'Announcements']
     
     const submitReportHandler = () => {
-        const currentDate = moment().format("YYYY-MM-DD");
-        console.log('current date: ', currentDate )
-        setNewReport({ ...newReport, date_sent: currentDate})
-        dispatch({ type: 'ADD_REPORT', payload: newReport })
-
+            const currentDate = moment().format("YYYY-MM-DD");
+            console.log('current date: ', currentDate )
+            setNewReport(prevState => ({ ...prevState, date_sent: currentDate }));
+            dispatch({ type: 'ADD_REPORT', payload: newReport });   
     }
 
     return (
@@ -38,7 +37,7 @@ export default function AdminReportsForm() {
                     <FormLabel>Partner Name</FormLabel>
                     <Select value={newReport.name} onChange={(e) => {
                         const selectedPartner = currentPartners.find(partner => partner.name === e.target.value);
-                        setNewReport({ ...newReport, name: e.target.value, partner_id: selectedPartner ? selectedPartner.partner_id : '' });
+                        setNewReport(prevState => ({ ...prevState, name: e.target.value, partner_id: selectedPartner ? selectedPartner.partner_id : '' }));
                         
                     }}>
 
@@ -51,13 +50,13 @@ export default function AdminReportsForm() {
             <Flex>
                 <FormControl>
                     <FormLabel>Desription of the report</FormLabel>
-                    <Textarea value={newReport.description} onChange={(e) => setNewReport({ ...newReport, description: e.target.value })} type='text' />
+                    <Textarea value={newReport.description} onChange={(e) => setNewReport(prevState => ({ ...prevState, description: e.target.value }))} type='text' />
                 </FormControl>
             </Flex>
             <Flex>
                 <FormControl>
                     <FormLabel>Category</FormLabel>
-                    <Select value={newReport.category} onChange={(e) => setNewReport({ ...newReport, category: e.target.value })}>
+                    <Select value={newReport.category} onChange={(e) =>  setNewReport(prevState => ({ ...prevState, category: e.target.value }))}>
                         {categories.map(category => (
                             <option key={category} value={category}>{category}</option>
                         ))}
@@ -68,7 +67,7 @@ export default function AdminReportsForm() {
             <Flex>
                 <FormControl>
                     <FormLabel>Paste in a File here</FormLabel>
-                    <Input type="link" placeholder="insert link here" value={newReport.file_path} onChange={(e) => setNewReport({ ...newReport, file_path: e.target.value })} />
+                    <Input type="link" placeholder="insert link here" value={newReport.file_path} onChange={(e) =>  setNewReport(prevState => ({ ...prevState, file_path: e.target.value }))} />
                 </FormControl>
             </Flex>
             <Button variant={'ghost'} color={'brand.500'} onClick={submitReportHandler}>Add Report</Button>
