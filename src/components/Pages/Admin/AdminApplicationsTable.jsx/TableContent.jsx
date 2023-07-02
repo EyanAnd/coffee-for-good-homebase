@@ -1,9 +1,19 @@
-import { Text, Flex, Table, Thead, Tr, Tbody, Td } from "@chakra-ui/react";
+import { Text, Flex, Table, Thead, Tr, Tbody, Td, Heading } from "@chakra-ui/react";
 
 export default function TableContent({ app }) {
+
+    console.log(app)
     return (
-        <Flex height={'300px'} overflowX={'auto'}>
-            <Table>
+        <Flex direction={'column'} gap={'2rem'} padding={'1rem'}>
+            <Flex>
+                <Heading>Details for {app.name}'s application</Heading>
+            </Flex>
+            <Flex>
+                <Text>This will give the admin a deeper dive into their application and ultimately let them know more about them
+                    before reaching out to connect more. 
+                </Text>
+            </Flex>
+            <Table display={'table-column'}  overflowx={'auto'}>
                 <Thead>
                     <Tr>
                         <Td>Collaboration</Td>
@@ -29,7 +39,7 @@ export default function TableContent({ app }) {
                     <Td>{app.previous_partners}</Td>
                     <Td>{app.success_stories}</Td>
                     <Td>{app.reporting}</Td>
-                    <Td>{app.sharing}</Td>
+                    <Td>{app.sharing === true ? 'Yes' : 'No'}</Td>
                     <Td>{app.values}</Td>
                 </Tr>
                 </Tbody>
