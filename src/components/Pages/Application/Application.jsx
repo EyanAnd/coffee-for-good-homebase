@@ -30,14 +30,12 @@ export default function Application() {
     const user = useSelector((store) => store.user);
     // initalize useDisclosure for modals
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
-    // grab current application from the store
-    const currentApplication = useSelector(store => store.applicationReducer)
     // initalize history
     const history = useHistory();
     // initalize dispatch
     const dispatch = useDispatch();
-
-
+    
+    
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_APP' })
@@ -50,6 +48,8 @@ export default function Application() {
         })
     }, [currentApplication])
     // set state for the form
+    // grab current application from the store
+    const currentApplication = useSelector(store => store.applicationReducer)
     const [application, setApplication] = useState({ id: null, name: '', email: '', mission: '', impact: '', values: '', previous_partners: '', success_stories: '', collab: '', reporting: '', sharing: '', notes: '' })
     // check admin applications reducer to see if the application matches one in the applciations 
     // dispatch here to POST in the saga 

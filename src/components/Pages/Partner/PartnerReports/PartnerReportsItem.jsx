@@ -32,8 +32,8 @@ export default function PartnerReportsItem({ report }) {
                 // </Tr>
                      <Tr onClick={onOpen} key={report.id}>
                      <Td>{report.name}</Td>
-                     <Td>{formattedDate}</Td>
                      <Td>{report.category}</Td>
+                     <Td>{formattedDate}</Td>
                      <Modal isCentered isOpen={isOpen} onClose={onClose}>
                          <ModalOverlay />
                          <ModalContent>
