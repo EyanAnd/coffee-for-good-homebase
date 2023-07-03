@@ -48,9 +48,12 @@ export default function AdminApplicationsTable() {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {applications.map((app, key) => (
-                        <AdminApplicationsItem app={app} key={key} />
-                    ))}
+                    {applications
+                        .filter(app => app.name !== null) // Replace 'status' with the appropriate property indicating the application status
+                        .map((app, key) => (
+                            <AdminApplicationsItem app={app} key={key} />
+                        ))
+                    }
                 </Tbody>
             </Table>
         </Flex>
