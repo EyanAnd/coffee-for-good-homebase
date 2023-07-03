@@ -90,7 +90,7 @@ export default function AdminHome() {
                 {responseOrder.map((key, index) => {
                     const response = cfg[key];
 
-                    const data = response.map((chart, index) => ({
+                    const data = response?.map((chart, index) => ({
                         name:
                             chart.shipping_state ||
                             chart.channel_type ||
@@ -107,7 +107,7 @@ export default function AdminHome() {
                             chart.state_count
                         ),
                         
-                    }));
+                    })) || [];
 
                     return (
                         <Flex direction={"column"} gap={"4rem"} align="center" textAlign={"center"} justifyContent={"center"} key={key}>

@@ -93,7 +93,7 @@ export default function PartnerHome() {
                     const response = cfg[key];
                     console.log(response)
 
-                    const data = response.map((chart, index) => ({
+                    const data = response?.map((chart, index) => ({
                         name:
                             chart.shipping_state ||
                             chart.channel_type ||
@@ -109,7 +109,8 @@ export default function PartnerHome() {
                             chart.count ||
                             chart.state_count
                         ),
-                    }));
+                    })) || [];
+                    console.log(data)
                     return (
                         <Flex direction={"column"} gap={"4rem"} align="center" textAlign={"center"} justifyContent={"center"} key={key}>
                             <Heading color={"brand.500"} size="md">

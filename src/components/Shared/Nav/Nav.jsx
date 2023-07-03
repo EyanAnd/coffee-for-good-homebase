@@ -41,7 +41,7 @@ function Nav() {
           </Flex>
         )}
 
-        {isPartner && (
+        {isPartner && !user.is_admin && (
           <>
             <Flex gap={'2rem'} textTransform={'lowercase'} >
               <ChakraLink as={Link} to="/partner/">
@@ -107,4 +107,3 @@ function Nav() {
 }
 
 export default Nav;
-

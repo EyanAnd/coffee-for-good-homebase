@@ -39,10 +39,6 @@ function AboutPage() {
         </ListItem>
         <ListItem>
           <ListIcon as={HiCode} color='brand.400' />
-          ReCharts
-        </ListItem>
-        <ListItem>
-          <ListIcon as={HiCode} color='brand.400' />
           Nodemailer
         </ListItem>
         <ListItem>
