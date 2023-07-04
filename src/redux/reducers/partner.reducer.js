@@ -1,4 +1,4 @@
-const partnerReducer = (state = [], action) => {
+const partnerReducer = (state = [], action) => { // sets the partner info to be accessed and viewed on the front end.
     switch (action.type) {
         case "SET_PARTNER":
             return action.payload

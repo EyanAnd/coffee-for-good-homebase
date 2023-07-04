@@ -17,6 +17,7 @@ const colors = {
   },
 }
 
+// create fonts package to allow for the 
 const fonts = {
   heading: 'Archivo-Black',
   body: `'Montserrat', sans-serif`,
@@ -29,6 +30,7 @@ const theme = extendTheme({
 
 
 ReactDOM.render(
+  // wrap chakra provider in app with the theme above
   <ChakraProvider theme={theme}>
     <Provider store={store}>
       <App />

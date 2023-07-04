@@ -1,4 +1,4 @@
-const adminApplicationReducer = (state = [], action) => {
+const adminApplicationReducer = (state = [], action) => { // sets the applications for the admin table
     switch (action.type) {
       case 'SET_APPS':
         return action.payload
