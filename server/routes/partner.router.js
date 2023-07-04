@@ -53,7 +53,7 @@ router.get('/',rejectUnauthenticated, async (req, res) => {
     const response5 = await pool.query(queryText5)
     const resposne6 = await pool.query(queryText6)
     
-    res.send({
+    res.status(200).send({
         response1: response1.rows,
         response2: resposne2.rows,
         response3: response3.rows,
@@ -71,7 +71,7 @@ router.get('/info',rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT "partner_id", "user_id", "name", "mission", "impact", "values", "collab", "reporting", "notes" FROM "partners" WHERE "user_id"=$1`
 
     pool.query(queryText, [id]).then(result => {
-        res.send(result.rows)
+        res.status(200).send(result.rows)
     }).catch(err => {
         console.log('got an error GETTING the values from the partner table', err)
         res.sendStatus(500)
@@ -87,7 +87,7 @@ router.get('/reports', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "reports" WHERE "partner_id"=$1;`;
 
     pool.query(queryText, [partner_id]).then(result => {
-        res.send(result.rows);
+        res.status(200).send(result.rows);
     }).catch(err => {
         console.log('error getting reports for specific user', err)
         res.sendStatus(500)

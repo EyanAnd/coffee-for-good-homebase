@@ -8,4 +8,4 @@ switch (action.type) {
 }
 }
 
-export default reportsReducer
+module.exports = reportsReducer;
