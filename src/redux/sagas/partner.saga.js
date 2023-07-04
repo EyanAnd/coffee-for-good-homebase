@@ -1,6 +1,5 @@
 import axios from "axios";
 import { takeLatest, put, takeEvery, take} from 'redux-saga/effects'
-import errorsReducer from "../reducers/errors.reducer";
 
 function* partnerWatcherSaga() {
 // yields here

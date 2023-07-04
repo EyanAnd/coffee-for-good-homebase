@@ -6,7 +6,7 @@ function* partnerReportsSaga() {
     yield takeLatest('FETCH_PARTNER_REPORTS', fetchPartnerReports)
 }
 
-
+// get the reports that match the current partner that is set in the partner reducer
 function* fetchPartnerReports(action) {
     try {
         const response = yield axios.get('/api/partner/reports', {params: action.payload})

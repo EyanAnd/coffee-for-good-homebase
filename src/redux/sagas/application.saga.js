@@ -9,6 +9,7 @@ function* applicationSaga() {
     yield takeLatest('UPDATE_APP', updateAppSaga)
 }
 
+// saga to post the application 
 function* addAppSaga(action) {
     try {
         console.log(action.payload)
@@ -21,7 +22,7 @@ function* addAppSaga(action) {
         console.log(error)
     }
 }
-
+// saga to get the appilcation info to save or go back and edit it.
 function* fetchAppSaga() {
     try {
    
@@ -33,7 +34,7 @@ function* fetchAppSaga() {
         console.log('there was an error in the fetch app saga', error);
     }
 }
-
+// saga to update the applciation with the save application button
 function* updateAppSaga(action) {
     try {
         const response = yield axios.put(`/api/application/`, action.payload ) // 

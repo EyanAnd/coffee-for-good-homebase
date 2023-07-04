@@ -5,7 +5,7 @@ import { takeLatest, put} from 'redux-saga/effects'
 function* contactUsSaga() {
     yield takeLatest('CONTACT_ADMIN', addContactSaga);
 }
-
+// post the contact us form to the email address in nodemailer
 function* addContactSaga(action) {
     try {
         yield axios.post('/api/contact/', action.payload)

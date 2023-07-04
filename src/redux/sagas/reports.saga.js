@@ -35,6 +35,7 @@ function* addReportSaga(action) {
     }
 }
 
+// sagag to grab all the current partners for the add reports form
 function* getPartnersForAddingReports() {
     try {
         const response = yield axios.get('/api/admin/partners')
