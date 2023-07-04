@@ -2,12 +2,13 @@ const express = require('express');
 const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
-const userStrategy = require('../strategies/user.strategy');
+// import nodemailer
 const nodemailer = require('nodemailer');
 const router = express.Router();
 
+
+// post to send the email to our email.
 router.post('/',rejectUnauthenticated, async (req, res) => {
     try {
         const {user_id, name, email, subject, description } = req.body;
@@ -42,16 +43,5 @@ router.post('/',rejectUnauthenticated, async (req, res) => {
         res.sendStatus(500);
     }
 });
-
-router.get('/',rejectUnauthenticated, async (req, res) => {
-    try {
-        const queryText = `SELECT * FROM contact_form;`;
-        const response = await pool.query(queryText)
-        res.send(response.rows)
-    } catch (error) {
-        console.log('there was an error GETTING all of the contact forms', error)
-    }
-})
-
 
 module.exports = router;

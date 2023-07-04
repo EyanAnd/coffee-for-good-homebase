@@ -156,6 +156,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+// get to grab all of the partners for the admin reports
 router.get('/partners', rejectUnauthenticated, async (req, res) => {
     try {
         const queryText = `SELECT * FROM "partners";`;

@@ -12,11 +12,11 @@ const router = express.Router();
 
 // GET to grab application if started
 router.get('/', rejectUnauthenticated, async (req, res) => {
-    console.log("in get")
     const id = req.user.id
     const isAdmin = req.user.is_admin
 
     const queryText = `SELECT * FROM "application" WHERE "user_id"=$1;`;
+    // if the user is an admin don't grab or start a new application
     if(isAdmin) {
         return
     }
@@ -24,14 +24,13 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
         const result = await pool.query(queryText, [id])
         
 
-
+        // create a new application for a new user once the create an account
         if (result.rows.length === 0) {
             const queryText2 = `INSERT INTO "application" ("user_id") VALUES ($1) RETURNING *;`;
             const result2 = await pool.query(queryText2, [id])
             res.send(result2.rows[0]);
 
         } else {
-            // console.log(result)
             res.send(result.rows[0])
         }
     } catch (error) {
@@ -44,6 +43,7 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 router.post('/', rejectUnauthenticated, async (req, res) => {
     try {
         const id = req.user.id
+        // check if they already have an exisiting app
         const checkExistingQuery = `SELECT * FROM "application" WHERE "user_id"=$1;`;
         const result1 = await pool.query(checkExistingQuery, [id])
         console.log(result1.rows)
