@@ -1,7 +1,6 @@
-import { Flex, Heading, Select, useDisclosure, FormControl, FormLabel, Textarea, Input, Button, } from "@chakra-ui/react";
+import { Flex, Heading, Select, FormControl, FormLabel, Textarea, Input, Button, } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 
 export default function AdminReportsForm() {
 
@@ -15,9 +14,7 @@ export default function AdminReportsForm() {
     // import use selector to grab the store of partners.
     const currentPartners = useSelector(store => store.adminFetchPartnerReducer)
 
-    // import modal useDisclosure to close the modal on a timeout the admin has created the report
-    const { isOpen, onOpen, onClose, } = useDisclosure();
-
+    // set categories for the add report form
     const categories = ['Quarterly Report', 'Earnings Report', 'News Update', 'Announcement']
 
 

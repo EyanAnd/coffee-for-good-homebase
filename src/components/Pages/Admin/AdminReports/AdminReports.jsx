@@ -6,14 +6,10 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
-    Th,
     Td,
-    TableCaption,
-    TableContainer,
     Button,
-    Flex, Text, Heading, useDisclosure, Modal, ModalBody, ModalCloseButton, ModalHeader, ModalFooter, ModalContent, ModalOverlay
+    Flex, Text, Heading, useDisclosure, Modal, ModalBody, ModalHeader, ModalFooter, ModalContent, ModalOverlay
 } from '@chakra-ui/react'
 import AdminReportsForm from "./AdminReportsForm";
 
@@ -24,9 +20,6 @@ export default function AdminReports() {
     const reports = useSelector(store => store.reportsReducer)
     // initalize use dispatch
     const dispatch = useDispatch();
-
-    // initalize user store to get user information
-    const user = useSelector(store => store.user)
 
     // initalize useEffect
     useEffect(() => {

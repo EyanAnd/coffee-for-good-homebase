@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -24,8 +24,8 @@ import AdminReports from './Pages/Admin/AdminReports/AdminReports';
 import PartnerHome from './Pages/Partner/PartnerHome/PartnerHome';
 import PartnerReports from './Pages/Partner/PartnerReports/PartnerReports';
 import './App.css';
-import { Container, Flex, Heading, Divider, Chakra } from '@chakra-ui/react';
-import { isValidMotionProp, motion } from 'framer-motion';
+import { Container, Flex, Heading, Divider } from '@chakra-ui/react';
+
 
 
 
@@ -37,13 +37,14 @@ function App() {
   const isPartner = partner.some((partner) => partner.user_id === user.id) // check to see if the user also has a partner id 
 
 
+  // user effect to fire on load of application.
   useEffect(() => {
     dispatch({ type: 'FETCH_APP' });
     dispatch({ type: 'FETCH_PARTNER' });
     dispatch({ type: 'FETCH_PARTNER_REPORTS' });
     dispatch({ type: 'FETCH_REPORTS' });
     dispatch({ type: 'FETCH_DATA' });
-  }, [user])
+  }, [user]) // check for if the user changes.
 
   // call to grab the user on load of the app.
   useEffect(() => {
@@ -128,8 +129,10 @@ function App() {
               <Redirect to="/partner/" />
             ) : (
               user.is_admin ? (
+                // if the user is an admin redirect them to the admin home route.
                 <Redirect to="/admin/" />
               ) : (
+                // if not go to the user page.
                 <UserPage />
               )
             )}

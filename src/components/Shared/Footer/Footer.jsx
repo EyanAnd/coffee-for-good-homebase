@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Text, Link, Icon, Button, Stack, IconButton, Image, ButtonGroup, VStack, HStack, Container, Flex, Divider } from '@chakra-ui/react';
-import { FaInstagram, FaLinkedin, FaGithub, FaFacebookF, FaFacebook } from 'react-icons/fa';
+import { Box, Text, Link, IconButton, Image, ButtonGroup, Flex, Divider } from '@chakra-ui/react';
+import { FaInstagram, FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
 import '../Footer/Footer.css';
 
 function Footer() {

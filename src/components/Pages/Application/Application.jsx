@@ -4,25 +4,10 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { useEffect } from "react"
 import {
-    Button, Container, Heading, Input, Stack, StackDivider,
-    Text, Textarea, VStack, Flex, Box,
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    HStack,
-    Divider,
-    useDisclosure,
-    Alert,
-    AlertDescription,
-    AlertIcon,
-    CloseButton,
-    AlertTitle,
-    AlertStatus,
-    Checkbox,
-    Progress
+    Button, Heading, Input, Textarea, Flex, Box, FormControl,
+    FormLabel, FormHelperText, Divider, useDisclosure, Alert,
+    AlertDescription, AlertIcon, CloseButton, AlertTitle, Checkbox, Progress
 } from "@chakra-ui/react"
-import { color } from "framer-motion"
 
 export default function Application() {
 
@@ -35,23 +20,22 @@ export default function Application() {
     // initalize dispatch
     const dispatch = useDispatch();
     
-    
     // initalize useEffect
     useEffect(() => {
         dispatch({ type: 'FETCH_APP' })
         console.log("IN USE effect")
     }, [])
-    // new useEffect to watch cuurent application
+    // new useEffect to watch curent application
     useEffect(() => {
         setApplication({
             ...currentApplication
         })
     }, [currentApplication])
-    // set state for the form
     // grab current application from the store
     const currentApplication = useSelector(store => store.applicationReducer)
     const [application, setApplication] = useState({ id: null, name: '', email: '', mission: '', impact: '', values: '', previous_partners: '', success_stories: '', collab: '', reporting: '', sharing: '', notes: '' })
-    // check admin applications reducer to see if the application matches one in the applciations 
+
+
     // dispatch here to POST in the saga 
     const saveHandler = () => {
         // this will update the application when the user hits the save button
@@ -69,15 +53,14 @@ export default function Application() {
 
     }
 
+    // run the application submit function, then push them to the home page.
     const closeHandler = () => {
         onClose();
         applicationSubmit();
         history.push('/user')
     }
 
-
-    //     TODO add alerts to applications
-
+    // set the checked for sharing reports to true.
     const handleSharingChange = (e) => {
         const { checked } = e.target
         setApplication({ ...application, sharing: checked })
@@ -89,7 +72,6 @@ export default function Application() {
         const totalFields = 10; 
         let filledFields = 0;
 
-        // Count the filled fields
         if (name) filledFields++;
         if (email) filledFields++;
         if (mission) filledFields++;
@@ -101,7 +83,6 @@ export default function Application() {
         if (reporting) filledFields++;
         if (sharing) filledFields++;
         if (notes) filledFields++;
-        // ... and so on for other fields
 
         return (filledFields / totalFields) * 100;
     };
@@ -183,9 +164,3 @@ export default function Application() {
         </Flex>
     );
 }
-
-
-
-
-
-

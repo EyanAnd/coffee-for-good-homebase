@@ -1,5 +1,4 @@
 import React from "react"
-import { useState } from "react"
 import moment from "moment"
 import {
     Tr,
@@ -15,20 +14,15 @@ import {
     Text,
     Heading,
     Button,
-    Flex,
     Link
 } from '@chakra-ui/react'
 
 export default function AdminReportsItem({ report }) {
-    console.log(report)
     // initalize use Disclosure
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     // format date for the report
     const formattedDate = moment(report.date_sent).format('MMM Do YY')
-
-    // TODO add in on click functionality to view a singular report
-    // this will look like getting rid of the description and just keeping the name and the date sent most likely.
     return (
         
             <Tr onClick={onOpen} key={report.id}>

@@ -24,7 +24,6 @@ function ContactUs() {
   const addSubmission = () => {
     dispatch({ type: 'CONTACT_ADMIN', payload: submission })
     onOpen();
-    // dispatch here
   }
   return (
     <Flex w={'75%'} direction={'column'} gap={'2rem'} p={'2rem'}>

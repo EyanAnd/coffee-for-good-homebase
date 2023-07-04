@@ -18,7 +18,7 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
 
   const history = useHistory();
 
-  // init useDispatch
+  // init use dispatch
   const dispatch = useDispatch();
 
   // start application handler

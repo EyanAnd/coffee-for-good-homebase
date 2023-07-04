@@ -4,16 +4,22 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Flex, Box, Heading, Link as ChakraLink, Text, HStack, Divider, Container, Image } from '@chakra-ui/react';
+import { Flex, Box, Link as ChakraLink, Text, Divider, Image } from '@chakra-ui/react';
 
 
 function Nav() {
+  // init use history.
   const history = useHistory();
+  // init use dispatch.
   const dispatch = useDispatch();
+  // grab the user from the store to check if they are a user, and if they are an admin.
   const user = useSelector((store) => store.user);
+  // grab the partner store to see if they are a partner.
   const partner = useSelector((store) => store.partnerReducer);
+  // logic using the above store to check if the user id matches the user id of the partner.
   const isPartner = partner.some((partner) => partner.user_id === user.id);
 
+  // use effect to fetch the user, partner and data
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_PARTNER' });
@@ -22,6 +28,7 @@ function Nav() {
 
   return (
     <Flex justifyContent={'space-between'} align={'center'} bg={'white'} >
+      {/* always show these links */}
       <Link to="/home">
         <Flex align={'center'}>
           <Box h={28} w={28}>
@@ -40,7 +47,7 @@ function Nav() {
             </ChakraLink>
           </Flex>
         )}
-
+        {/* if they are a partner and not an admin, show these links */}
         {isPartner && !user.is_admin && (
           <>
             <Flex gap={'2rem'} textTransform={'lowercase'} >
@@ -60,7 +67,7 @@ function Nav() {
             </Flex>
           </>
         )}
-
+        {/* if they are a user, not a partner and not an admin, show these links */}
         {user.id && !isPartner && !user.is_admin && (
           <>
             <Flex gap={'2rem'} textTransform={'lowercase'}  >
@@ -81,7 +88,7 @@ function Nav() {
             </Flex>
           </>
         )}
-
+        {/* if the user is an admin, show these links */}
         {user.is_admin && (
           <>
             <Flex gap={'2rem'} textTransform={'lowercase'}  >

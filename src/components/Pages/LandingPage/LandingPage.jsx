@@ -3,12 +3,10 @@ import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import { Heading, Divider, Flex, Image, Button, Text, } from '@chakra-ui/react';
 
-// CUSTOM COMPONENTS
+// import the register form
 import RegisterForm from '../RegisterPage/RegisterForm';
 
 function LandingPage() {
-
-
   return (
 
     <Flex direction={'column'} gap={'1rem'} p={'2rem'} >

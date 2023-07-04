@@ -1,19 +1,7 @@
 import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    TableContainer,
-    Button,
-    Flex, Text, Heading
-} from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tr, Td, Flex, Text, Heading } from '@chakra-ui/react'
 import AdminApplicationsItem from "./AdminApplicationsItem"
 export default function AdminApplicationsTable() {
 
@@ -49,7 +37,7 @@ export default function AdminApplicationsTable() {
                 </Thead>
                 <Tbody>
                     {applications
-                        .filter(app => app.name !== null) // Replace 'status' with the appropriate property indicating the application status
+                        .filter(app => app.name !== null) 
                         .map((app, key) => (
                             <AdminApplicationsItem app={app} key={key} />
                         ))

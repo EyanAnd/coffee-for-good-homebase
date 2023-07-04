@@ -2,52 +2,14 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
-    Box,
-    Heading,
-    SimpleGrid,
-    Card,
-    CardHeader,
-    CardBody,
-    Stat,
-    StatHelpText,
-    StatLabel,
-    StatNumber,
-    StatArrow,
-    Flex,
-    Button,
-    useDisclosure, Table, Thead, Tbody, Tr, Th, Td, Text
+    Box, Heading, Stat, StatLabel, StatNumber, Flex, Table, Thead, Tbody, Tr, Th, Td, Text
 } from "@chakra-ui/react";
-
-
 
 export default function PartnerHome() {
     const user = useSelector(store => store.user)
     const cfg = useSelector((store) => store.transactionDataReducer);
-    const dispatch = useDispatch();
-    console.log(cfg);
-
-    const { isOpen, onOpen, onClose } = useDisclosure();
 
 
-    useEffect(() => {
-        dispatch({ type: "FETCH_DATA" });
-    }, [dispatch]);
-
-    const [activeIndices, setActiveIndices] = useState({});
-
-    const handleMouseEnter = (key, index) => {
-        setActiveIndices((prevIndices) => ({
-            ...prevIndices,
-            [key]: index,
-        }));
-    };
-
-    const handleMouseLeave = (key) => {
-        setActiveIndices((prevIndices) => ({
-            ...prevIndices,
-            [key]: null,
-        }));
-    };
 
     const responseOrder = ["response1", "response2", "response3"];
 
@@ -59,7 +21,7 @@ export default function PartnerHome() {
             </Flex>
             <Flex px={'2rem'} >
                 <Text>
-                    This is where our data will be displayed to our partners. This allows them to see how we are doing in real time and gives insights to 
+                    This is where our data will be displayed to our partners. This allows them to see how we are doing in real time and gives insights to
                     what they can expect to be donated to their business.
                 </Text>
             </Flex>

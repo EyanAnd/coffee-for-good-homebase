@@ -2,12 +2,6 @@ import { Flex, Text, Heading, Center, List, ListIcon, ListItem } from '@chakra-u
 import { HiCode } from 'react-icons/hi'
 import React from 'react';
 
-
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
-
 function AboutPage() {
   return (
     <Flex direction={'column'} justifyContent={'space-between '} gap={'2rem'} padding={'1rem'}>

@@ -4,23 +4,22 @@ import PartnerReportsItem from "./PartnerReportsItem";
 import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Flex, Heading, Text } from '@chakra-ui/react';
 
 export default function PartnerReports() {
+    // get reports from the reports store
     const reports = useSelector((store) => store.reportsReducer);
-    const dispatch = useDispatch();
+    // get current partner from the partner reducer
     const currentPartner = useSelector((store) => store.partnerReducer)
-    console.log(currentPartner[0].partner_id)
-    
+    // init use dispatch
+    const dispatch = useDispatch();    
     // bring in user store 
     const user = useSelector(store => store.user);
-    console.log(reports)
 
  
     useEffect(() => {
         dispatch({ type: 'FETCH_PARTNER_REPORTS', payload: { partner_id: currentPartner[0].partner_id } });
     }, [currentPartner]); // Add currentPartner as a dependency to useEffect
 
+    // logic for filetering the reports based on the report id and the current partner id
     const filteredReports = reports.filter(report => report.partner_id === currentPartner[0].partner_id);
-
-
 
     return (
 
@@ -40,6 +39,7 @@ export default function PartnerReports() {
                         </Tr>
                     </Thead>
                     <Tbody>
+                        {/* map over reports that match the current partner id */}
                         {filteredReports.map((report) => (          
                             <PartnerReportsItem key={report.id} report={report} />
                             ))}          
