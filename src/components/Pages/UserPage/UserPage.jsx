@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import LogOutButton from '../../Shared/LogOutButton/LogOutButton';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Badge, Button, ChakraProvider, Container, Flex, } from '@chakra-ui/react'
-import { Heading, Text, Stack, VStack, Image } from '@chakra-ui/react'
+import { Badge, Button, Container, Flex, } from '@chakra-ui/react'
+import { Heading, Text, Image } from '@chakra-ui/react'
 import './UserPage.css'
 import ContactUs from '../ContactUs/ContactUs';
 
-function UserPage({ forRealSubmit, setForRealSubmit }) {
+function UserPage({ forRealSubmit }) {
 
   console.log(forRealSubmit)
 
@@ -69,7 +68,7 @@ function UserPage({ forRealSubmit, setForRealSubmit }) {
               <Button onClick={startApplicationHandler}>Start Application</Button>
               <Flex gap={'2rem'} padding={'3rem'}>
               </Flex>
-              <Image src='/images/hand_beans.jpg' />
+              <Image h={500} w={500} src='/images/hand_beans.jpg' />
             </Flex>
           </Flex>
         ) : user.app_started && !user.app_submitted ? (
